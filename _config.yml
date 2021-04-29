@@ -9,7 +9,7 @@
 locale                   : "en-US"
 title                    : "Sothea Has | PhD student"
 title_separator          : "-"
-name                     : &name "Sothea Has"
+#name                     : &name "Sothea Has"
 description              : &description "I am Cambodian and currently a third year PhD student at Sorbonne Université (Paris 6)."
 url                      : https://hassothea.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
