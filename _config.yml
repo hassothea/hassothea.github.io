@@ -7,9 +7,9 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Sothea Has | PhD student"
+title                    : "Sothea Has"
 title_separator          : "-"
-#name                     : &name "Sothea Has"
+name                     : &name "Sothea Has"
 description              : &description "I am Cambodian and currently a third year PhD student at Sorbonne Université (Paris 6)."
 url                      : https://hassothea.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -80,9 +80,9 @@ analytics:
 
 # Site Author
 author:
-  name             : #"Sothea Has"
-  avatar           : "mypic.jpg"
-  bio              : #"Your biography for the left-hand sidebar"
+  name             : "Sothea Has"
+  avatar           : "profilepic.jpg"
+  bio              : "PhD student in Statistical Learning"
   location         : "Paris, France"
   employer         :
   #pubmed           : #"https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
