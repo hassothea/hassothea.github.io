@@ -13,7 +13,7 @@ I am Cambodian. Currently, I am a third year PhD student in Statistical Learning
 Research
 ======
 
-My am working on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I am developing a procedure for constructing predictive models using both supervised and unsupervised machine learning methods involving consensual aggregation techniques and clustering using a broad class of dissimilarity measures known as Bregman divergences.
+I am working on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I am developing a procedure for constructing predictive models using both supervised and unsupervised machine learning methods involving consensual aggregation techniques and clustering with a broad class of dissimilarity measures known as Bregman divergences. I provide the theoretical contributions and applications in the domain of energy. 
 
 Research interests
 ======
