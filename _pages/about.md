@@ -10,10 +10,9 @@ redirect_from:
 
 I am Cambodian. Currently, I am a third year PhD student in Statistical Learning at [UPMC - Sorbonne Université](http://www.upmc.fr/en/) under supervision of [Mathilde Mougeot](https://sites.google.com/site/mougeotmathilde/) and [Aurélie Fischer](http://www.lpsm.paris/dw/doku.php?id=users:fischer:index). I am also working as a teaching assistant at [UFR mathematics of Université de Paris (Paris 7)](https://www.math.univ-paris-diderot.fr/).
    
-Research topic
+Research topic : **Consensual aggregation and distance measurements for statistical learning. Theoretical contributions and applications to the field of energy**
 ======
 
-**Consensual aggregation and distance measurements for statistical learning. Theoretical contributions and applications to the field of energy**
 This topic involves the combination of supervised and unsupervised machine learning methods in constructing predictive models.
 
 Getting started
