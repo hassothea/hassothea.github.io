@@ -1,15 +1,15 @@
 ---
-title: "Paper Title Number 1"
+title: "KFC: A clusterwise supervised learning procedure based on aggregation of distances"
 collection: publications
 permalink: /publication/2009-10-01-paper-title-number-1
 excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
-date: 2009-10-01
-venue: 'Journal 1'
-paperurl: 'http://academicpages.github.io/files/paper1.pdf'
-citation: 'Your Name, You. (2009). &quot;Paper Title Number 1.&quot; <i>Journal 1</i>. 1(1).'
+date: 2021-04-10
+venue: 'Journal of Statistical Computation and Simulation'
+paperurl: 'https://doi.org/10.1080/00949655.2021.1891539'
+citation: 
 ---
-This paper is about the number 1. The number 2 is left for future work.
 
-[Download paper here](http://academicpages.github.io/files/paper1.pdf)
 
-Recommended citation: Your Name, You. (2009). "Paper Title Number 1." <i>Journal 1</i>. 1(1).
+[Download paper here](https://www.tandfonline.com/eprint/YKGS8GTKDBKYFXEGFWSB/full?target=10.1080/00949655.2021.1891539)
+
+[Recommended citation:](https://www.tandfonline.com/action/showCitFormats?doi=10.1080%2F00949655.2021.1891539&area=0000000000000001)
