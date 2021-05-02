@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Sothea Has"
+title                    : "Home Page"
 title_separator          : "-"
 name                     : &name "Sothea Has"
 description              : &description "I am Cambodian and currently a third year PhD student at Sorbonne Université (Paris 6)."
