@@ -8,8 +8,7 @@ venue: 'Submitted and under review'
 paperurl: 'https://hal.archives-ouvertes.fr/hal-02884333v5'
 citation: '<i>https://hal.archives-ouvertes.fr/hal-02884333v5</i>'
 ---
-This paper is about the number 2. The number 3 is left for future work.
 
 [Download paper here](https://hal.archives-ouvertes.fr/hal-02884333v5)
 
-Recommended citation: <i>Journal 1</i>
+Recommended citation: <i>https://hal.archives-ouvertes.fr/hal-02884333v5</i>
