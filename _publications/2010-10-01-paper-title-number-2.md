@@ -6,9 +6,9 @@ excerpt:
 date: 2021-04-17
 venue: 'HAL'
 paperurl: 'https://hal.archives-ouvertes.fr/hal-02884333v5'
-citation: 'citation'
+citation: ' '
 ---
 
 [Download paper here](https://hal.archives-ouvertes.fr/hal-02884333v5)
 
-Recommended citation[: ](https://hal.archives-ouvertes.fr/hal-02884333v5)
+Recommended citation: [https://hal.archives-ouvertes.fr/hal-02884333v5](https://hal.archives-ouvertes.fr/hal-02884333v5)
