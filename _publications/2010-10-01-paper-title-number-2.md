@@ -11,4 +11,4 @@ citation:
 
 [Download paper here](https://hal.archives-ouvertes.fr/hal-02884333v5)
 
-Recommended citation:[citation](https://hal.archives-ouvertes.fr/hal-02884333v5)
+Recommended citation: [citation](https://hal.archives-ouvertes.fr/hal-02884333v5)
