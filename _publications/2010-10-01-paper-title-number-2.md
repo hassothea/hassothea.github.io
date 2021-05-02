@@ -6,7 +6,7 @@ excerpt:
 date: 2021
 venue: 'Submitted and under review'
 paperurl: 'https://hal.archives-ouvertes.fr/hal-02884333v5'
-citation: '<i>https://hal.archives-ouvertes.fr/hal-02884333v5</i>'
+citation: 'https://hal.archives-ouvertes.fr/hal-02884333v5'
 ---
 
 [Download paper here](https://hal.archives-ouvertes.fr/hal-02884333v5)
