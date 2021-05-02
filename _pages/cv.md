@@ -11,7 +11,7 @@ Contact
 -----
 
 **Laboratoire de Probabilités, Statistique et Modélisation (LPSM, UMR 8001)**   
-Université de Paris  
+**Université de Paris**  
 Bâtiment Sophie Germain   
 8 Place Aurélie Nemours,   
 Avenue de France, 75013 Paris   
