@@ -10,5 +10,3 @@ citation: ' '
 ---
 
 [Download paper here](https://hal.archives-ouvertes.fr/hal-02884333v5)
-
-Recommended citation: [https://hal.archives-ouvertes.fr/hal-02884333v5](https://hal.archives-ouvertes.fr/hal-02884333v5)
