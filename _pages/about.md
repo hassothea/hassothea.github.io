@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am Cambodian. Currently, I am a third year PhD student in Statistical Learning at [UPMC - Sorbonne Université](http://www.upmc.fr/en/) under supervision of [Mathilde Mougeot](https://sites.google.com/site/mougeotmathilde/) and [Aurélie Fischer](http://www.lpsm.paris/dw/doku.php?id=users:fischer:index). I am also working as a teaching assistant at [UFR mathematics of Université de Paris (Paris 7)](https://www.math.univ-paris-diderot.fr/).
+I am currently a third year PhD student in Statistical Learning at [UPMC - Sorbonne Université](http://www.upmc.fr/en/) under supervision of [Mathilde Mougeot](https://sites.google.com/site/mougeotmathilde/) and [Aurélie Fischer](http://www.lpsm.paris/dw/doku.php?id=users:fischer:index). I am from Cambodia. I also work as a teaching assistant at [UFR mathematics of Université de Paris (Paris 7)](https://www.math.univ-paris-diderot.fr/) during my thesis.
    
 Research
 ======
