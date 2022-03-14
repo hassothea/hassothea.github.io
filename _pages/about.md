@@ -13,7 +13,7 @@ I am currently a third year PhD student in Statistical Learning at [UPMC - Sorbo
 Research
 ======
 
-I am working on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I am developing a procedure for constructing predictive models using both supervised and unsupervised machine learning methods involving consensual aggregation techniques and clustering with a broad class of dissimilarity measures known as Bregman divergences. I provide theoretical contributions and applications of the methods on the domain of energy. 
+My Ph.D. research focuses on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I am developing a procedure for constructing predictive models using both supervised and unsupervised machine learning methods involving consensual aggregation techniques and clustering with a broad class of dissimilarity measures known as Bregman divergences. I provide theoretical contributions and applications of the methods on the domain of energy. 
 
 Research interests
 ======
