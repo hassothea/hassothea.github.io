@@ -3,7 +3,7 @@ title: "A kernel-based Consensual Aggregation for Regression"
 collection: talks
 type: "Talk"
 permalink: /talks/2021-2nd-Article-Talk
-venue: "JDS-2021"
+venue: "JDS 2021"
 date: 2021
 location: "Online, France"
 ---
