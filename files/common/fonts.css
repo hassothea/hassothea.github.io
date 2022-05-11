@@ -1,0 +1,50 @@
+
+@font-face{
+  font-family: 'Roboto Light';
+  src: url('Roboto/Roboto-Light.ttf');
+}
+@font-face{
+  font-family: 'Roboto Light';
+  src: url('Roboto/Roboto-Medium.ttf');
+  font-weight: bold;
+}
+@font-face{
+  font-family: 'Roboto Light';
+  src: url('Roboto/Roboto-Lightitalic.ttf');
+  font-style: italic;
+}
+@font-face{
+  font-family: 'Roboto Light';
+  src: url('Roboto/Roboto-MediumItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face{
+  font-family: 'Yanone Kaffeesatz';
+  src: url('Yanone_Kaffeesatz/YanoneKaffeesatz-Regular.ttf');
+}
+@font-face{
+  font-family: 'Yanone Kaffeesatz';
+  src: url('Yanone_Kaffeesatz/YanoneKaffeesatz-Bold.ttf');
+  font-weight: bold;
+}
+@font-face{
+  font-family: 'Ubuntu Mono';
+  src: url('Ubuntu_Mono/UbuntuMono-Regular.ttf');
+}
+@font-face{
+  font-family: 'Ubuntu Mono';
+  src: url('Ubuntu_Mono/UbuntuMono-Bold.ttf');
+  font-weight: bold;
+}
+@font-face{
+  font-family: 'Ubuntu Mono';
+  src: url('Ubuntu_Mono/UbuntuMono-Italic.ttf');
+  font-style: italic;
+}
+@font-face{
+  font-family: 'Ubuntu Mono';
+  src: url('Ubuntu_Mono/UbuntuMono-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
