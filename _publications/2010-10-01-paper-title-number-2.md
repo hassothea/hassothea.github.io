@@ -9,6 +9,6 @@ paperurl: 'https://hal.archives-ouvertes.fr/hal-02884333v5'
 citation: ' '
 ---
 
-[Download paper here](https://hal.archives-ouvertes.fr/hal-02884333v5)
+[&#9755; Download paper here](https://hal.archives-ouvertes.fr/hal-02884333v5)
 
-[&#9998; Codes with explaination](/files/KernelAggReg/KernelAggReg.html).
+[&#9755; Codes with explaination](/files/KernelAggReg/KernelAggReg.html).
