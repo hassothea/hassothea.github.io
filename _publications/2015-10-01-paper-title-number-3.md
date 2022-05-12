@@ -8,4 +8,4 @@ paperurl: 'https://doi.org/10.3389/fphy.2022.786639'
 citation: ' '
 ---
 
-[Download paper here](https://doi.org/10.3389/fphy.2022.786639)
+[&#9755; Download paper](https://doi.org/10.3389/fphy.2022.786639){:target="_blank"}
