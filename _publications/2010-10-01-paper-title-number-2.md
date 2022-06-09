@@ -11,4 +11,4 @@ citation: ' '
 
 [&#9755; Download paper](https://hal.archives-ouvertes.fr/hal-02884333v5){:target="_blank"}
 
-[<i class="fab fa-r-project"></i> codes with explanation](/files/KernelAggReg/KernelAggReg.html){:target="_blank"}
+[<i class="fab fa-r-project"></i>-codes with explanation](/files/KernelAggReg/KernelAggReg.html){:target="_blank"}
