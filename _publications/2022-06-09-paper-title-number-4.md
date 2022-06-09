@@ -1,5 +1,5 @@
 ---
-title: "Consensual Aggregation on Random ProjectedHigh-dimensional Features for Regression"
+title: "Consensual Aggregation on Random Projected High-dimensional Features for Regression"
 collection: preprints
 permalink: /publication/2022-06-09-paper-title-number-4
 excerpt: 
