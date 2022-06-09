@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning Methods Applied to the Global Modeling of Event-Driven Pitch Angle Diffusion Coefficients During High Speed Streams"
+title: "Machine learning methods applied to the global modeling of event-driven pitch angle diffusion coefficients during high speed streams"
 collection: publications
 permalink: /publication/2015-10-01-paper-title-number-3
 date: 2022-05-05
