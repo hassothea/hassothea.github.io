@@ -2002,7 +2002,7 @@ section.</p></li>
 </ul>
 <hr />
 <blockquote>
-<p><strong>Remark.2</strong>: <code>lambda</code>, <code>k</code>,
+<p><strong>&#9999; Remark.1</strong>: <code>lambda</code>, <code>k</code>,
 <code>ntree</code> can be a single value or a vector. In other words,
 each type of models can be constructed several times according to the
 values of the hyperparameters (a single value or vector).</p>
@@ -3033,7 +3033,7 @@ types of basic machines are built.</li>
 the basic machines. By default, <code>splits = .5</code>.</li>
 <li><code>n_cv</code> : the number of cross-validation folds used to
 tune the smoothing parameter.</li>
-<li><code>inv_sig, alp</code> : the inverse normalized constant <span class="math inline">\(\sigma^{-1}&gt;0\)</span> and the exponent <span class="math inline">\(\alp&gt;0\)</span> of exponential kernel: <span class="math inline">\(K(x)=e^{-\|x/\sigma\|^{\alpha}}\)</span> for any
+<li><code>inv_sig, alp</code> : the inverse normalized constant <span class="math inline">\(\sigma^{-1}&gt;0\)</span> and the exponent <span class="math inline">\(\alpha&gt;0\)</span> of exponential kernel: <span class="math inline">\(K(x)=e^{-\|x/\sigma\|^{\alpha}}\)</span> for any
 <span class="math inline">\(x\in\mathbb{R}^d\)</span>. By default,
 <code>inv_sigma =</code><span class="math inline">\(\sqrt{1/2}\)</span>
 and <code>alpha = 2</code> which corresponds to the Gaussian
@@ -3685,12 +3685,70 @@ desire result of the kernel-based consensual aggregation method.</p>
 <ul>
 <li><p><strong>Argument</strong>:</p>
 <ul>
-<li><code>fitted_models</code> : the object obtained from
-<code>fit_parameter</code> function.</li>
-<li><code>new_data</code> : the new testing data to be predicted.</li>
+<li><code>train_design</code> : a matrix or data frame of the training
+<em>input data</em> or the <em>predictions</em> given by some
+predictors.
+<ul>
+<li>If the <em>input</em> data is given, the option
+<code>build_machine</code> must be <code>TRUE</code> and all the chosen
+machines will be constructed using a proportion of the training input
+(<code>splits</code>).</li>
+<li>If the <em>predictions</em> are given, the option
+<code>build_machine</code> must be <code>FALSE</code> which indicates
+that no basic machine is constructed and the paramter is tuned using
+this predicted features directly.</li>
+</ul></li>
+<li><code>train_response</code> : a vector of corresponding response
+variable of the <code>train_design</code>.</li>
+<li><code>test_design</code> : the matrix or data frame of testing
+<em>input data</em> or testing <em>predictions</em> according to
+<code>train_design</code>.</li>
 <li><code>test_response</code> : the testing response variable, it is
 optional. If it is given, the mean square error on the testing data is
 also computed. By default, <code>test_response = NULL</code>.</li>
+<li><code>scale_input</code> : a logical value specifying whether or not
+to scale the input data before building the basic regression predictors.
+By default, <code>scale_input = FALSE</code>.</li>
+<li><code>scale_machine</code> : a logical value specifying whether or
+not to scale the predicted features given by all the basic regression
+predictors, for aggregation. By default,
+<code>scale_machine = FALSE</code>.</li>
+<li><code>build_machine</code>: a logical value specifying whether or
+not the basic machines should be constructed. It should be
+<code>TRUE</code> if the <code>train_design</code> is the input data,
+else it should be <code>FALSE</code> is the <code>train_design</code> is
+the features of predictions. By default,
+<code>build_machine = TRUE</code>.</li>
+<li><code>machines</code> : a vector of basic machines to be
+constructed. It must be a subset of {“lasso”, “ridge”, “knn”, “tree”,
+“rf”, “xgb”}. By default, <code>machines = NULL</code> and all the six
+types of basic machines are built.</li>
+<li><code>splits</code> : the proportion of training data used to build
+the basic machines. By default, <code>splits = .5</code>.</li>
+<li><code>n_cv</code> : the number of cross-validation folds used to
+tune the smoothing parameter.</li>
+<li><code>inv_sig, alp</code> : the inverse normalized constant <span class="math inline">\(\sigma^{-1}&gt;0\)</span> and the exponent <span class="math inline">\(\alpha&gt;0\)</span> of exponential kernel: <span class="math inline">\(K(x)=e^{-\|x/\sigma\|^{\alpha}}\)</span> for any
+<span class="math inline">\(x\in\mathbb{R}^d\)</span>. By default,
+<code>inv_sigma =</code><span class="math inline">\(\sqrt{1/2}\)</span>
+and <code>alpha = 2</code> which corresponds to the Gaussian
+kernel.</li>
+<li><code>kernels</code> : the kernel function or vector of kernel
+functions used for the aggregation.</li>
+<li><code>optimizeMethod</code> : the optimization methods used to learn
+the smoothing parameter. By default, <code>optimizeMethod</code>
+(“grad”) which stands for gradient descent algorithm, and if
+“optimizeMethod = grid”, then the grid search algorithm is used. <span style="color: #F0AE14;"><em>Note that this should be of the same size as
+the</em></span> <code>kernels</code> <span style="color: #F0AE14;"><em>argument, otherwise “grid” method will be
+used for all the kernels</em></span>.</li>
+<li><code>setBasicMachineParam</code> : an option used to set the values
+of the parameters of the basic machines. <code>setBasicParameter</code>
+function should be fed to this argument.</li>
+<li><code>setGradParam</code> : an option used to set the values of the
+parameters of the gradient descent algorithm.
+<code>setGradParameter</code> function should be fed to it.</li>
+<li><code>setGridParam</code> : an option used to set the values of the
+parameters of the grid search algorithm. <code>setGridParameter</code>
+function should be fed to it.</li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
 <p>This function return a <em>list</em> of the following objects:</p>
@@ -3708,6 +3766,8 @@ parameters.</li>
 <li><code>mse</code> : the mean square error evaluated on the testing
 data if the testing response variable is given.</li>
 <li><code>kernels</code> : the kernel functions used.</li>
+<li><code>ind_D2</code> : the indices of the second part of the training
+data used for the aggregation.</li>
 </ul></li>
 </ul>
 <pre class="r"><code>kernelAggReg &lt;- function(train_design, 
@@ -3843,7 +3903,7 @@ agg &lt;- kernelAggReg(train_design = df[train, 2:8],
 </div>
 <hr />
 <blockquote>
-<p><span style="color: #1FAAE3;">📖 Read also <a href="\files\KernelAggReg\MixCobraReg.html">MixCobra method</a></span> by <a href="https://www.sciencedirect.com/science/article/pii/S0378375818302349">Fischer
+<p><span style="color: #1FAAE3;">📖 Read also <a href="https://hassothea.github.io/files/KernelAggReg/MixCobraReg.html">MixCobra method</a></span> by <a href="https://www.sciencedirect.com/science/article/pii/S0378375818302349">Fischer
 and Mougeot (2019)</a></p>
 </blockquote>
 <hr />
@@ -3853,7 +3913,7 @@ and Mougeot (2019)</a></p>
 <hr />
 <ul>
 <li><a href="https://www.sciencedirect.com/science/article/pii/S0047259X15000950">Biau
-et al. (2016)</a></li>
+et al. (2016)</a></li>
 <li><a href="https://hal.archives-ouvertes.fr/hal-02884333v5">Has
 (2021)</a></li>
 <li>…</li>
