@@ -21,4 +21,4 @@ Tel: 01 57 27 93 98
 Resume
 -----
 
-My resume can be found [here](/files/CV-Professional-Sothea_HAS.pdf).
+My resume can be found [here](/files/CV-SotheaHas.pdf).
