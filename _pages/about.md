@@ -28,4 +28,6 @@ Teaching (Université de Paris)
 - M1ISIFAR : TP R-programming of Data Analysis.
 - M2ISIFAR : TP R-programming of Data Mining.
 - M1MIDS : TP R-programming of Exploratory Data Analysis.
+- L3 : TP of Algorithm and programming in Python.
+- M1 Math-Info : TP of Big data technology with Spark and Python.
 
