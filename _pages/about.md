@@ -13,7 +13,7 @@ I am currently a third year PhD student in Statistical Learning at [UPMC - Sorbo
 Research
 ======
 
-My Ph.D. research focuses on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I am developing a procedure for constructing predictive models using both supervised and unsupervised machine learning methods involving consensual aggregation techniques and clustering with a broad class of dissimilarity measures known as Bregman divergences. I provide theoretical contributions and applications of the methods on the domain of energy. My thesis can be found [here](/files/Thèse_Manuscrit_SotheaHas.pdf).
+My Ph.D. research focuses on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I am developing a procedure for constructing predictions using both supervised and unsupervised machine learning methods including consensual aggregation methods and clustering. I provide theoretical contributions and applications of the methods on several simulated and real (energy) data. My thesis can be found [here](/files/Thèse_Manuscrit_SotheaHas.pdf).
 
 Research interests
 ======
