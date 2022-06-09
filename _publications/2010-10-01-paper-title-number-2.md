@@ -1,5 +1,5 @@
 ---
-title: "A Kernel-based Consensual Aggregation for Regression"
+title: "A kernel-based consensual aggregation for regression"
 collection: preprints
 permalink: /publication/2010-10-01-paper-title-number-2
 excerpt: 
