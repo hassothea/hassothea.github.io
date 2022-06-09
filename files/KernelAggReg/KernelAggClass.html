@@ -1955,11 +1955,11 @@ kernel-based combined classification rule by <span style="color: #1FAAE3;"><a hr
 (2020)</a></span>. Let <span class="math inline">\(\mathcal{D}_n=\{(x_1,y_1),...,(x_n,y_n)\}\)</span>
 be a training data of size <span class="math inline">\(n\)</span>, where
 the input-output couples <span class="math inline">\((x_i,y_i)\in\mathbb{R}^d\times\{1,\dots,N\}\)</span>
-for all <span class="math inline">\(i=1,...,n\)</span>, and <span class="math inline">\(N\)</span> is the number of classes. <span class="math inline">\(\mathcal{D}_{n}\)</span> is first randomly
+for all <span class="math inline">\(i=1,...,n\)</span>, and here, <span class="math inline">\(N\)</span> is the number of classes. <span class="math inline">\(\mathcal{D}_{n}\)</span> is first randomly
 partitioned into <span class="math inline">\(\mathcal{D}_{k}\)</span>
 and <span class="math inline">\(\mathcal{D}_{\ell}\)</span> of size
-<span class="math inline">\(k\)</span> and <span class="math inline">\(\ell\)</span> respectively such that <span class="math inline">\(k+\ell=n\)</span>. We construct <span class="math inline">\(M\)</span> classifiers (machines) <span class="math inline">\(C_1,...,C_M\)</span> using only <span class="math inline">\(\mathcal{D}_{k}\)</span>. Let <span class="math inline">\({\bf
-C}(x)=(C_1(x),...,C_M(x))^T\in\{1,...,N\}^M\)</span> be the vector of
+<span class="math inline">\(k\)</span> and <span class="math inline">\(\ell\)</span> respectively such that <span class="math inline">\(k+\ell=n\)</span>. We construct <span class="math inline">\(M\)</span> classifiers (machines) <span class="math inline">\(c_1,...,c_M\)</span> using only <span class="math inline">\(\mathcal{D}_{k}\)</span>. Let <span class="math inline">\({\bf
+C}(x)=(c_1(x),...,c_M(x))^T\in\{1,...,N\}^M\)</span> be the vector of
 predicted classes of <span class="math inline">\(x\in\mathbb{R}^d\)</span>, the kernel-based
 combining method evaluated at point <span class="math inline">\(x\)</span> is defined by</p>
 <p><span class="math display">\[
@@ -1978,7 +1978,7 @@ distance or the number of different classes among <span class="math inline">\(M\
 weight. Even though the formula of <span class="math inline">\(g_n\)</span> is defined using only data points in
 <span class="math inline">\(\mathcal{D}_{\ell}\)</span>, it does depend
 on the whole training data <span class="math inline">\(\mathcal{D}_{n}\)</span> as the basic machines
-<span class="math inline">\((C_i)_{i=1}^M\)</span> are built using <span class="math inline">\(\mathcal{D}_{k}\)</span>.</p>
+<span class="math inline">\((c_i)_{i=1}^M\)</span> are built using <span class="math inline">\(\mathcal{D}_{k}\)</span>.</p>
 </div>
 <div id="important-packages" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> <span style="color: #F0AE14;"> <u> Important packages</u></span></h2>
