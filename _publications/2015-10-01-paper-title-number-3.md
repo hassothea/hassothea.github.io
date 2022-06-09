@@ -8,4 +8,4 @@ paperurl: 'https://doi.org/10.3389/fphy.2022.786639'
 citation: ' '
 ---
 
-[&#9755; Download paper](https://doi.org/10.3389/fphy.2022.786639){:target="_blank"} and [GitHub <i class="fa-github" aria-hidden="true"></i> repository and codes](https://github.com/ML-Space-Weather/PADiffusion-HSS){:target="_blank"}.
+[&#9755; Download paper](https://doi.org/10.3389/fphy.2022.786639){:target="_blank"} and [GitHub <i class="fa fa-github" aria-hidden="true"></i> repository and codes](https://github.com/ML-Space-Weather/PADiffusion-HSS){:target="_blank"}.
