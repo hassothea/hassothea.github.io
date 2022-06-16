@@ -1991,7 +1991,7 @@ indicating the max number of boosting iterations. By default,
 <code>xgboost</code> function. By, default,
 <code>early_stop_xgb = NULL</code> and the early stopping function is
 not triggered.</li>
-<li><code>max_depth_xgb</code> : maximum depth of trees constructed in
+<li><code>max_depth_xgb</code> : the maximum depth of trees constructed in
 <code>xgboost</code>.</li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
@@ -2039,7 +2039,7 @@ values of the hyperparameters (a single value or vector).</p>
 input data.</li>
 <li><code>train_response</code> : a vector of training response variable
 corresponding to the <code>train_input</code>.</li>
-<li><code>scale_input</code> : logical value specifying whether to scale
+<li><code>scale_input</code> : a logical value specifying whether to scale
 the input data (to be between <span class="math inline">\(0\)</span> and
 <span class="math inline">\(1\)</span>) or not. By default,
 <code>scale_input = FALSE</code>.</li>
@@ -2055,21 +2055,22 @@ for the aggregation (<span class="math inline">\(\mathcal{D}_{\ell}\)</span>). B
 <li><code>basicMachineParam</code> : the option used to setup the values
 of parameters of each machines. One should feed the function
 <code>setBasicParameter()</code> defined above to this argument.</li>
+<li><code>silent</code> : a logical value to silent all the messages or information to be printed during the process of the method. By default, <code>silent = FALSE</code>.</li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
 <p>This function returns a list of the following objects.</p>
 <ul>
-<li><code>predict2</code> : the predictions of the remaining part (<span class="math inline">\(\mathcal{D}_{\ell}\)</span>) of the training data
-used for the aggregation.</li>
+<li><code>predict2</code> : the predictions of the remaining part (<span class="math inline">\(\mathcal{D}_{\ell}\)</span>) of the training data used for the aggregation.</li>
 <li><code>models</code> : all the constructed basic machines (it
-contains only the values of prapeter <span class="math inline">\(k\)</span> for <code>knn</code>).</li>
+contains only the values of parameter <span class="math inline">\(k\)</span> for <code>knn</code>).</li>
 <li><code>id2</code> : a logical vector of size equals to the number of
 lines of the training data indicating the location of the points used to
 build the basic machines (<code>FALSE</code>) and the remaining ones
 (<code>TRUE</code>).</li>
 <li><code>scale_max</code>, <code>scale_min</code> : if the argument
 <code>scale_input = TRUE</code>, the maximun and minimun values of all
-columns are contained in these vectors.</li>
+columns are stored in these vectors.</li>
+<li><code>silent</code> : a logical value to silent all the messages or information to be printed during the process of the method. By default, <code>silent = FALSE</code>.</li>
 </ul></li>
 </ul>
 <hr />
@@ -2084,7 +2085,8 @@ machines</em>.</p>
                              scale_input = FALSE,
                              machines = NULL, 
                              splits = 0.5, 
-                             basicMachineParam = setBasicParameter()){
+                             basicMachineParam = setBasicParameter(),
+                             silent = FALSE){
   lambda = basicMachineParam$lambda
   k &lt;- basicMachineParam$k 
   ntree &lt;- basicMachineParam$ntree 
@@ -2223,8 +2225,10 @@ machines</em>.</p>
   
   pred_D2 &lt;- c()
   all_mod &lt;- c()
-  cat(&quot;\n* Building basic machines ...\n&quot;)
-  cat(&quot;\t~ Progress:&quot;)
+  if(!silent){
+    cat(&quot;\n* Building basic machines ...\n&quot;)
+    cat(&quot;\t~ Progress:&quot;)
+  }
   for(m in 1:M){
     if(mach[m] %in% c(&quot;tree&quot;, &quot;rf&quot;)){
       x0_test &lt;- df_train_x2
@@ -2245,7 +2249,9 @@ machines</em>.</p>
     names(tem0) &lt;- names(tem1) &lt;- paste0(mach[m], 1:length(para_))
     pred_D2 &lt;- bind_cols(pred_D2, as_tibble(tem0))
     all_mod[[mach[m]]] &lt;- tem1
-    cat(&quot; ... &quot;, round(m/M, 2)*100L,&quot;%&quot;, sep = &quot;&quot;)
+    if(!silent){
+      cat(&quot; ... &quot;, round(m/M, 2)*100L,&quot;%&quot;, sep = &quot;&quot;)
+    }
   }
   if(scale_input){
     return(list(predict2 = pred_D2,
@@ -2353,31 +2359,31 @@ graphic of the result or not. By default,
 <code>rate = NULL</code>. By default,
 <code>coef_auto = 0.005</code>.</li>
 <li><code>coef_log</code> : the coefficinet multiplying to the
-<em>logarithmic</em> increment of the learning rate, i.e., the rate is
+<em>logarithmic</em> increment of the learning rate, i.e.,
 <code>rate</code> <span class="math inline">\(=\)</span>
 <code>coef_log</code><span class="math inline">\(\times
 \log(1+t)\)</span> where <span class="math inline">\(t\)</span> is the
 numer number of iteration. By default, <code>coef_log = 1</code>.</li>
 <li><code>coef_sqrt</code> : the coefficinet multiplying to the
-<em>square root</em> increment of the learning rate, i.e., the rate is
+<em>square root</em> increment of the learning rate, i.e.,
 <code>rate</code> <span class="math inline">\(=\)</span>
 <code>coef_sqrt</code><span class="math inline">\(\times
 \sqrt{t}\)</span>. By default, <code>coef_sqrt = 1</code>.</li>
 <li><code>coef_lm</code> : the coefficinet multiplying to the
-<em>linear</em> increment of the learning rate, i.e., the rate is
+<em>linear</em> increment of the learning rate, i.e.,
 <code>rate</code> <span class="math inline">\(=\)</span>
 <code>coef_lm</code><span class="math inline">\(\times t\)</span>. By
 default, <code>coef_lm = 1</code>.</li>
 <li><code>deg_poly</code> : the degree of the <em>polynomial</em>
-increment of the learning rate, i.e., the rate is <code>rate</code>
-<span class="math inline">\(=t^{\texttt{coef_poly}}\)</span>. By
+increment of the learning rate, i.e., <code>rate</code>
+<span class="math inline">\(=t^{\texttt{deg_poly}}\)</span>. By
 default, <code>deg_poly = 2</code>.</li>
 <li><code>base_exp</code> : the base of the <em>exponential</em>
-increment of the learning rate, i.e., the rate is <code>rate</code>
+increment of the learning rate, i.e., <code>rate</code>
 <span class="math inline">\(=\)</span> <code>base_exp</code><span class="math inline">\(^t\)</span>. By default,
 <code>base_exp = 1.5</code>.</li>
-<li><code>threshold</code> : the threshold to stop the algorithm what
-the relative change is smaller than this value. By default,
+<li><code>threshold</code> : the threshold to stop the algorithm when
+the relative change of parameter is smaller than this value. By default,
 <code>threshold = 1e-10</code>.</li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
@@ -2436,6 +2442,7 @@ positive variables.</li>
 <li><code>setParameter</code> : the control of gradient descent
 parameters which should be the function <code>setGradParameter()</code>
 defined above.</li>
+<li><code>silent</code> : a logical value to silent all the messages or information to be printed during the process of the method. By default, <code>silent = FALSE</code>.</li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
 <p>This function returns a list of the following objects:</p>
@@ -2450,7 +2457,8 @@ during the walk of the algorithm.</li>
 </ul></li>
 </ul>
 <pre class="r"><code>gradOptimizer &lt;- function(obj_fun,
-                       setParameter = setGradParameter()) {
+                       setParameter = setGradParameter(),
+                       silent = FALSE) {
   start.time &lt;- Sys.time()
   # Optimization step:
   # ==================
@@ -2476,7 +2484,7 @@ during the walk of the algorithm.</li>
       x0 = val0, 
       heps = .Machine$double.eps ^ (1 / 3))
   }
-  if(setParameter$print_step){
+  if(setParameter$print_step & !silent){
     cat(&quot;\n* Gradient descent algorithm ...&quot;)
     cat(&quot;\n  Step\t|  Parameter\t|  Gradient\t|  Threshold \n&quot;)
     cat(&quot; &quot;, rep(&quot;-&quot;, 51), sep = &quot;&quot;)
@@ -2541,7 +2549,7 @@ during the walk of the algorithm.</li>
         heps = .Machine$double.eps ^ (1 / 3)
       )
       i &lt;- i + 1
-      if(setParameter$print_step){
+      if(setParameter$print_step & !silent){
         cat(&quot;\n  &quot;, i, &quot;\t| &quot;, spec_print(val), 
             &quot;\t| &quot;, spec_print(grad_), 
             &quot;\t| &quot;, test_threshold, &quot;\r&quot;)
@@ -2584,7 +2592,7 @@ during the walk of the algorithm.</li>
         heps = .Machine$double.eps ^ (1 / 3)
       )
       i &lt;- i + 1
-      if(setParameter$print_step){
+      if(setParameter$print_step & !silent){
         cat(&quot;\n  &quot;, i, &quot;\t| &quot;, spec_print(val), 
             &quot;\t| &quot;, spec_print(grad_), 
             &quot;\t| &quot;, test_threshold, &quot;\r&quot;)
@@ -2595,7 +2603,7 @@ during the walk of the algorithm.</li>
   }
   opt_ep &lt;- val
   opt_risk &lt;- obj_fun(opt_ep)
-  if(setParameter$print_step){
+  if(setParameter$print_step & !silent){
     cat(rep(&quot;-&quot;, 55), sep = &quot;&quot;)
     if(grad_ == 0){
       cat(&quot;\n Stopped| &quot;, spec_print(val), 
@@ -2607,7 +2615,7 @@ during the walk of the algorithm.</li>
         &quot;\t| &quot;, test_threshold)
     } 
   }
-  if(setParameter$print_result){
+  if(setParameter$print_result & !silent){
     cat(&quot;\n ~ Observed parameter:&quot;, opt_ep, &quot; in&quot;,i, &quot;iterations.&quot;)
   }
   if (setParameter$figure) {
@@ -2668,15 +2676,15 @@ print(p)</code></pre>
 <ul>
 <li><p><strong>Argument</strong>:</p>
 <ul>
-<li><code>min_val</code> : the minimum value of parameter grid.</li>
-<li><code>max_val</code> : the maximum value of parameter grid.</li>
-<li><code>n_val</code> : the number of points in the grid.</li>
-<li><code>parameters</code> : the vector of paramters in case the
-non-uniform grid is considered.</li>
+<li><code>min_val</code> : the minimum value of parameter grid. By default, <code>min_val = 1e-4</code></li>
+<li><code>max_val</code> : the maximum value of parameter grid. By default, <code>max_val = 0.1</code></li>
+<li><code>n_val</code> : the number of points in the grid. By default, <code>n_val = 300</code></li>
+<li><code>parameters</code> : the vector of paramters in case
+non-uniform grid is considered. By default, <code>parameters = NULL</code></li>
 <li><code>print_result</code> : a logical value specifying whether or
-not to print the observed result.</li>
+not to print the observed result. By default, <code>print_result = TRUE</code></li>
 <li><code>figure</code> : a logical value specifying whether or not to
-plot the graphic of error.</li>
+plot the graphic of error. By default, <code>figure = TRUE</code></li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
 <p>This function returns a <em>list</em> of all the parameters given in
@@ -2708,6 +2716,7 @@ positive variables.</li>
 <li><code>setParameter</code> : the control of grid search algorithm
 parameters which should be the function <code>setGridParameter()</code>
 defined above.</li>
+<li><code>silent</code> : a logical value to silent all the messages or information to be printed during the process of the method. By default, <code>silent = FALSE</code>.</li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
 <p>This function returns a list of the following objects:</p>
@@ -2720,7 +2729,8 @@ all the values of considered parameters.</li>
 </ul></li>
 </ul>
 <pre class="r"><code>gridOptimizer &lt;- function(obj_func,
-                         setParameter = setGridParameter()){
+                         setParameter = setGridParameter(),
+                         silent = FALSE){
   t0 &lt;- Sys.time()
   if(is.null(setParameter$parameters)){
     param &lt;- seq(setParameter$min_val, 
@@ -2734,7 +2744,7 @@ all the values of considered parameters.</li>
   id_opt &lt;- which.min(risk)
   opt_ep &lt;- param[id_opt]
   opt_risk &lt;- risk[id_opt]
-  if(setParameter$print_result){
+  if(setParameter$print_result & !silent){
     cat(&quot;\n* Grid search algorithm...&quot;, &quot;\n ~ Observed parameter :&quot;, opt_ep)
   }
   if(setParameter$figure){
@@ -2802,11 +2812,11 @@ r}(x_j)- {\bf r}(x_i))}\]</span></li>
 <h2><span class="header-section-number">3.4</span> <span style="color: #F0AE14;"><u>Function</u></span>:
 <code>dist_matrix</code></h2>
 <p>This function computes different distances between data points of
-each training folds (<span class="math inline">\(\mathcal{D}_{\ell}-F_k\)</span>) and the
+each case of (<span class="math inline">\(\mathcal{D}_{\ell}-F_k\)</span>) training folds and the
 corresponding validation fold <span class="math inline">\(F_k\)</span>
 for any <span class="math inline">\(k=1,\dots,\kappa\)</span>. The
 distance matrices <span class="math inline">\(D_k=(d[{\bf r}(x_i),{\bf
-r}(x_j)])_{i,j}\)</span> for <span class="math inline">\(k=1,\dots,\kappa\)</span>, where the distance
+r}(x_j)])_{i,j}\)</span> for <span class="math inline">\(k=1,\dots,\kappa\)</span> are computed, where the distance
 <span class="math inline">\(d\)</span> is defined according to different
 types kernel functions.</p>
 <ul>
@@ -2822,22 +2832,21 @@ which is an element of {“gaussian”, “epanechnikov”, “biweight”,
 <code>kernel = &quot;gaussian&quot;</code>.</li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
-<p>This functions returns a list of the following objects:</p>
+<p>This function returns a list of the following objects:</p>
 <ul>
 <li><code>dist</code> : a list of data frame (<code>tibble</code>)
 containing sublists corresponding to kernel functions used for the
 aggregation. Each sublist contains <code>n_cv</code> numbers of distance
 matrices <span class="math inline">\(D_k=(d[{\bf r}(x_i),{\bf
 r}(x_j)])_{i,j}\)</span>, for <span class="math inline">\(k=1,\dots,\kappa\)</span>, containing distances
-between the data points in valiation fold (by row) and the <span class="math inline">\(1-\kappa\)</span> remaining folds of training
-data. The type of distance matrices depends on the kernel used:
+between the data points in valiation fold (by column) and the <span class="math inline">\(\kappa-1\)</span> remaining folds of training
+data. The distance types depend on the kernel function:
 <ul>
 <li>If <code>kernel = naive</code>, the distance matrices contain the
 maximum distance between data points, i.e., <span class="math display">\[D_k=(\|{\bf r}(x_i)-{\bf
 r}(x_j)\|_{\max})_{i,j}\text{ for }k=1,\dots,\kappa.\]</span></li>
-<li>If <code>kernel = triangular</code>, the distance matrices contain
-the <span class="math inline">\(L_1\)</span> distance between data
-points, i.e., <code>dist_matrix</code> <span class="math display">\[D_k=(\|{\bf r}(x_i)-{\bf r}(x_j)\|_1)_{i,j}\text{
+<li>If <code>kernel = triangular</code>, the distance matrices contain <span class="math inline">\(L_1\)</span> distances between data
+points, i.e., <span class="math display">\[D_k=(\|{\bf r}(x_i)-{\bf r}(x_j)\|_1)_{i,j}\text{
 for }k=1,\dots,\kappa.\]</span></li>
 <li>Otherwise, the distance matrices contain the squared <span class="math inline">\(L_2\)</span> distance between data points, i.e.,
 <span class="math display">\[D_k=(\|{\bf r}(x_i)-{\bf r}(x_j)\|_
@@ -3008,7 +3017,7 @@ machines will be constructed using a proportion of the training input
 <li>If the <em>predictions</em> are given, the option
 <code>build_machine</code> must be <code>FALSE</code> which indicates
 that no basic machine is constructed and the paramter is tuned using
-this predicted features directly.</li>
+the predicted features (<code>train_design</code>) directly.</li>
 </ul></li>
 <li><code>train_response</code> : a vector of corresponding response
 variable of the <code>train_design</code>.</li>
@@ -3022,8 +3031,8 @@ predictors, for aggregation. By default,
 <li><code>build_machine</code>: a logical value specifying whether or
 not the basic machines should be constructed. It should be
 <code>TRUE</code> if the <code>train_design</code> is the input data,
-else it should be <code>FALSE</code> is the <code>train_design</code> is
-the features of predictions. By default,
+else it should be <code>FALSE</code> if the <code>train_design</code> is
+the predicted features. By default,
 <code>build_machine = TRUE</code>.</li>
 <li><code>machines</code> : a vector of basic machines to be
 constructed. It must be a subset of {“lasso”, “ridge”, “knn”, “tree”,
@@ -3043,8 +3052,7 @@ functions used for the aggregation.</li>
 <li><code>optimizeMethod</code> : the optimization methods used to learn
 the smoothing parameter. By default, <code>optimizeMethod</code>
 (“grad”) which stands for gradient descent algorithm, and if
-“optimizeMethod = grid”, then the grid search algorithm is used. <span style="color: #F0AE14;"><em>Note that this should be of the same size as
-the</em></span> <code>kernels</code> <span style="color: #F0AE14;"><em>argument, otherwise “grid” method will be
+“optimizeMethod = grid”, then the grid search algorithm is used. <span style="color: #E6180A;"><em>Note that this should be of the same size as the</em></span> <code>kernels</code> <span style="color: #E6180A;"><em>argument, otherwise “grid” method will be
 used for all the kernels</em></span>.</li>
 <li><code>setBasicMachineParam</code> : an option used to set the values
 of the parameters of the basic machines. <code>setBasicParameter</code>
@@ -3055,6 +3063,7 @@ parameters of the gradient descent algorithm.
 <li><code>setGridParam</code> : an option used to set the values of the
 parameters of the grid search algorithm. <code>setGridParameter</code>
 function should be fed to it.</li>
+<li><code>silent</code> : a logical value to silent all the messages or information to be printed during the process of the method. By default, <code>silent = FALSE</code>.</li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
 <p>This function returns a list of the following objects:</p>
@@ -3082,7 +3091,8 @@ input data.</li>
                           optimizeMethod = &quot;grad&quot;,
                           setBasicMachineParam = setBasicParameter(),
                           setGradParam = setGradParameter(),
-                          setGridParam = setGridParameter()){
+                          setGridParam = setGridParameter(),
+                          silent = FALSE){
   kernels_lookup &lt;- c(&quot;gaussian&quot;, &quot;epanechnikov&quot;, &quot;biweight&quot;, &quot;triweight&quot;, &quot;triangular&quot;, &quot;naive&quot;)
   kernel_real &lt;- kernels %&gt;%
     sapply(FUN = function(x) return(match.arg(x, kernels_lookup)))
@@ -3092,7 +3102,8 @@ input data.</li>
                                scale_input = scale_input,
                                machines = machines,
                                splits = splits,
-                               basicMachineParam = setBasicMachineParam)
+                               basicMachineParam = setBasicMachineParam,
+                               silent = silent)
   } else{
     mach2 &lt;- list(predict2 = train_design,
                   models = colnames(train_design),
@@ -3288,7 +3299,8 @@ input data.</li>
   parameters &lt;- map2(.x = kernels,
                      .y = optMethods, 
                      .f = ~ list_optimizer[[.y]](obj_fun = error_func[[.x]],
-                                                 setParameter = list_param[[.y]]))
+                                                 setParameter = list_param[[.y]],
+                                                 silent = silent))
   names(parameters) &lt;- paste0(kernel_real, &quot;_&quot;, optMethods)
   return(list(opt_parameters = parameters,
               add_parameters = list(scale_input = scale_input,
@@ -3508,6 +3520,7 @@ evaluated with the given parameter.</p></li>
 <div id="functions-predict_agg" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> <span style="color: #F0AE14;"><u>Functions</u></span>:
 <code>predict_agg</code></h2>
+<p>This function takes the <code>fit_parameter</code> object (which contains the observed optimal parameter) to predict a new data.</p>
 <ul>
 <li><p><strong>Argument</strong>:</p>
 <ul>
@@ -3526,7 +3539,7 @@ methods.</li>
 <li><code>fitted_machine</code> : the predictions given by all the basic
 machines.</li>
 <li><code>mse</code> : the mean square error computed only if the
-<code>test_reponse</code> argument is note <code>NULL</code>.</li>
+<code>test_reponse</code> argument is not <code>NULL</code>.</li>
 </ul></li>
 </ul>
 <pre class="r"><code># Prediction
@@ -3737,8 +3750,7 @@ functions used for the aggregation.</li>
 <li><code>optimizeMethod</code> : the optimization methods used to learn
 the smoothing parameter. By default, <code>optimizeMethod</code>
 (“grad”) which stands for gradient descent algorithm, and if
-“optimizeMethod = grid”, then the grid search algorithm is used. <span style="color: #F0AE14;"><em>Note that this should be of the same size as
-the</em></span> <code>kernels</code> <span style="color: #F0AE14;"><em>argument, otherwise “grid” method will be
+“optimizeMethod = grid”, then the grid search algorithm is used. <span style="color: #E6180A;"><em>Note that this should be of the same size as the</em></span> <code>kernels</code> <span style="color: #E6180A;"><em>argument, otherwise “grid” method will be
 used for all the kernels</em></span>.</li>
 <li><code>setBasicMachineParam</code> : an option used to set the values
 of the parameters of the basic machines. <code>setBasicParameter</code>
@@ -3749,6 +3761,7 @@ parameters of the gradient descent algorithm.
 <li><code>setGridParam</code> : an option used to set the values of the
 parameters of the grid search algorithm. <code>setGridParameter</code>
 function should be fed to it.</li>
+<li><code>silent</code> : a logical value to silent all the messages or information to be printed during the process of the method. By default, <code>silent = FALSE</code>.</li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
 <p>This function return a <em>list</em> of the following objects:</p>
@@ -3786,7 +3799,8 @@ data used for the aggregation.</li>
                           optimizeMethod = &quot;grad&quot;,
                           setBasicMachineParam = setBasicParameter(),
                           setGradParam = setGradParameter(),
-                          setGridParam = setGridParameter()){
+                          setGridParam = setGridParameter(),
+                          silent = FALSE){
   # build machines + tune parameter
   fit_mod &lt;- fit_parameter(train_design = train_design, 
                            train_response = train_response,
@@ -3802,7 +3816,8 @@ data used for the aggregation.</li>
                            optimizeMethod = optimizeMethod,
                            setBasicMachineParam = setBasicMachineParam,
                            setGradParam = setGradParam,
-                           setGridParam = setGridParam)
+                           setGridParam = setGridParam,
+                           silent = silent)
   # prediction
   pred &lt;- predict_agg(fitted_models = fit_mod,
                       new_data = test_design,
@@ -3903,7 +3918,7 @@ agg &lt;- kernelAggReg(train_design = df[train, 2:8],
 </div>
 <hr />
 <blockquote>
-<p><span style="color: #1FAAE3;">📖 Read also <a href="https://hassothea.github.io/files/CodesPhD/MixCobraReg.html">MixCobra</a> method</span> by <a href="https://www.sciencedirect.com/science/article/pii/S0378375818302349">Fischer
+<p><span style="color: #1FAAE3;">📖 Read also <a href="https://hassothea.github.io/files/KernelAggReg/MixCobraReg.html">MixCobra method</a></span> by <a href="https://www.sciencedirect.com/science/article/pii/S0378375818302349">Fischer
 and Mougeot (2019)</a></p>
 </blockquote>
 <hr />
