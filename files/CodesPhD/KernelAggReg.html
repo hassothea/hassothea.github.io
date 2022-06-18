@@ -2673,6 +2673,7 @@ print(p)</code></pre>
 <div id="function-setgridparameter" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> <span style="color: #F0AE14;">Function</span> :
 <code>setGridParameter</code></h3>
+<p>This function allows us to set the values of parameters needed to process the grid search algorithm to approximate the smoothing parameter <span class="math inline">\(h>0\)</span> of the method.</p>
 <ul>
 <li><p><strong>Argument</strong>:</p>
 <ul>
@@ -2683,8 +2684,7 @@ print(p)</code></pre>
 non-uniform grid is considered. By default, <code>parameters = NULL</code></li>
 <li><code>print_result</code> : a logical value specifying whether or
 not to print the observed result. By default, <code>print_result = TRUE</code></li>
-<li><code>figure</code> : a logical value specifying whether or not to
-plot the graphic of error. By default, <code>figure = TRUE</code></li>
+<li><code>figure</code> : a logical value specifying whether or not to plot the graphic of error. By default, <code>figure = TRUE</code></li>
 </ul></li>
 <li><p><strong>Value</strong>:</p>
 <p>This function returns a <em>list</em> of all the parameters given in
@@ -2707,11 +2707,11 @@ its arguments.</p></li>
 <div id="function-gridoptimizer" class="section level3" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> <span style="color: #F0AE14;">Function</span> :
 <code>gridOptimizer</code></h3>
+<p>This function performs grid search algorithm in approximating the values of parameters <span class="math inline">\(h>0\)</span> of the aggregation method.</p>
 <ul>
 <li><p><strong>Argument</strong>:</p>
 <ul>
-<li><code>obj_fun</code> : the objective function for which its
-minimizer is to be estimated. It should be a univarate function of real
+<li><code>obj_fun</code> : the objective function for which its minimizer is to be estimated. It should be a univarate function of real
 positive variables.</li>
 <li><code>setParameter</code> : the control of grid search algorithm
 parameters which should be the function <code>setGridParameter()</code>
@@ -3693,8 +3693,7 @@ sqrt(pred$mse)</code></pre>
 <div id="function-kernelaggreg" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> <span style="color: #1FAAE3;"><u>Function</u></span> :
 <code>kernelAggReg</code></h1>
-<p>This function puts together all the functions above and provides the
-desire result of the kernel-based consensual aggregation method.</p>
+<p>This function puts together all the functions above and provides the desire result of the kernel-based consensual aggregation method.</p>
 <ul>
 <li><p><strong>Argument</strong>:</p>
 <ul>
@@ -3716,9 +3715,7 @@ variable of the <code>train_design</code>.</li>
 <li><code>test_design</code> : the matrix or data frame of testing
 <em>input data</em> or testing <em>predictions</em> according to
 <code>train_design</code>.</li>
-<li><code>test_response</code> : the testing response variable, it is
-optional. If it is given, the mean square error on the testing data is
-also computed. By default, <code>test_response = NULL</code>.</li>
+<li><code>test_response</code> : the testing response variable, it is optional. If it is given, the mean square error on the testing data is also computed. By default, <code>test_response = NULL</code>.</li>
 <li><code>scale_input</code> : a logical value specifying whether or not
 to scale the input data before building the basic regression predictors.
 By default, <code>scale_input = FALSE</code>.</li>
@@ -3750,8 +3747,7 @@ functions used for the aggregation.</li>
 <li><code>optimizeMethod</code> : the optimization methods used to learn
 the smoothing parameter. By default, <code>optimizeMethod</code>
 (“grad”) which stands for gradient descent algorithm, and if
-“optimizeMethod = grid”, then the grid search algorithm is used. <span style="color: #E6180A;"><em>Note that this should be of the same size as the</em></span> <code>kernels</code> <span style="color: #E6180A;"><em>argument, otherwise “grid” method will be
-used for all the kernels</em></span>.</li>
+“optimizeMethod = grid”, then the grid search algorithm is used. <span style="color: #E6180A;"><em>Note that this should be of the same size as the</em></span> <code>kernels</code> <span style="color: #E6180A;"><em>argument, otherwise “grid” method will be used for all the kernels</em></span>.</li>
 <li><code>setBasicMachineParam</code> : an option used to set the values
 of the parameters of the basic machines. <code>setBasicParameter</code>
 function should be fed to this argument.</li>
@@ -3916,12 +3912,6 @@ agg &lt;- kernelAggReg(train_design = df[train, 2:8],
 {"columns":[{"label":["knn1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["knn2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["knn3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["knn4"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["knn5"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["knn6"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["knn7"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["knn8"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["knn9"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["rf1"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["rf2"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["rf3"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["rf4"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["rf5"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["xgb1"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["xgb2"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["xgb3"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["xgb4"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["xgb5"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["gaussian"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["triangular"],"name":[21],"type":["dbl"],"align":["right"]}],"data":[{"1":"2.540721","2":"2.404143","3":"2.322451","4":"2.280687","5":"2.258018","6":"2.228535","7":"2.20019","8":"2.186888","9":"2.185119","10":"2.177632","11":"2.182169","12":"2.168984","13":"2.169025","14":"2.174784","15":"2.599894","16":"2.662599","17":"2.690317","18":"2.698229","19":"2.701443","20":"2.202618","21":"2.200394"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<hr />
-<blockquote>
-<p><span style="color: #1FAAE3;">📖 Read also <a href="https://hassothea.github.io/files/CodesPhD/MixCobraReg.html">MixCobra</a></span> method by <a href="https://www.sciencedirect.com/science/article/pii/S0378375818302349">Fischer
-and Mougeot (2019)</a></p>
-</blockquote>
-<hr />
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered"><span style="color: #1FAAE3;">References</span></h1>
@@ -3941,10 +3931,11 @@ tutorial</a>
 </ul>
 <hr />
 </div>
-
-
-
-
+<hr />
+<blockquote>
+<p><span style="color: #1FAAE3;">📖 Read also: <a href="https://hassothea.github.io/files/CodesPhD/KernelAggClass.html">KernelAggClass</a>, <a href="https://hassothea.github.io/files/CodesPhD/MixCobraReg.html">MixCobraReg</a> and <a href="https://hassothea.github.io/files/CodesPhD/MixCobraClass.html">MixCobraClass</a> method.</span></p>
+</blockquote>
+<hr />
 </div>
 
 <script>
