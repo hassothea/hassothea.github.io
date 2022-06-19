@@ -2343,7 +2343,7 @@ considered as the initial value in gradient step. By default,
 <code>min_val = 1e-4</code>.</li>
 <li><code>max_val</code> : the maxinum value of parameter to be
 considered as the initial value in gradient step. By default,
-<code>max_val = 0.1</code>.</li>
+<code>max_val = 10</code>.</li>
 <li><code>max_iter</code> : maximum itertaion of gradient descent
 algorithm. By default, <code>max_iter = 300</code>.</li>
 <li><code>print_step</code> : a logical value controlling whether to
@@ -2357,7 +2357,7 @@ graphic of the result or not. By default,
 <code>figure = TRUE</code>.</li>
 <li><code>coef_auto</code> : the constant learning rate when
 <code>rate = NULL</code>. By default,
-<code>coef_auto = 0.005</code>.</li>
+<code>coef_auto = 0.1</code>.</li>
 <li><code>coef_log</code> : the coefficinet multiplying to the
 <em>logarithmic</em> increment of the learning rate, i.e.,
 <code>rate</code> <span class="math inline">\(=\)</span>
@@ -2394,12 +2394,12 @@ its arguments.</p></li>
                              n_tries = 10, 
                              rate = NULL, 
                              min_val = 1e-4,
-                             max_val = 0.1,
+                             max_val = 10,
                              max_iter = 300, 
                              print_step = TRUE, 
                              print_result = TRUE,
                              figure = TRUE, 
-                             coef_auto = 0.005,
+                             coef_auto = 0.1,
                              coef_log = 1,
                              coef_sqrt = 1,
                              coef_lm = 1,
@@ -2494,10 +2494,10 @@ during the walk of the algorithm.</li>
     cat(&quot; &quot;, rep(&quot;-&quot;,51), sep = &quot;&quot;)
   }
   if (is.numeric(setParameter$rate)){
-    lambda0 &lt;- setParameter$rate / abs(grad_)
+    lambda0 &lt;- setParameter$rate
     rate_GD &lt;- &quot;auto&quot;
   } else{
-    r0 &lt;- setParameter$coef_auto / abs(grad_)
+    r0 &lt;- setParameter$coef_auto
     # Rate functions
     rate_func &lt;- list(auto = r0, 
                       logarithm = function(i)  setParameter$coef_log * log(2 + i) * r0,
@@ -2525,14 +2525,14 @@ during the walk of the algorithm.</li>
           heps = .Machine$double.eps ^ (1 / 3)
        )
       }
-      val &lt;- val0 - lambda0 * grad_
+      val &lt;- val0 - lambda0 * sign(grad_)
       if (val &lt; 0){
-        val &lt;- val0/2
-        lambda0 &lt;- lambda0/2
+        val &lt;- val0/3
+        lambda0 &lt;- lambda0/3
       }
       if(i &gt; 5){
         if(sign(grad_) * sign(grad0) &lt; 0){
-          lambda0 = lambda0 / 2
+          lambda0 = lambda0 / 3
         }
       }
       relative &lt;- abs((val - val0) / val0)
@@ -2568,14 +2568,14 @@ during the walk of the algorithm.</li>
           heps = .Machine$double.eps ^ (1 / 3)
        )
       }
-      val &lt;- val0 - lambda0(i) * grad_
+      val &lt;- val0 - lambda0(i) * sign(grad_)
       if (val &lt; 0){
-        val &lt;- val0/2
-        r0 &lt;- r0 / 2
+        val &lt;- val0/3
+        r0 &lt;- r0 / 3
       }
       if(i &gt; 5){
         if(sign(grad_)*sign(grad0) &lt; 0)
-          r0 &lt;- r0 / 2
+          r0 &lt;- r0 / 3
       }
       relative &lt;- abs((val - val0) / val0)
       test_threshold &lt;- max(relative, abs(grad_))
