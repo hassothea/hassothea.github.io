@@ -1960,7 +1960,7 @@ partitioned into <span class="math inline">\(\mathcal{D}_{k}\)</span>
 and <span class="math inline">\(\mathcal{D}_{\ell}\)</span> of size
 <span class="math inline">\(k\)</span> and <span class="math inline">\(\ell\)</span> respectively such that <span class="math inline">\(k+\ell=n\)</span>. We construct <span class="math inline">\(M\)</span> classifiers (machines) <span class="math inline">\(c_1,...,c_M\)</span> using only <span class="math inline">\(\mathcal{D}_{k}\)</span>. Let <span class="math inline">\({\bf
 c}(x)=(c_1(x),...,c_M(x))^T\in\{1,...,N\}^M\)</span> be the vector of
-predicted classes of <span class="math inline">\(x\in\mathbb{R}^d\)</span>, the kernel-based
+predicted classes of <span class="math inline">\(x\in\mathbb{R}^d\)</span> (given by the classifiers <span class="math inline">\(c_1,...,c_M\)</span>), the kernel-based
 combining method evaluated at point <span class="math inline">\(x\)</span> is defined by</p>
 <p><span class="math display">\[
 g_n({\bf c}(x))=k^*=\text{arg}\max_{1\leq k\leq
@@ -2071,7 +2071,7 @@ section.</p></li>
 </ul>
 <hr />
 <blockquote>
-<p><strong>✏ Remark.1</strong>: <code>k</code>, <code>ntree</code>,
+<p>🧾 <strong> Remark.1</strong>: <code>k</code>, <code>ntree</code>,
 <code>iter_boost</code> and <code>nrounds_xgb</code> can be a single
 value or a vector. In other words, each type of models can be
 constructed several times according to the values of the hyperparameters
@@ -2516,7 +2516,7 @@ all the values of considered parameters.</li>
 </ul>
 <hr />
 <blockquote>
-<p><strong>✏ Remark.1</strong>: For <code>&quot;naive&quot;</code> kernel function
+<p>🧾 <strong> Remark.2</strong>: For <code>&quot;naive&quot;</code> kernel function
 (0-1 weight), there is no parameter <span class="math inline">\(h\)</span> to be tuned. One just searches for the
 training data with the same predicted classes as the query point, then computes the total weight among them. The majority class among such data points is the predicted class.</p>
 </blockquote>
