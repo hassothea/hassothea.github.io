@@ -1,0 +1,29 @@
+class: middle, center, title-slide
+
+<img src="img/sorbonne.png" align="left" height="90"> 
+<img src="img/LPSM.jpg" align="middle" height="100"> 
+<img src="img/UniversiteParisCite_logo.jpg" align="right" height="90">
+
+<hr style="border:3px solid rgba(2, 70, 79, 0.874);">
+
+## `r params$title`
+
+<hr style="border:2px solid rgba(2, 70, 79, 0.874);">
+
+#### `r params$subtitle` de <br><br>`r params$institution`
+.fl.w-30.pa3.f6[
+.left[
+.bo[.lgt-green[Présentée par :]]
+
+.bo[.darkgreen-nor[Sothea .textsc[Has]]]]
+]
+.fl.w-40.pa3.f6[
+.bo[.lgt-green[11 juillet 2022]]
+]
+.fl.w-30.pa3.f6[
+.right[
+.bo[.lgt-green[Directrices de thèse :]]
+
+.bo[.darkgreen-nor[Mathilde .textsc[Mougeot]]]<br>
+.bo[.darkgreen-nor[Aurélie .textsc[Fischer]]]]
+]
