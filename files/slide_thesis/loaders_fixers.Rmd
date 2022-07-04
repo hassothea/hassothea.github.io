@@ -1,0 +1,82 @@
+<style>
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: rgba(2, 70, 79, 0.874);
+}
+
+.remark-slide-number .numeric {
+  position: absolute;
+  bottom: 4%;
+  height: 4px;
+  display: block;
+  right: 2.5%;
+  font-weight: bold;
+}
+
+.remark-slide-number .numeric-out{
+  color: rgba(2, 70, 79, 0.874);
+}
+
+</style>
+
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "logo"))
+
+xaringanExtra::use_tile_view()
+
+xaringanExtra::use_tachyons(minified = FALSE)
+
+# xaringanExtra::use_logo(
+#   image_url = "./img/UniversiteParisCite_logo_horizontal_couleur_RVB.jpeg",
+#   position = xaringanExtra::css_position(top = "1em", right = "1em"),
+#   width = "110px",
+#   link_url = "http://master.math.univ-paris-diderot.fr/annee/m1-mi/",
+#   exclude_class = c("hide_logo")
+# )
+
+xaringanExtra::use_panelset()
+xaringanExtra::use_editable(expires = 1)
+xaringanExtra::use_clipboard()
+
+# xaringanExtra::use_scribble()
+
+pacman::p_load(tidyverse)
+pacman::p_load(readr)
+pacman::p_load(latex2exp)
+pacman::p_load(kableExtra)
+pacman::p_load(gt)
+pacman::p_load(data.table)
+pacman::p_load(knitr)
+pacman::p_load(flipbookr)
+pacman::p_load(glue)
+pacman::p_load(gganimate)
+
+old_theme <-theme_set(theme_minimal(base_size=12, base_family = "Helvetica"))
+
+opts_chunk$set(warning = FALSE,
+               message = FALSE,
+               cache = TRUE,
+               autodep = TRUE,
+               tidy = FALSE,
+               fig.retina = 4,
+               fig.height = 4)
+
+opts <- options()  # save old options
+
+options(ggplot2.discrete.colour="viridis")
+options(ggplot2.continuous.colour="viridis")
+```

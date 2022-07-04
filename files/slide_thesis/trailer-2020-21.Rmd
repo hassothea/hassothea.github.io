@@ -1,0 +1,306 @@
+---
+title: "Exploratory Data Analysis"
+subtitle: "⚔<br/>Probabilités Master I, MIDS, MFA"
+author: "Stéphane Boucheron"
+institute: "Université de Paris"
+date: "2020/11/20 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: ["header-footer.css", "default", "hygge", "xaringan-themer.css"]
+    lib_dir: libs
+    seal: false
+    includes:
+      in_header:
+        - 'toc.html'
+    nature:
+      nature:
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+name: layout-general
+layout: true
+class: left, middle
+
+<style>
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: red;
+}
+</style>
+
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "logo"))
+```
+
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-tachyons, echo=FALSE}
+xaringanExtra::use_tachyons(minified = FALSE)
+```
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "./img/Universite_Paris_logo_horizontal.jpg",
+  position = xaringanExtra::css_position(top = "1em", right = "1em"),
+  width = "110px",
+  link_url = "http://master.math.univ-paris-diderot.fr/annee/m1-mi/",
+  exclude_class = c("hide_logo")
+)
+
+source("./loaders_fixers.R")
+```
+
+---
+class: middle, center, inverse
+
+.helvetica[
+
+.f1.b[Exploratory Data Analysis]
+
+.f2[ `r Sys.Date()`]
+
+.f3.b.moon-gray[Master I MIDS & MFA]
+
+]
+
+---
+class: middle
+
+
+
+.helvetica.f3.b[
+
+- Why ?
+
+- How ?
+
+]
+
+
+---
+
+.helvetica.f3.b.ttc[An (old) love story with Data]
+
+
+
+---
+
+.helvetica.f3.b.ttc[data engineering]
+
+
+.helvetica.w-third.fl.pa2[
+
+.f4[Collect]
+
+
+.f4.moon-gray[Analyze]
+
+
+.f4.moon-gray[Visualize]
+
+]
+
+.helvetica.w-two-thirds.fl.pa2[
+
+
+- Collecting    `r fontawesome::fa("download")`
+
+- Tidying    `r fontawesome::fa("tools")`
+
+- Storing/retrieving  `r fontawesome::fa("database")`
+
+]
+
+---
+
+.helvetica.f3.b.ttc[Data analysis]
+
+
+.helvetica.w-third.fl.pa2[
+
+.f4.moon-gray[Collect]
+
+.f4[Analyze]
+
+.f4.moon-gray[Visualize]
+
+
+]
+
+.helvetica.w-two-thirds.fl.pa2[
+
+- Counting
+
+- Assessing correlations/associations/dependancies
+
+- Matrix Analysis: .ttc[correspondance analysis]
+
+- Functional Analysis  `r fontawesome::fa("wave-square")`
+
+]
+
+
+???
+
+> je viens de m'apercevoir que le langage des chiffres a ceci de commun avec le langage des fleurs, on lui fait dire ce que l'on veut. Les chiffres parlent, mais ne crient jamais.  .tr[Michel Audiard]
+---
+
+
+.helvetica.f3.b.ttc[data visualization]
+
+
+.helvetica.w-third.fl.pa2[
+
+.f4.moon-gray[Collect]
+
+.f4.moon-gray[Analyze]
+
+.f4[Visualize]
+
+]
+
+.helvetica.w-two-thirds.fl.pa2[
+
+- Plots  `r fontawesome::fa("image")`
+
+- Dashboards
+
+```{r, echo=FALSE}
+knitr::include_url("https://experience.arcgis.com/experience/478220a4c454480e823b17327b2bf1d4")
+```
+- Animations  `r fontawesome::fa("file-video")`
+
+]
+
+
+???
+
+---
+
+.helvetica.f3.b.ttc[maths background]
+
+.helvetica[
+
+- Matrix Analysis  ![:faic](bullhorn)
+
+- Algorithms
+
+- Probability
+
+]
+---
+
+
+.helvetica.f3.b.ttc[computer skills]
+
+.helvetica[
+
+- `R`  and literate programming
+
+- Data tidying
+
+- Analytic pipelines
+
+]
+
+---
+class: middle, center, inverse
+
+
+.f1.b.helvetica.ttc[Organization]
+
+
+---
+
+.helvetica.f3.b.ttc[EDA organization]
+
+
+.helvetica.w-third.fl.pa2[
+
+.f4[Schedule]
+
+.f4.moon-gray[Validation]
+
+
+
+]
+
+.helvetica.w-two-thirds.fl.pa2[
+
+Lectures  `r fontawesome::fa("chalkboard")` `r fontawesome::fa("laptop")`
+: 2 hours/week on Wednesday.
+
+Practical sessions  `r fontawesome::fa("laptop")`
+: 3 hours/week on Monday. Bring your Laptop.
+
+Homeworks `r fontawesome::fa("pen-fancy")` `r fontawesome::fa("laptop-code")`
+: reports using `R` framework (`Rmarkdown`)
+
+Computational resources
+: `R`, `rstudio`, `Docker` image
+
+]
+
+---
+
+.helvetica.f3.b.ttc[EDA organization]
+
+
+.helvetica.w-third.fl.pa2[
+
+.f4.moon-gray[Schedule]
+
+.f4[Validation]
+
+
+
+]
+
+.helvetica.w-two-thirds.fl.pa2[
+
+- 3 homeworks
+
+- Each homework consists of
+
+  + analyzing a dataset (counting, fitting, plotting)
+
+  + writing a report, typically an HTML document mixing comments, code and graphics.
+
+  + presenting the report (15 minutes)
+
+- Final grade : weighted sum of grades obtained for each homework (1/4, 1/4, 1/2) `r fontawesome::fa("graduation-cap")`
+
+]
+
+---
+
+class: middle, center, inverse
+
+background-image: url('./img/pexels-cottonbro-3171837.jpg')
+background-size: 112%
+
+
+.f1.b.helvetica.ttc[the end]

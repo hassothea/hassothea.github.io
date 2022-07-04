@@ -1,0 +1,5 @@
+class: middle, center, inverse
+background-size: cover
+
+
+# Thank you 🤓

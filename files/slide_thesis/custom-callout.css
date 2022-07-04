@@ -1,0 +1,13 @@
+/* custom.css */
+.plot-callout {
+  width: 300px;
+  bottom: 5%;
+  right: 5%;
+  position: absolute;
+  padding: 0px;
+  z-index: 100;
+}
+.plot-callout img {
+  width: 100%;
+  border: 1px solid #23373B;
+}
