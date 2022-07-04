@@ -1,0 +1,9 @@
+graph TD;
+id1[Data gathering] -->  id2[Data wrangling];
+id2[Data wrangling] -->  id3[Exploratory Data Analyis and Visualization];
+id3[Exploratory Data Analyis and Visualization] -.-> id1[Data gathering] ;
+id3[Exploratory Data Analyis and Visualization] -.-> id2[Data wrangling]  ;
+id3[Exploratory Data Analyis and Visualization] --> id4[Modeling Causal/Predictive] ;
+id4[Modeling Causal/Predictive] --> id5[Reporting paper, html, interactive dashboard, ...] ;
+id4[Modeling Causal/Predictive] -.-> id1[Data gathering] ;
+id4[Modeling Causal/Predictive] -.-> id2[Data wrangling] ;
