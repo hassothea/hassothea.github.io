@@ -1,7 +1,0 @@
-class: middle, center, inverse
-
-background-image: url('./img/afficheSmall')
-background-size: cover
-
-
-# Thank you 🤓
