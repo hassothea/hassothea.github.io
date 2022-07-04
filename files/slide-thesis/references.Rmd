@@ -1,0 +1,48 @@
+template: inter-slide
+class: left, middle, inverse
+count: false
+
+# References<hbr>
+.small[
+  
+&#128218; [Majid Mojirsheibani. Combined classifiers via discretization. Journal of the
+    American Statistical Association, 94(446):600–609, June 1999.](https://www.tandfonline.com/doi/abs/10.1080/01621459.1999.10474154)
+
+&#128218; [Majid Mojirsheibani. A kernel-based combined classification rule. Journal of
+  Statistics and Probability Letters, 48(4):411–419, July 2000.]()
+
+&#128218; [Majid Mojirsheibani and Jiajie Kong. An asymptotically optimal kernel combined
+  classifier. Journal of Statistics and Probability Letters, 119:91–100, 2016.](https://www.sciencedirect.com/science/article/abs/pii/S0167715216301304)
+
+&#128218; [G. Biau, A. Fischer, B. Guedj, and J.D. Malley. COBRA: a combined regression
+  strategy. Journal of Multivariate Analysis, 146:18–28, 2016.](https://www.sciencedirect.com/science/article/pii/S0047259X15000950)
+
+&#128218; [Sothea Has. A Kernel-based Consensual Aggregation for Regression. Preprint, April 2021, *HAL*.](https://hal.archives-ouvertes.fr/hal-02884333v5)
+  
+  &#128218; [A. Fischer and M. Mougeot. Aggregation using input-output trade-off. Journal of
+  Statistical Planning and Inference, 200:1–19, May 2019.](https://www.sciencedirect.com/science/article/pii/S0378375818302349)
+
+&#128218; [William B. Johnson and Joram Lindenstrauss. Extensions of lipschitz maps into a
+  hilbert space. Contemporary Mathematics, 26:189–206, 1984. doi: 10.1090/conm/
+  026/737400](https://doi.org/10.1007/BF02764938).
+
+]
+
+---
+template: inter-slide
+class: left, top, inverse
+count: false
+
+# References<hbr>
+.small[
+  
+&#128218; [S.Has, A. Fischer, and M. Mougeot. Kfc: A clusterwise supervised
+  learning procedure based on the aggregation of distances. Journal of Statistical
+  Computation and Simulation, 0(0):1–21, 2021. doi: 10.1080/00949655.2021.
+  1891539.](https://www.tandfonline.com/doi/abs/10.1080/00949655.2021.1891539)
+
+`r fontawesome::fa("github")` [https://github.com/hassothea/KFC-Procedure](https://github.com/hassothea/KFC-Procedure)
+
+`r fontawesome::fa("github")` [https://github.com/hassothea/AggregationMethods](https://github.com/hassothea/AggregationMethods)
+
+]
