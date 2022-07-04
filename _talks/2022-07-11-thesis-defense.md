@@ -3,9 +3,9 @@ title: "Thesis defense"
 collection: talks
 type: "Talk"
 permalink: /talks/2022-07-11-thesis-defense
-venue: "Sophie Germain"
+venue: "Paris, France"
 date: 2022-07-11
-location: "Sophie Germain"
+location: "Paris, France"
 ---
 
 [Slide of my thesis](/files/slide-thesis/slide-thesis.html).
