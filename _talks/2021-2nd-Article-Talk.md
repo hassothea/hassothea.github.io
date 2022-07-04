@@ -7,7 +7,6 @@ venue: "JDS 2021"
 date: 2021-06-7
 location: "Online, France"
 ---
-
 More information about [Journées de Statistique 2021](https://jds2021.sciencesconf.org/).
 
 The talk was about my research topic of a kernel-based aggregation method for regression. 
