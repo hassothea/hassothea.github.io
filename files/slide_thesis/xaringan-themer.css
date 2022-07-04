@@ -61,6 +61,14 @@
   --header-background-text-color: #FFF;
 }
 
+hr.L1 {
+  border-top: 5.5px solid #02464fdf;
+}
+
+hr.L2 {
+  border-top: 3px solid #02464fdf;
+}
+
 hbr {
   display: block; /* makes it have a width */
   content: ""; /* clears default height */
@@ -142,7 +150,7 @@ html {
 }
 
 .darkgreen-nor{
-  color: rgba(2, 70, 79, 0.874);
+  color: #02464fdf;
 }
 
 .lgt-green{

@@ -4,11 +4,11 @@ class: middle, center, title-slide
 <img src="img/LPSM.jpg" align="middle" height="100"> 
 <img src="img/UniversiteParisCite_logo.jpg" align="right" height="90">
 
-<hr style="border:3px solid rgba(2, 70, 79, 0.874);">
+<hr class="L1">
 
 ## `r params$title`
 
-<hr style="border:2px solid rgba(2, 70, 79, 0.874);">
+<hr class="L2">
 
 #### `r params$subtitle` de <br><br>`r params$institution`
 .fl.w-30.pa3.f6[
