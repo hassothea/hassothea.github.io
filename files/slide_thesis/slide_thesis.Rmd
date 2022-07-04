@@ -2,7 +2,7 @@
 title: "Thesis defense"
 author: "Sothea Has"
 institute: "Sorbonne Université"
-date: "2022/07/11"
+date: "2022/07/11 (updated: `r Sys.Date()`)"
 params:
   title: "Modèles prédictifs par agrégation consensuelle et applications"
   subtitle: "Soutenance de thèse de Doctorat<br><br> en Mathématiques"
