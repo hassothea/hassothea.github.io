@@ -1,7 +1,7 @@
 unnamed-chunk-1	.slide_thesis_cache/html/unnamed-chunk-1_556bcd9bb868ae7525c4f977d05a9537_meta
-toy0	df3d	fig0	.slide_thesis_cache/html/toy0_889625de8c2f8895a1de7cdc64e4e4c0_meta
-toy1	fig	.slide_thesis_cache/html/toy1_2abc8bafbc9745ec766c73ae56805725_meta
+toy1	df3d	fig	.slide_thesis_cache/html/toy1_b14159eb2a853a97a6401543244cc3cd_meta
 toy2	.slide_thesis_cache/html/toy2_3a4fc378e7b5b91a1b5f40d511853133_meta
+toy0	fig0	.slide_thesis_cache/html/toy0_038bbe1bbc05ee0dccd887690a18f82c_meta
 k0	df2d	fig2d
 k1	.slide_thesis_cache/html/k1_9ba51dca4ac576db8e0fbe605245f13e_meta
 k2	.slide_thesis_cache/html/k2_2aeaea4f7938ff81cc201c9403fbd89b_meta
@@ -12,7 +12,7 @@ unnamed-chunk-5	.slide_thesis_cache/html/unnamed-chunk-5_f78e98ea9d9cb9bfd81ea16
 unnamed-chunk-6	.slide_thesis_cache/html/unnamed-chunk-6_d7645a389beba02c7ad435eaa0fc21f9_meta
 unnamed-chunk-7	.slide_thesis_cache/html/unnamed-chunk-7_1719676e74c1f8c93c29fb9e0b1a2e4b_meta
 unnamed-chunk-8	.slide_thesis_cache/html/unnamed-chunk-8_0fcab8bda151a2705bd54f55b6ff4987_meta
-kmeans	df_exp	df_norm	df_pois	fig1	fig10	fig11	fig12	fig13	fig14	fig2	fig20	fig21	fig22	fig23	fig24	fig3	fig30	fig31	fig32	fig33	fig34	.slide_thesis_cache/html/kmeans_a2624a912cc6fdda8f7e68358eb9786e_meta
+kmeans	df_exp	df_pois	fig2	fig20	fig21	fig22	fig23	fig24	fig3	fig30	fig31	fig32	fig33	fig34	.slide_thesis_cache/html/kmeans_c1ba14248403528944e4d2bd0a435ccc_meta
 err	df_	x	x_m	y	y_m	.slide_thesis_cache/html/err_d3bf4fb557feb7e5e59f10ad80d52aeb_meta
 JL0	df_	fig0	G	m	M	x	y	z	.Random.seed	.slide_thesis_cache/html/JL0_748f5aee0201a92df94f22ac7d55c753_meta
 JL1	fig1	.slide_thesis_cache/html/JL1_335a7e90ed0940a1412502e310e3d516_meta

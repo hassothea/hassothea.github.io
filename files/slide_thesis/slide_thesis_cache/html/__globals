@@ -1,7 +1,7 @@
 unnamed-chunk-1	::
-toy0	%>%	::	~	read_delim
-toy1	%>%	::	~	df3d	I
+toy1	%>%	::	~	I	read_delim
 toy2	%>%	::	~	fig	I
+toy0	%>%	::	~	df3d
 k0	::	~	I	read_delim
 k1	%>%	::	~	fig2d	list
 k2	%>%	::	~	fig2d	list
