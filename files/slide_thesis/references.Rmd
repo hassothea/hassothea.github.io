@@ -1,5 +1,5 @@
 template: inter-slide
-class: left, middle, inverse
+class: left, top
 count: false
 
 # References<hbr>
@@ -32,7 +32,7 @@ diffusion coefficients during high speed streams. Frontiers in Physics, 10, 2022
 
 ---
 template: inter-slide
-class: left, top, inverse
+class: left, top
 count: false
 
 # References<hbr>

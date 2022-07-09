@@ -51,8 +51,8 @@
   --background-color: #FFF;
   --link-color: rgba(32, 90, 46, 0.758);
   --code-highlight-color: rgba(255,255,0,0.5);
-  --inverse-text-color: #ffffff;
-  --inverse-background-color: #272822;
+  --inverse-text-color: rgba(2, 70, 79, 0.874);
+  --inverse-background-color: #ffffff;
   --inverse-header-color: #f3f3f3;
   --inverse-link-color: rgba(138, 240, 165, 0.758);
   --title-slide-background-color: #272822;
@@ -85,6 +85,14 @@ h1br {
   display: block; /* makes it have a width */
   content: ""; /* clears default height */
   margin-top: -1em; /* change this to whatever height you want it */
+}
+
+.mach{
+  color: #0ab8a1dc;
+}
+
+.comb{
+  color: #d56204dc;
 }
 
 h2br {
@@ -131,7 +139,7 @@ html {
 
 .bold-blue{
   font-family: var(--header-font-family);
-  color: rgb(46, 134, 188);
+  color: rgb(32, 119, 173);
   font-weight: 600;
 }
 
@@ -157,8 +165,16 @@ html {
   color: rgba(125, 133, 36, 0.696);
 }
 
+.hhead{
+  font-size: 25px;
+  font-weight: 600;
+  color: #02464fdf;
+}
+
 .section{
-  color: rgba(159, 236, 179, 0.758);
+  font-size: 26px;
+  font-weight: 600;
+  color: rgb(32, 115, 188);
 }
 
 body {
