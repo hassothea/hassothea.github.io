@@ -11,7 +11,7 @@
     <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
     <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
     <script src="libs/panelset-0.2.6/panelset.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xd0d3a079647421e8e8b306d321e7547","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x04d35a9fb8540869d34be222d439644","expires":1}</script>
     <script src="libs/himalaya-1.1.0/himalaya.js"></script>
     <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
     <link href="libs/editable-0.2.6/editable.css" rel="stylesheet" />
@@ -401,8 +401,9 @@ class: left, top
 - Then combine
 
 ---
-## Bregman divergences [[Breman (1967)](https://www.sciencedirect.com/science/article/abs/pii/0041555367900407)]&lt;hbr&gt; .subtitle[&amp;nbsp; Step K : K-means with Bregman divergences (BD)]&lt;hbr&gt;
-### Definition&lt;hbr&gt;
+### Step K : K-means with Bregman divergences (BD)&lt;hbr&gt; .subtitle[&amp;nbsp; [Breman (1967)](https://www.sciencedirect.com/science/article/abs/pii/0041555367900407)]&lt;hbr&gt;
+.hhead[Definition]
+
 `\(\phi:\mathcal{C}\subset\mathbb{R}^d\rightarrow\mathbb{R}\)`, strictly convex and of class `\(C^1(\cal C)\)`, then for any `\((x,y)\in\mathcal{C}\times int(\mathcal{C})\)`
 
 $$
@@ -411,11 +412,15 @@ $$
 &lt;h1br&gt;
 
 .fl.w-60.pa2.f6[
-### Property&lt;hbr&gt;
+.hhead[Property]
+
 - Non-negativity, separability, convexity (first argument), linearity in index function
+
 - .stress[Mean as minimizer]: `\(E(X)=\arg\min_{c}\mathbb{E}[d_{\phi}(X,c)]\)`
 
-### K-means with BD&lt;hbr&gt;
+&lt;br&gt;
+.hhead[K-means with BD]
+
 - [Banerjee et al. (2005)](https://www.jmlr.org/papers/v6/banerjee05b.html)&lt;hbr&gt;
 
 - [Fischer (2010)](https://www.sciencedirect.com/science/article/pii/S0047259X10001156).
@@ -465,7 +470,7 @@ If `\(X\)` is a member of a .stress[regular] exponential family `\(\mathcal{E}_{
 ---
 class: left, top
 
-## Candidate models&lt;hbr&gt; .subtitle[&amp;nbsp; Step F : Fitting clusterwise models]&lt;hbr&gt;
+### Step F : Fitting clusterwise models&lt;hbr&gt; .subtitle[&amp;nbsp; Fitting local models &amp; candidate models]&lt;hbr&gt;
 
 - For each Bregman divergence, simple models are fitted on all clusters in .stress[Step F].&lt;hbr&gt;
 
@@ -571,8 +576,9 @@ where `\(\mathcal{C}_m=\{C_{m,1},...,C_{m,K}\}\)` is the partition corresponding
 - Then, in step C, how would we combine the candidate models?
 
 ---
-## Combining methods&lt;hbr&gt; .subtitle[&amp;nbsp; Step C : Combining estimation methods]&lt;hbr&gt;
-### Classification&lt;hbr&gt;
+### Step C : Combining estimation methods&lt;hbr&gt; .subtitle[&amp;nbsp; Consensual aggregation methods]&lt;hbr&gt;
+.hhead[Classification]
+
 - Example: binary classification
   - With `\(4\)` classifiers `\(\mathcal{M}=(\mathcal{M}_1,\mathcal{M}_2,\mathcal{M}_3,\mathcal{M}_4)\)`
   - New observation `\(x\)` with predicted classes : `\((\mathcal{M}_1,\mathcal{M}_2,\mathcal{M}_3,\mathcal{M}_4)=\)` (.red[1,1,0,1]).
@@ -598,8 +604,8 @@ where `\(\mathcal{C}_m=\{C_{m,1},...,C_{m,K}\}\)` is the partition corresponding
 
 ---
 class: left, top
-## Combining methods&lt;hbr&gt; .subtitle[&amp;nbsp; Step C : Combining estimation methods]&lt;hbr&gt;
-### Regression&lt;h1br&gt;
+### Step C : Combining estimation methods&lt;hbr&gt; .subtitle[&amp;nbsp; Consensual aggregation methods]&lt;hbr&gt;
+.hhead[Regression]&lt;h1br&gt;
 
 .fl.w-50.pa2.f6[
 
