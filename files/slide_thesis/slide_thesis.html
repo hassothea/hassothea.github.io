@@ -11,7 +11,7 @@
     <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
     <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
     <script src="libs/panelset-0.2.6/panelset.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x838abe8df3645b8af25712fb7c6d64b","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x4a3f36403f64bcf8ad043d9cfe93966","expires":1}</script>
     <script src="libs/himalaya-1.1.0/himalaya.js"></script>
     <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
     <link href="libs/editable-0.2.6/editable.css" rel="stylesheet" />
@@ -852,10 +852,6 @@ count: false
 
 - `\({\bf r}_k=(r_{k,1},...,r_{k,M})\)`: `\(M\)` regression estimators constructed using `\(\mathcal{D}_k\)` 
 
-- `\(g^*(x)=\mathbb{E}(Y|X=x)\)` : Regression function
-
-- `\(g^*({\bf r}_k(x))=\mathbb{E}(Y|X={\bf r}_k(x))\)`.
-
 .center[
 
 | `\(i\)` | `\(r_{k,1}\)`| `\(r_{k,2}\)` | `\(\dots\)` | `\(r_{k,M}\)` | `\(Y\)` |
@@ -866,7 +862,11 @@ count: false
 
 ]
 
-- Quadratic risk : `\(\mathcal{R}(f)=\mathbb{E}(|f(X)-g^*(X)|^2)\)`
+- `\(\eta(x)=\mathbb{E}(Y|X=x)\)` : Regression function
+
+- `\(\eta({\bf r}_k(x))=\mathbb{E}(Y|X={\bf r}_k(x))\)`.
+
+- Quadratic risk : `\(\mathcal{R}(f)=\mathbb{E}(|f(X)-\eta(X)|^2)\)`
 
 
 ---
@@ -903,14 +903,14 @@ where `\(K_h(x)=K(x/h)\)` for some `\(h&gt;0\)` with the convention of `\(0/0=0\
 -----
 Let `\(\textbf{r}_k=(r_{k,1},r_{k,2},...,r_{k,M})\)` be the collection of all basic estimators and `\(g_n(\textbf{r}_k(x))\)` be the combined estimator computed at point `\(x\in\mathbb{R}^d\)`. Then, for all distributions of `\((X,Y)\)` with `\(\mathbb{E}[|Y|^2]&lt; +\infty\)`, 
 
-`$$\mathbb{E}[|g_n({\bf r}_k(X))-g^*(X)|^2]\leq \inf_{f\in\mathcal{G}}\mathbb{E}[|f({\bf r}_k(X))-g^*(X)|^2]\\
-\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad +\mathbb{E}[|g_n({\bf r}_k(X))-g^*({\bf r}_k(X))|^2],$$`
+`$$\mathbb{E}[|g_n({\bf r}_k(X))-\eta(X)|^2]\leq \inf_{f\in\mathcal{G}}\mathbb{E}[|f({\bf r}_k(X))-\eta(X)|^2]\\
+\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad +\mathbb{E}[|g_n({\bf r}_k(X))-\eta({\bf r}_k(X))|^2],$$`
 
 where `\(\mathcal{G}=\{f:\mathbb{R}^M\to\mathbb{R}:\mathbb{E}[|f(\textbf{r}_k(X))|^2]&lt;+\infty\}\)`.
 In particular,
 
-`$$\mathbb{E}\Big[|g_n({\bf r}_k(X))-g^*(X)|^2\Big]\leq \min_{1\leq m\leq M}\mathbb{E}[|r_{k,m}(X)-g^*(X)|^2]\\
-\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad +\mathbb{E}[|g_n({\bf r}_k(X))-g^*({\bf r}_k(X))|^2].$$`
+`$$\mathbb{E}\Big[|g_n({\bf r}_k(X))-\eta(X)|^2\Big]\leq \min_{1\leq m\leq M}\mathbb{E}[|r_{k,m}(X)-\eta(X)|^2]\\
+\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad +\mathbb{E}[|g_n({\bf r}_k(X))-\eta({\bf r}_k(X))|^2].$$`
 
 -----
 
@@ -929,12 +929,12 @@ In particular,
 -----
 Assume that all the estimators `\(r_{k,1},...,r_{k,M}\)` are bounded. Let `\(h\rightarrow0\)` and `\(\ell\rightarrow+\infty\)` such that `\(h^M\ell\to+\infty\)`. Then
 
-`$$\mathbb{E}\Big[|g_n(\textbf{r}_k(X))-g^*(\textbf{r}_k(X))|^2\Big]\rightarrow0\ \text{as }\ell\rightarrow+\infty$$`
+`$$\mathbb{E}\Big[|g_n(\textbf{r}_k(X))-\eta(\textbf{r}_k(X))|^2\Big]\rightarrow0\ \text{as }\ell\rightarrow+\infty$$`
 for all distribution of `\((X,Y)\)` s.t `\(\mathbb{E}[|Y|^2]&lt;+\infty\)`. Thus,
 
-`$$\limsup_{\ell\rightarrow+\infty}\mathbb{E}\Big[|g_n(\textbf{r}_k(X))-g^*(X)|^2\Big]\leq\inf_{f\in\mathcal{G}}\mathbb{E}\Big[|f(\textbf{r}_k(X))-g^*(X)|^2\Big].$$`
+`$$\limsup_{\ell\rightarrow+\infty}\mathbb{E}\Big[|g_n(\textbf{r}_k(X))-\eta(X)|^2\Big]\leq\inf_{f\in\mathcal{G}}\mathbb{E}\Big[|f(\textbf{r}_k(X))-\eta(X)|^2\Big].$$`
 And in particular,
-`$$\limsup_{\ell\rightarrow+\infty}\mathbb{E}\Big[|g_n(\textbf{r}_k(X))-g^*(X)|^2\Big]\leq\min_{1\leq m \leq M}\mathbb{E}\Big[|r_{k,m}(X)-g^*(X)|^2\Big].$$`
+`$$\limsup_{\ell\rightarrow+\infty}\mathbb{E}\Big[|g_n(\textbf{r}_k(X))-\eta(X)|^2\Big]\leq\min_{1\leq m \leq M}\mathbb{E}\Big[|r_{k,m}(X)-\eta(X)|^2\Big].$$`
 
 -----
 
@@ -951,11 +951,11 @@ And in particular,
 -----
 Assume that 
 - `\(Y\)` and all the basic machines `\(r_{k,m},m=1,2,...,M\)`, are bounded by `\(R\)` a.s
-- `\(\exists  L&gt;0,\forall k\geq 1\)`: `\(|g^*({\bf r}_k(x))-g^*({\bf r}_k(y))|\leq L\|{\bf r}_k(x)-{\bf r}_k(y)\|,\forall x,y\in\mathbb{R}^d.\)`
+- `\(\exists  L&gt;0,\forall k\geq 1\)`: `\(|\eta({\bf r}_k(x))-\eta({\bf r}_k(y))|\leq L\|{\bf r}_k(x)-{\bf r}_k(y)\|,\forall x,y\in\mathbb{R}^d.\)`
 - `\(\exists R_K,C_K&gt;0\)`: `\(K(z)\leq C_Ke^{-\|z\|^{\alpha}/\sigma}, \forall z\in\mathbb{R}^M\ \text{s.t }\|z\|\geq R_K\)`, `\(\alpha,\sigma&gt;0\)`.
 
 Then, with the choice of `\(h\propto \ell^{-\frac{1}{M+2}}\)`, there exists `\(C&gt;0\)` such that
-`$$\mathbb{E}[|g_n({\bf r}_k(X))-g^*(X)|^2]\leq \min_{1\leq m\leq M}\mathbb{E}[|r_{k,m}(X)-g^*(X)|^2]+C\ell^{-\frac{2}{M+2}}.$$`
+`$$\mathbb{E}[|g_n({\bf r}_k(X))-\eta(X)|^2]\leq \min_{1\leq m\leq M}\mathbb{E}[|r_{k,m}(X)-\eta(X)|^2]+C\ell^{-\frac{2}{M+2}}.$$`
 
 -----
 
@@ -986,18 +986,18 @@ where `\(g_n(\textbf{r}_k(X_j))=\sum_{(X_i,Y_i)\in \mathcal{D}_{\ell}\setminus F
 ]
 
 .fl.w-40.pa2.f6[
-- The differentiability of `\(\varphi\)` depends entirely on `\(K\)`.
+- The differentiability of `\(\varphi^{\kappa}\)` depends entirely on `\(K\)`.
 
 - .stress[Algorithm]
 
 -----
   - `Init`: `\(h_0,\lambda,\delta&gt;0,N\)`.
-  - `for` `\(k=1,2,...,N\)`: 
+  - `for` `\(k=1,2,...,\)` `maxIter`: 
   
     `while` `\(\Big|\frac{d}{d h}\varphi^{\kappa}(h_{k-1})\Big|&gt;\delta\)` `do`: 
 `$$h_k\gets h_{k-1}-\lambda\frac{d}{d h}\varphi^{\kappa}(h_{k-1})$$`
 
-  - `return` : `\(h_k\)` violating the `while` condition or `\(h_N\)`.
+  - `return` : `\(h_k\)` violating the `while` condition or `\(h_{\text{maxIter}}\)`.
 
 ----
 ]
