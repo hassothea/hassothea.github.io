@@ -8,12 +8,12 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a third year PhD student in Statistical Learning at [UPMC - Sorbonne Université](http://www.upmc.fr/en/) under supervision of [Mathilde Mougeot](https://sites.google.com/site/mougeotmathilde/) and [Aurélie Fischer](http://www.lpsm.paris/dw/doku.php?id=users:fischer:index). I am from Cambodia. I also work as a teaching assistant at [UFR mathematics of Université de Paris (Paris 7)](https://www.math.univ-paris-diderot.fr/) during my thesis.
+I did my Ph.D. in Applied Mathematics at [UPMC - Sorbonne Université](http://www.upmc.fr/en/) under supervision of [Mathilde Mougeot](https://sites.google.com/site/mougeotmathilde/) and [Aurélie Fischer](http://www.lpsm.paris/dw/doku.php?id=users:fischer:index). I am from Cambodia. I also worked as a teaching assistant at [UFR mathematics of Université de Paris (Paris 7)](https://www.math.univ-paris-diderot.fr/) during my thesis.
    
 Research
 ======
 
-My Ph.D. research focuses on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I am developing a procedure for constructing predictions using both supervised and unsupervised machine learning methods including consensual aggregation methods and clustering. I provide theoretical contributions and applications of the methods on several simulated and real (energy) data. My thesis can be found [here](/files/Thèse_Manuscrit_SotheaHas.pdf).
+My Ph.D. research focuses on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I am developing a procedure for constructing predictions using both supervised and unsupervised machine learning methods including consensual aggregation methods and clustering. I provide theoretical contributions and applications of the methods on several simulated and real (energy) data. My thesis can be found [here](/files/Thèse_Manuscrit_SotheaHAS.pdf).
 
 Research interests
 ======
