@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Home Page"
 title_separator          : "-"
 name                     : &name "Sothea Has"
-description              : &description "I am Cambodian and currently a third year PhD student at Sorbonne Université (Paris 6)."
+description              : &description "I did my Ph.D. in Applied Mathematics at Sorbonne Université (Paris 6)."
 url                      : https://hassothea.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Sothea Has"
   avatar           : "profile_new.jpg"
-  bio              : "PhD student in Statistical Learning"
+  bio              : "Ph.D. in Applied Mathematics"
   location         : "Paris, France"
   employer         :
   #pubmed           : #"https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
