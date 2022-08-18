@@ -1,0 +1,34 @@
+<style>
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: rgba(2, 70, 79, 0.874);
+}
+
+.remark-slide-number .numeric {
+  position: absolute;
+  bottom: 4%;
+  height: 4px;
+  display: block;
+  right: 2.5%;
+  font-weight: bold;
+}
+
+.remark-slide-number .numeric-out{
+  color: rgba(2, 70, 79, 0.874);
+}
+
+</style>
+
