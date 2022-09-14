@@ -12,14 +12,12 @@ I am currently doing my postdoctoral research in IMPT project on improving the p
 
 Here, you can find my [Ph.D. Thesis](/files/Thèse_Manuscrit_SotheaHAS.pdf) and [Slides](/files/slide_thesis/slide_thesis.html).
    
-Research
-======
-
-My Ph.D. research focuses on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I am developing a procedure for constructing predictions using both supervised and unsupervised machine learning methods including consensual aggregation methods and clustering. I provide theoretical contributions and applications of the methods on several simulated and real (energy) data. .
-
 Research interests
 ======
 
+My Ph.D. research focuses on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I developed a methodology (KFC-procedure) for constructing predictions using both supervised and unsupervised machine learning methods including consensual aggregation methods and clustering. I provide theoretical contributions and applications of the methods on several simulated and real (energy) data. .
+
+I am interested in the following topics:
 - Combination of unsupervised and supervised machine learning methods, ensemble learning, clustering and aggregation methods.
 - Deep learning, neural networks, artificial intelligence, online learning, big data...
 
