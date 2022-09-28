@@ -2820,7 +2820,7 @@ output of <code>generateMachines</code> function.</li>
 default, <code>n_cv = 5</code>.</li>
 <li><code>kernel</code> : the kernel function used for the aggregation,
 which is an element of {“gaussian”, “epanechnikov”, “biweight”,
-“triweight”, “triangular”, “naive”, “c_expo”, “expo”}. By default,
+“triweight”, “triangular”, “naive”, “c.expo”, “expo”}. By default,
 <code>kernel = &quot;gaussian&quot;</code>.</li>
 <li><code>id_shuffle</code> : an integer vector of length equals to the
 size of the remaining part of the training data (<span class="math inline">\({\cal D}_{\ell}\)</span>). Its elements are from
@@ -3162,7 +3162,7 @@ input data.</li>
   return(Reduce(&quot;+&quot;, temp))
   }
   # C_expo
-  c_expo_kernel &lt;- function(.ep = .05,
+  c.expo_kernel &lt;- function(.ep = .05,
                               .dist_matrix,
                               .train_response2,
                               .sigma = sig,
@@ -3298,7 +3298,7 @@ input data.</li>
                     triangular = triangular_kernel,
                     naive = naive_kernel,
                     expo = expo_kernel,
-                    c_expo = c_expo_kernel)
+                    c.expo = c.expo_kernel)
   
   # error for all kernel functions
   error_func &lt;- kernel_real %&gt;%
@@ -3446,7 +3446,7 @@ evaluated with the given parameter.</p></li>
     y_hat &lt;- .y2 %*% tem0/colSums(tem0)
     return(t(y_hat))
   }
-  c_expo_kernel &lt;- function(.ep,
+  c.expo_kernel &lt;- function(.ep,
                             .sigma = .sig,
                             .alpha = .alp){
     tem0 &lt;- .ep*dis
@@ -3508,7 +3508,9 @@ evaluated with the given parameter.</p></li>
                       biweight = biweight_kernel,
                       triweight = triweight_kernel,
                       triangular = triangular_kernel,
-                      naive = naive_kernel)
+                      naive = naive_kernel,
+                      expo = expo_kernel,
+                      c.expo = c.expo_kernel)
   res &lt;- tibble(as.vector(kernel_list[[.kern]](.ep = epsilon)))
   names(res) &lt;- ifelse(is.na(.meth), 
                        .kern, 
