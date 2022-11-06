@@ -23,7 +23,7 @@ I am interested in the following topics:
 - Combination of unsupervised and supervised machine learning methods, ensemble learning, clustering and aggregation methods.
 - Deep learning, neural networks, artificial intelligence, online learning, big data...
 
-Teaching (Université de Paris)
+Teaching (Université Paris Cité)
 ======
 
 - M2MO : TD of Statistical Modeling.
