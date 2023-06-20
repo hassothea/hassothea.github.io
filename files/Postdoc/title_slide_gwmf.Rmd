@@ -1,0 +1,24 @@
+class: top, center, title-slide
+
+<img src="img/mainz/X.png" align="right" height="110" width="100"> 
+<img src="img/mainz/cnrs.png" align="middle" height="95"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="img/mainz/UniversiteParisCite_logo.jpg" align="left" height="90">
+
+
+<hr class="L1">
+
+## `r params$title`
+
+<hr class="L2"> 
+<hbr>
+
+<!-- #### `r params$subtitle` -->
+
+<!-- <img src="img/RUPP_logo.png" align="middle" height="100"> -->
+
+### Sothea Has<sup>1</sup>, Riwal Plougonven<sup>2</sup>, Aurélie Fischer<sup>1</sup>, ...<h0br>
+.left[
+.subtitle[&nbsp; <sup>1</sup> CNRS, Laboratoire de Probabilités, Statistique et Modélisation]<h0br>
+
+.subtitle[&nbsp; <sup>2</sup> Laboratoire de Meteorologie Dynamique, Ecole Polytechnique]
+]
