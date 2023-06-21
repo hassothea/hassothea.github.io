@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Intro_ML</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sothea Has" />
+    <script src="libs/header-attrs-2.22/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+name: layout-general
+layout: true
+class: left, top
+
+
+&lt;style&gt;
+
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: rgba(2, 70, 79, 0.874);
+}
+
+.remark-slide-number .numeric {
+  position: absolute;
+  bottom: 4%;
+  height: 4px;
+  display: block;
+  right: 2.5%;
+  font-weight: bold;
+}
+
+.remark-slide-number .numeric-out{
+  color: rgba(2, 70, 79, 0.874);
+}
+
+&lt;/style&gt;
+
+
+
+
+&lt;!-- pacman::p_load(tidyverse) --&gt;
+&lt;!-- pacman::p_load(readr) --&gt;
+&lt;!-- pacman::p_load(latex2exp) --&gt;
+&lt;!-- pacman::p_load(kableExtra) --&gt;
+&lt;!-- pacman::p_load(gt) --&gt;
+&lt;!-- # old_theme &lt;-theme_set(theme_xaringan()) --&gt;
+&lt;!-- #old_theme &lt;-theme_set(theme_minimal(base_size=14, base_family = "Helvetica")) --&gt;
+
+&lt;!-- pacman::p_load("knitr") --&gt;
+
+&lt;!-- opts_chunk$set(warning = FALSE,  --&gt;
+&lt;!--                message = FALSE,  --&gt;
+&lt;!--                cache = TRUE,  --&gt;
+&lt;!--                autodep = TRUE,  --&gt;
+&lt;!--                tidy = FALSE,  --&gt;
+&lt;!--                fig.retina = 4) --&gt;
+
+&lt;!-- require(data.table, quietly = TRUE, warn.conflicts = FALSE) --&gt;
+
+&lt;!-- pacman::p_load(readr) --&gt;
+
+
+
+
+---
+count: false
+
+
+class: top, center, title-slide
+
+&lt;img src="img/UniversiteParisCite_logo.jpg" align="left" height="100"&gt;
+&lt;img src="img/cnrs.png" align="middle" height="90"&gt; .white[aaaaaaa]
+&lt;img src="img/X.png" align="right" height="110" width="90"&gt; .white[aaaaaaa]
+
+&lt;br&gt;&lt;hbr&gt;
+
+&lt;hr class="L1"&gt;
+
+## Introduction to Machine Learning (I)
+
+&lt;hr class="L2"&gt;
+
+#### Institude de Technologie du Cambodge
+
+&lt;img src="img/itc.png" align="middle" height="120"&gt;
+
+### Sothea .textsc[Has]
+
+
+---
+## What's Machine Learning (ML)?&lt;hbr&gt;
+.pull-left[&lt;hbr&gt;
+- [Arthur Samuel (1959)](https://en.wikipedia.org/wiki/Arthur_Samuel_(computer_scientist)
+
+.center[&lt;img src="./img/samuel.PNG" width="140px" height ="180px"/&gt;]
+
+]
+
+.pull-right[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+"The field of study that gives computers
+the ability to learn without being
+explicitly programmed."
+]
+
+---
+## What's Machine Learning (ML)?&lt;hbr&gt;
+.pull-left[&lt;hbr&gt;
+- [Arthur Samuel (1959)](https://en.wikipedia.org/wiki/Arthur_Samuel_(computer_scientist)
+
+.center[&lt;img src="./img/samuel.PNG" width="140px" height ="180px"/&gt;]
+
+- [Tom M. Mitchell (1997)](https://en.wikipedia.org/wiki/Tom_M._Mitchell)
+
+.center[&lt;img src="./img/mitchell.PNG" width="140px" height ="180px"/&gt;]
+]
+
+.pull-right[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+"The field of study that gives computers
+the ability to learn without being
+explicitly programmed."
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;hbr&gt;
+"A computer program is said to learn from experience .stress[E] with respect to some class of tasks .stress[T] and
+performance measure .stress[P], if its
+performance at tasks in .stress[T], as
+measured by .stress[P], improves
+with experience .stress[E]."
+]
+
+---
+## Why do we care?&lt;hbr&gt; .subtitle[&amp;nbsp; [Applications of Machine Learning](https://www.javatpoint.com/applications-of-machine-learning)]&lt;hbr&gt;
+.center[&lt;img src="./img/appli_ml.png" width="450px" height ="410px"/&gt;]
+
+Because the world is now driven by .stress[Data], and .stress[Machine Learning] is a powerful tool.
+
+---
+
+.pull-left[
+### Traditional programming
+
+.center[&lt;img src="./img/trad_program.png" width="320px" height ="350px"/&gt;]
+
+- .stress[Programming]'s rules are observed and designed by human.
+- Example: an email with '&amp;' or '!' more than `\(20\)` times, should be a spam.
+]
+
+--
+
+.pull-right[
+### Machine Learning
+
+.center[&lt;img src="./img/ML.jpg" width="320px" height ="350px"/&gt;]
+
+- .stress[Algorithms] are designed to capture the rules from the training data.
+- Example: an email that is .stress[similar] to the existing spams, should also be a spam.
+]
+
+---
+template: inter-slide
+class: left, middle
+count: false
+
+## <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(16, 111, 171);;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg> .bold-blue[Outline]
+
+&lt;br&gt;
+
+.hhead[I. Some basic elements of Machine Learning]
+
+&lt;br&gt;
+
+.hhead[II. Hands-on Linear Regression Models]
+
+&lt;br&gt;
+
+.hhead[III. Conclusion]
+
+---
+template: inter-slide
+class: left, middle
+count: false
+
+## <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(16, 111, 171);;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg> .bold-blue[Outline]
+
+&lt;br&gt;
+
+.section[I. Some basic elements of Machine Learning]
+
+&lt;br&gt;
+
+.hhead[II. Hands-on Linear Regression Models]
+
+&lt;br&gt;
+
+.hhead[III. Conclusion]
+
+---
+
+
+
+## I. Some elements of Machine Learning&lt;h0br&gt; 
+### &amp;nbsp; 1. Data (<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#6EB741;overflow:visible;position:relative;"><path d="M32 64C32 28.7 60.7 0 96 0H256c35.3 0 64 28.7 64 64V256h8c48.6 0 88 39.4 88 88v32c0 13.3 10.7 24 24 24s24-10.7 24-24V222c-27.6-7.1-48-32.2-48-62V96L384 64c-8.8-8.8-8.8-23.2 0-32s23.2-8.8 32 0l77.3 77.3c12 12 18.7 28.3 18.7 45.3V168v24 32V376c0 39.8-32.2 72-72 72s-72-32.2-72-72V344c0-22.1-17.9-40-40-40h-8V448c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32V64zM96 80v96c0 8.8 7.2 16 16 16H240c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H112c-8.8 0-16 7.2-16 16z"/></svg>)&lt;h0br&gt;
+
+- Data `\(\approx\)` information, experiences, ...
+
+--
+
+- Structured data: predefined type (string, double, ...) and dimension (rows, columns, channels)...
+  
+  - Example: phone numbers <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#0D2746;overflow:visible;position:relative;"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>, zip codes <svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#167B64;overflow:visible;position:relative;"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z"/></svg>, identity number <svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#F54C27;overflow:visible;position:relative;"><path d="M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"/></svg>, gender <svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1C2B45;overflow:visible;position:relative;"><path d="M96 64a64 64 0 1 1 128 0A64 64 0 1 1 96 64zm48 320v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V287.8L59.1 321c-9.4 15-29.2 19.4-44.1 10S-4.5 301.9 4.9 287l39.9-63.3C69.7 184 113.2 160 160 160s90.3 24 115.2 63.6L315.1 287c9.4 15 4.9 34.7-10 44.1s-34.7 4.9-44.1-10L240 287.8V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V384H144z"/></svg>...&lt;hbr&gt;
+
+--
+
+.pull-left[
+
+
+```r
+spam &lt;- read_delim(file=str_c(fpath,"spam.txt", sep = ''), show_col_types = FALSE)
+spam[c(1,4061),c("make","address","capitalTotal","type")] %&gt;%
+  knitr::kable(format = "markdown")
+
+
+# Tips dataset
+tip &lt;- readr::read_delim("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv", show_col_types = FALSE)
+```
+
+]
+.pull-right[
+
+
+| make| address| capitalTotal|type    |
+|----:|-------:|------------:|:-------|
+|    0|    0.64|          278|spam    |
+|    0|    0.00|           13|nonspam |
+
+]
+
+--
+
+- Unstructured data: everything else (no predefined type nor dimension)...
+  
+  - Example: emails <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#74AAEC;overflow:visible;position:relative;"><path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/></svg>, social media posts <svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#2187CB;overflow:visible;position:relative;"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>, video <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#F22121;overflow:visible;position:relative;"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>, sensor <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#0F4E9A;overflow:visible;position:relative;"><path d="M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg> data...
+
+--
+
+- Data pre-processing : data types, removing outliers, .stress[imputing] missing values (`NA`), scaling (.stress[standardization] or .stress[normalization]),...
+
+--
+
+- .stress[GIGO] : "garbage in, garbage out!"
+
+???
+
+- Feature engineering : transformation, kernel tricks...
+
+---
+
+## I. Some elements of Machine Learning&lt;h0br&gt; 
+### &amp;nbsp; 1. Data (<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#6EB741;overflow:visible;position:relative;"><path d="M32 64C32 28.7 60.7 0 96 0H256c35.3 0 64 28.7 64 64V256h8c48.6 0 88 39.4 88 88v32c0 13.3 10.7 24 24 24s24-10.7 24-24V222c-27.6-7.1-48-32.2-48-62V96L384 64c-8.8-8.8-8.8-23.2 0-32s23.2-8.8 32 0l77.3 77.3c12 12 18.7 28.3 18.7 45.3V168v24 32V376c0 39.8-32.2 72-72 72s-72-32.2-72-72V344c0-22.1-17.9-40-40-40h-8V448c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32V64zM96 80v96c0 8.8 7.2 16 16 16H240c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H112c-8.8 0-16 7.2-16 16z"/></svg>)&lt;h0br&gt;
+
+.pull-left[
+
+```r
+timeSeries %&gt;%
+  ggplot(aes(x = time)) +
+  geom_line(aes(y = price), color = '#4109F0') +
+  geom_line(aes(y = price1), color = '#E71F1F') +
+  geom_line(aes(y = price2), color = '#F7D606') +
+  geom_line(aes(y = price3), color = '#1EC826') +
+  geom_line(aes(y = price4), color = '#06B6D9') +
+  geom_line(aes(y = price5), color = '#B40EE5') +
+  theme(text = element_text(size = 18),
+        panel.background = element_blank())
+```
+]
+
+.pull-right[
+
+![](itc_linear_files/figure-html/time_series-out-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-left[&lt;h1br&gt;
+.center[&lt;img src="./img/digit_7.png" width="480px" height ="210px"/&gt;]
+
+]
+.pull-right[&lt;h1br&gt;
+.center[&lt;img src="./img/digit.gif" width="360px" height ="210px"/&gt;
+]
+
+&lt;!-- &lt;video width="360" height="210" controls&gt;
+  &lt;source src="./img/digit.mp4" type="video/mp4"&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;]
+
+]
+--&gt;
+
+---
+## I. Some elements of Machine Learning&lt;h0br&gt; 
+### &amp;nbsp; 2. Task (<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#6EB741;overflow:visible;position:relative;"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z"/></svg>?)&lt;h0br&gt;
+
+.center[&lt;img src="./img/ML_branches.png" width="630px" height ="450px"/&gt;]
+
+---
+exclude:true
+## I. Some elements of Machine Learning&lt;h0br&gt; 
+### &amp;nbsp; 2. Task (With fuel, where do you want go?)&lt;h0br&gt;
+
+.pull-left[
+- Supervised learning:
+  
+  - Identify email (spam or not)
+  
+  - Weather forecast
+  
+  - Health care system
+  
+  - Increase of income from ads...
+  
+- Unsupervised learning:
+  
+  - City planning
+  
+  - Clustering customers or users
+  
+  - Organizing products
+  
+  - Gene representation...
+]
+
+.pull-right[
+.center[&lt;img src="./img/ML_branches.png" width="300px" height ="220px"/&gt;]
+
+- Reinforcement learning:
+  
+  - Self-driving car,
+  
+  - Gaming ([Alpha GO](https://www.deepmind.com/research/highlighted-research/alphago))
+  
+  - Robotic
+  
+  - Natural Language Processing (NLP)...
+]
+
+---
+## I. Some elements of Machine Learning&lt;h0br&gt; 
+### &amp;nbsp; 3. Model (<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#6EB741;overflow:visible;position:relative;"><path d="M280 32c-13.3 0-24 10.7-24 24s10.7 24 24 24h57.7l16.4 30.3L256 192l-45.3-45.3c-12-12-28.3-18.7-45.3-18.7H64c-17.7 0-32 14.3-32 32v32h96c88.4 0 160 71.6 160 160c0 11-1.1 21.7-3.2 32h70.4c-2.1-10.3-3.2-21-3.2-32c0-52.2 25-98.6 63.7-127.8l15.4 28.6C402.4 276.3 384 312 384 352c0 70.7 57.3 128 128 128s128-57.3 128-128s-57.3-128-128-128c-13.5 0-26.5 2.1-38.7 6L418.2 128H480c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32H459.6c-7.5 0-14.7 2.6-20.5 7.4L391.7 78.9l-14-26c-7-12.9-20.5-21-35.2-21H280zM462.7 311.2l28.2 52.2c6.3 11.7 20.9 16 32.5 9.7s16-20.9 9.7-32.5l-28.2-52.2c2.3-.3 4.7-.4 7.1-.4c35.3 0 64 28.7 64 64s-28.7 64-64 64s-64-28.7-64-64c0-15.5 5.5-29.7 14.7-40.8zM187.3 376c-9.5 23.5-32.5 40-59.3 40c-35.3 0-64-28.7-64-64s28.7-64 64-64c26.9 0 49.9 16.5 59.3 40h66.4C242.5 268.8 190.5 224 128 224C57.3 224 0 281.3 0 352s57.3 128 128 128c62.5 0 114.5-44.8 125.8-104H187.3zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>(<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(233, 165, 9);;overflow:visible;position:relative;"><path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/></svg>), <svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#6EB741;overflow:visible;position:relative;"><path d="M171.3 96H224v96H111.3l30.4-75.9C146.5 104 158.2 96 171.3 96zM272 192V96h81.2c9.7 0 18.9 4.4 25 12l67.2 84H272zm256.2 1L428.2 68c-18.2-22.8-45.8-36-75-36H171.3c-39.3 0-74.6 23.9-89.1 60.3L40.6 196.4C16.8 205.8 0 228.9 0 256V368c0 17.7 14.3 32 32 32H65.3c7.6 45.4 47.1 80 94.7 80s87.1-34.6 94.7-80H385.3c7.6 45.4 47.1 80 94.7 80s87.1-34.6 94.7-80H608c17.7 0 32-14.3 32-32V320c0-65.2-48.8-119-111.8-127zM434.7 368a48 48 0 1 1 90.5 32 48 48 0 1 1 -90.5-32zM160 336a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>(<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(233, 165, 9);;overflow:visible;position:relative;"><path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/></svg>), <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#6EB741;overflow:visible;position:relative;"><path d="M482.3 192c34.2 0 93.7 29 93.7 64c0 36-59.5 64-93.7 64l-116.6 0L265.2 495.9c-5.7 10-16.3 16.1-27.8 16.1l-56.2 0c-10.6 0-18.3-10.2-15.4-20.4l49-171.6L112 320 68.8 377.6c-3 4-7.8 6.4-12.8 6.4l-42 0c-7.8 0-14-6.3-14-14c0-1.3 .2-2.6 .5-3.9L32 256 .5 145.9c-.4-1.3-.5-2.6-.5-3.9c0-7.8 6.3-14 14-14l42 0c5 0 9.8 2.4 12.8 6.4L112 192l102.9 0-49-171.6C162.9 10.2 170.6 0 181.2 0l56.2 0c11.5 0 22.1 6.2 27.8 16.1L365.7 192l116.6 0z"/></svg>(<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(233, 165, 9);;overflow:visible;position:relative;"><path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/></svg>)?) &lt;h0br&gt;
+
+.center[&lt;img src="./img/input_output.jpg" width="620px" height ="220px"/&gt;]
+
+- Model: a function `\(f\)` that `\(f(\text{input})\approx\text{output}\)`. 
+
+--
+
+- For example: `\(f(\)` <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#5BC5F7;overflow:visible;position:relative;"><path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/></svg> `\({}_i)\approx \text{type}_i, \text{ for almost every }i\)`
+
+&lt;!-- (\text{Make}_i,\text{Spend}_i,...,\text{&amp;}_i,...,\text{Cap}_i) --&gt;
+--
+
+- More examples:
+  - Our pant model: `\(\text{waist}=a\times\text{nick}+b\)`, where `\(a,b\)` are the keys.
+--
+
+  - Exponential decay low (N. of nuclei): `\(N(t)=N_0e^{-\lambda t}\)`, `\(\lambda\)` is the key.
+--
+
+  - [Jim Rohn](https://www.jimrohn.com/): You `\(\approx\)` average( `\(5\)` people you spend the most time with ).
+
+---
+## I. Some elements of Machine Learning&lt;h0br&gt; 
+### &amp;nbsp; 4. Loss (<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#6EB741;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm306.7 69.1L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>?)&lt;h0br&gt;
+
+.pull-left[
+- Your model `\(f\)` should be `\(f(\text{input})\approx\text{ouput}\)`.
+
+- What does ' `\(\approx\)` ' mean?
+
+- Loss function: a measure of the quality of your model.
+
+- Regression loss: `\(\hat{y}=f(\text{input})\)` and `\(y=\)` output,
+
+  - Quadratic: `\(\ell_2(y,\hat{y})=(y-\hat{y})^2\)`
+  
+  - Absolute: `\(\ell_1(y,\hat{y})=|y-\hat{y}|\)`
+  
+  - Relative: `\(R\ell_1(y,\hat{y})=\Big|\frac{y-\hat{y}}{y}\Big|\)` 
+]
+
+--
+
+.pull-right[
+- Classification loss:
+
+  - `\(0\text{-}1\)` loss: `\(y,\hat{y}\in\{1,...,M\}\)`, `$$\ell_{0,1}(y,\hat{y})=\mathbb{1}_{\{y\neq \hat{y}\}}\in\{0,1\}$$`
+
+  - Cross-entropy: `\(y,\hat{y}\in \mathcal{S}_{M-1}\)`, `$$\text{CEn}(y,\hat{y})=-\sum_{i=1}^My_i\log(\hat{y}_i)$$`
+
+  - KL divergence: `\(y,\hat{y}\in \mathcal{S}_{M-1}\)`, `$$\text{KL}(y,\hat{y})=\sum_{i=1}^My_i\log(y_i/\hat{y}_i)$$`
+]
+
+--
+
+.center[
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(233, 165, 9);;overflow:visible;position:relative;"><path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/></svg> .stress[Good model, small (average) loss!]
+]
+
+---
+## I. Some elements of Machine Learning&lt;h0br&gt;
+### &amp;nbsp; 5. Learning (<svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#6EB741;overflow:visible;position:relative;"><path d="M160 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM126.5 199.3c-1 .4-1.9 .8-2.9 1.2l-8 3.5c-16.4 7.3-29 21.2-34.7 38.2l-2.6 7.8c-5.6 16.8-23.7 25.8-40.5 20.2s-25.8-23.7-20.2-40.5l2.6-7.8c11.4-34.1 36.6-61.9 69.4-76.5l8-3.5c20.8-9.2 43.3-14 66.1-14c44.6 0 84.8 26.8 101.9 67.9L281 232.7l21.4 10.7c15.8 7.9 22.2 27.1 14.3 42.9s-27.1 22.2-42.9 14.3L247 287.3c-10.3-5.2-18.4-13.8-22.8-24.5l-9.6-23-19.3 65.5 49.5 54c5.4 5.9 9.2 13 11.2 20.8l23 92.1c4.3 17.1-6.1 34.5-23.3 38.8s-34.5-6.1-38.8-23.3l-22-88.1-70.7-77.1c-14.8-16.1-20.3-38.6-14.7-59.7l16.9-63.5zM68.7 398l25-62.4c2.1 3 4.5 5.8 7 8.6l40.7 44.4-14.5 36.2c-2.4 6-6 11.5-10.6 16.1L54.6 502.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L68.7 398z"/></svg> <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#5B8D3C;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(233, 165, 9);;overflow:visible;position:relative;"><path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/></svg>?)&lt;hbr&gt;
+--
+
+- Learning `\(f^*\)` from a class `\(\mathcal{F}=\{f:\text{Input space }\mathcal{X}\to\text{ Output space }\mathcal{Y}\}\)` can be formulated as
+`$$f^*=\arg\min_{f\in\mathcal{F}}\mathbb{E}[\ell(Y,f(X))]\ \ \ \ \ \ (1)$$`
+where,
+
+  - `\(\ell\)`: some loss function.
+  - `\((X,Y)\in\mathcal{X}\times\mathcal{Y}\)`: generic input-output couple.
+  - `\(\mathbb{E}\)`: expectation w.r.t `\((X,Y)\)`.
+
+--
+
+- Solving `\((1)\)` is normally .red[NOT] analytically possible!
+
+--
+
+- Optimization algorithm: Gradient descent (GD), Stochastic GD, Adagrad, RMSProp...
+
+--
+
+- Learning: optimization `\(\Rightarrow\)` best key `\(\Rightarrow\)` best model.
+
+--
+
+- For our pant model: `\((a^*,b^*)=\arg\min_{(a,b)\in\mathbb{R}^2}\mathbb{E}[(\text{waist}-(a\times\text{nick}+b))^2]\)`
+
+---
+## I. Some elements of Machine Learning&lt;h0br&gt; 
+### &amp;nbsp; 6. Evaluation (how good is the model?)&lt;hbr&gt;
+
+- .stress[Good model] means small (average) loss, but on which data?
+
+- The model should predict fairly well on new observation.
+
+- Model evaluation: computing the loss new (unseen) observations.
+
+### &amp;nbsp; In practice
+
+- We split the data into `\(2\)` two parts: Training ( `\(\approx80\%\)` ) &amp; testing ( `\(\approx20\%\)` ).
+
+  - Training data: to build the model (estimate the good key).
+  
+  - Testing data: to access the performance.
+  
+---
+template: inter-slide
+class: left, middle
+count: false
+
+## <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(16, 111, 171);;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg> .bold-blue[Outline]
+
+&lt;br&gt;
+
+.hhead[I. Some basic elements of Machine Learning]
+
+&lt;br&gt;
+
+.section[II. Hands-on Linear Regression Models]
+
+&lt;br&gt;
+
+.hhead[III. Conclusion]
+---
+## II. Hands-on Linear Regression Models&lt;h0br&gt; 
+### &amp;nbsp; Tips dataset &lt;h0br&gt;
+
+- Dimension: `\(244\times 7\)`.
+
+
+```r
+tip[sample(nrow(tip), 8),] |&gt; knitr::kable(format = "markdown")
+```
+
+
+
+| total_bill|  tip|sex    |smoker |day  |time   | size|
+|----------:|----:|:------|:------|:----|:------|----:|
+|      12.16| 2.20|Male   |Yes    |Fri  |Lunch  |    2|
+|      21.70| 4.30|Male   |No     |Sat  |Dinner |    2|
+|      14.07| 2.50|Male   |No     |Sun  |Dinner |    2|
+|      22.82| 2.18|Male   |No     |Thur |Lunch  |    3|
+|      11.61| 3.39|Male   |No     |Sat  |Dinner |    2|
+|      16.27| 2.50|Female |Yes    |Fri  |Lunch  |    2|
+|      20.29| 3.21|Male   |Yes    |Sat  |Dinner |    2|
+|      13.42| 1.68|Female |No     |Thur |Lunch  |    2|
+
+--
+
+- Objective: build a linear model to predict the .stress[tip].
+
+---
+## II. Hands-on Linear Regression Models&lt;h0br&gt; 
+### &amp;nbsp; Tips dataset &lt;h0br&gt;
+
+
+
+
+.pull-left[
+
+```r
+tip |&gt; ggplot(aes(x = total_bill, y = tip, color = sex, size = size, shape = time))+
+  geom_point() +
+  labs(title = "Tip VS total bill", x = "Total bill", y = "Tip", size = '', color = '', shape = '') +
+  theme(rect = element_rect(colour = "white"),
+        axis.text.x = element_text(size = 15),
+        axis.text.y = element_text(size = 15),
+        legend.position="bottom", legend.box = "horizontal")
+```
+
+&lt;img src="itc_linear_files/figure-html/tip1-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+```r
+tip |&gt; ggplot(aes(x = day, y = tip, fill = smoker))+
+  geom_boxplot() +
+  labs(title = "Tip VS Day and Smoke", x = "Day", y = "Tip") +
+  theme(rect = element_rect(colour = "white"),
+                 axis.text.x = element_text(size = 15),
+                 axis.text.y = element_text(size = 15),
+                 legend.position="bottom", legend.box = "horizontal")
+```
+
+&lt;img src="itc_linear_files/figure-html/tip2-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## II. Hands-on Linear Regression Models&lt;h0br&gt; 
+### &amp;nbsp; Tips dataset: Simple linear regression (1 vs 1) &lt;h0br&gt;
+
+- Simple start: **Total bill** `\(\rightarrow\)` **Tip**.
+
+- Model: `$$\hat{\text{Tip}}=a\times\text{TB} +b$$`
+
+- MSE criterion: `$$\text{MSE}(a,b)=\frac{1}{n}\sum_{i=1}^n(\text{Tip}_i-\hat{\text{Tip}}_i)^2=\frac{1}{n}\sum_{i=1}^n(y_i-ax_i-b)^2$$`
+
+- Minimizing MSE above is easy: 
+
+`$$\hat{a}=\frac{\langle x-\overline{x},y-\overline{y}\rangle}{\|x-\overline{x}\|^2}=\frac{\text{cor}(x,y)}{\mathbb{V}(x)},\\ 
+\hat{b}=\overline{y}-\hat{a}\overline{x}\hspace{5.3cm}$$`
+
+---
+## II. Hands-on Linear Regression Models&lt;h0br&gt; 
+### &amp;nbsp; Tips dataset: Simple linear regression (1 vs 1) &lt;h0br&gt;
+
+
+
+
+```r
+p1 + geom_point(data =tibble(total_bill = tip[!mask,][['total_bill']], 
+         tip = predict(mod0, newdata = tip[!mask,])),
+         color = "red", shape = "x", size = 4) + 
+  geom_abline(slope = mod0$coefficients[2], intercept = mod0$coefficients[1], color = "blue", linewidth = 1)+
+  labs(title = "Fitting linear line") +
+  annotate('text', x = 10, y = 7.5, label = paste("RMSE:", round(er, 3))) 
+```
+
+&lt;img src="itc_linear_files/figure-html/tip3-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+
+
+template: inter-slide
+class: left, middle
+count: false
+
+.center[# References]&lt;hbr&gt;
+
+&amp;#128218; [Linder, T. (2002). Learning-Theoretic Methods in Vector Quantization. In: Györfi, L. (eds) Principles of Nonparametric Learning. International Centre for Mechanical Sciences, vol 434. Springer, Vienna.](https://link.springer.com/chapter/10.1007/978-3-7091-2568-7_4)
+
+&amp;#128218; [Banerjee, S. Merugu, I.S. Dhillon, and J. Ghosh.  Clustering with Bregman divergences. Journal of Machine Learning Research, 6:1705–1749, 2005](chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/https://jmlr.org/papers/volume6/banerjee05b/banerjee05b.pdf)
+
+&amp;#128218; [A. Fischer.  Quantization and clustering with Bregman divergences. Journal of Multivariate Analysis, 101(10):2207–2221, 2010.](chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/https://www.lpsm.paris/_media/users/fischer/quantization_and_clustering_with_bregman_divergences.pdf)
+
+&amp;#128218; [S. Has, A. Fischer, and M. Mougeot. Kfc: A clusterwise supervised learning procedure based on the aggregation of distances. Journal of Statistical Computation and Simulation, 0(0):1–21, 2021. doi: 10.1080/00949655.2021.  1891539.](https://www.tandfonline.com/doi/abs/10.1080/00949655.2021.1891539)
+
+<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> [https://github.com/hassothea/KFC-Procedure](https://github.com/hassothea/KFC-Procedure)
+
+&lt;h0br&gt;
+
+.pull-right[
+# Thank you 🤓
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"nature": null,
+"slideNumberFormat": "<div class=\"numeric\">\n  <div class=\"numeric-out\">\n    %current% / %total%\n  </div>\n</div>\n",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
