@@ -1,0 +1,1397 @@
+---
+title: "<span style='color: #1C81AA;'>**Kernel-based Combined Classification Rule</span>**"
+author: "<span style='color: #D4A51C;'>***Sothea Has***</span>"
+date: '2022-06-03'
+output:
+  html_document:
+    css: hideOutput.css
+    includes:
+      in_header: hideOutput.script
+    df_print: paged
+    code_folding: hide
+    number_sections: yes
+    toc: yes
+    toc_depth: '2'
+    tocdepth: 2
+  html_notebook:
+    css: hideOutput.css
+    includes:
+      in_header: hideOutput.script
+    code_folding: hide
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    tocdepth: 2
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+---
+
+<style>
+  .btn {
+    border-width: 0 0px 0px 0px;
+    font-weight: normal;
+    text-transform: ;
+  }
+.btn-default {
+  color: #2ecc71;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+</style>
+
+<!-- Colors
+blue : #1FAAE3
+yellow : #F0AE14
+green : #54D319 
+red : #E6180A
+-->
+
+
+```{r, echo=FALSE}
+# Check if package "fontawesome" is already installed 
+
+lookup_packages <- installed.packages()[,1]
+if(!("fontawesome" %in% lookup_packages))
+  install.packages("fontawesome")
+```
+
+
+<span style="color: #1FAAE3;">&#128270;<u> How to download & run the codes?</u></span>{-}
+===
+
+All the source codes of the aggregation methods are available [here <span style="color: #097BC1"> `r fontawesome::fa("github")`</span>](https://github.com/hassothea/AggregationMethods). To run the codes, you can <span style="color: #097BC1">`clone`</span> the repository directly or simply load the <span style="color: #097BC1">`R script`</span> source file from the repository using [devtools](https://cran.r-project.org/web/packages/devtools/index.html) package in <span style="color: #0287D8;"> **Rstudio** </span> as follow:
+
+1. Install [devtools](https://cran.r-project.org/web/packages/devtools/index.html) package using command: 
+
+    `install.packages("devtools")`
+
+2. Loading the source codes from <span style="color: #097BC1">GitHub `r fontawesome::fa("github")`</span> repository using `source_url` function by: 
+
+    `devtools::source_url("https://raw.githubusercontent.com/hassothea/AggregationMethods/main/KernelAggClass.R")`
+
+---
+
+> **&#9998; Note**: All codes contained in this `Rmarkdown` are built with recent version of <span style="color: #097BC1">`r fontawesome::fa("r-project")`</span> (version $>$ 4.1, available [here](https://cran.r-project.org/bin/windows/base/)) and <span style="color: #0287D8;"> **Rstudio** </span> (version > `2022.02.2+485`, available [here](https://www.rstudio.com/products/rstudio/download/#download)). Note also that the code chucks are <span style="color: #E6180A;">hidden</span> by default.
+
+<span style="color: #F0AE14"> **To see the codes, you can:** </span>
+
+- click on the top-right <span style="color: #54D319 ;">Code</span> button of the page, then choose **Show All Code** to show all the codes, or 
+- simply click on the right-corner <span style="color: #54D319 ;">Code</span> button at each section to show the codes of that specific section.
+
+---
+
+<span style="color: #1FAAE3;"><u> Aggregation method & important packages </u></span>
+===
+
+<span style="color: #F0AE14;"><u> Aggregation method</u></span>
+---
+
+This `Rmarkdown` provides the implementation of a kernel-based combined classification rule by <span style="color: #1FAAE3;">[Mojirsheibani (2020)](https://www.sciencedirect.com/science/article/abs/pii/S0167715200000249?via%3Dihub)</span>. Let $\mathcal{D}_n=\{(x_1,y_1),...,(x_n,y_n)\}$ be a training data of size $n$, where the input-output couples $(x_i,y_i)\in\mathbb{R}^d\times\{1,\dots,N\}$ for all $i=1,...,n$, and $N$ is the number of classes. $\mathcal{D}_{n}$ is first randomly partitioned into $\mathcal{D}_{k}$ and $\mathcal{D}_{\ell}$ of size $k$ and $\ell$ respectively such that $k+\ell=n$. We construct $M$ classifiers (machines)  $C_1,...,C_M$ using only $\mathcal{D}_{k}$. Let ${\bf C}(x)=(C_1(x),...,C_M(x))^T\in\{1,...,N\}^M$ be the vector of predicted classes of $x\in\mathbb{R}^d$ (given by all classifiers $c_1,...,c_M$), the kernel-based combining method evaluated at point $x$ is defined by
+
+$$
+g_n({\bf C}(x))=k^*=\text{arg}\max_{1\leq k\leq N}\sum_{i=1}^{\ell}K_h(d_{\cal H}({\bf C}(x),{\bf C}(x_i)))\mathbb{1}_{\{y_i=k\}}.
+$$
+Here,
+
+- $K:\mathbb{R}_+\to\mathbb{R}_+$ is a non-increasing kernel function with $K_h(x)=K(x/h)$ for some smoothing parameter $h>0$ to be tuned
+- $d_{\cal H}$ is the Hamming distance or the number of different classes among $M$ coordinates.
+
+In words, the predicted class is the class comprising heaviest total weight. Even though the formula of $g_n$ is defined using only data points in $\mathcal{D}_{\ell}$, it does depend on the whole training data $\mathcal{D}_{n}$ as the basic machines $(C_i)_{i=1}^M$ are built using $\mathcal{D}_{k}$.
+
+<span style="color: #F0AE14;"> <u> Important packages</u></span>
+---
+
+We prepare all the necessary tools for this `Rmarkdown`. `pacman` package allows us to load (if exists) or install (if does not exist) any available packages from [The Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/) of <span style="color: #097BC1">`r fontawesome::fa("r-project")`</span>. 
+
+
+```{r}
+# Check if package "pacman" is already installed 
+
+lookup_packages <- installed.packages()[,1]
+if(!("pacman" %in% lookup_packages))
+  install.packages("pacman")
+
+
+# To be installed or loaded
+pacman::p_load(magrittr)
+pacman::p_load(tidyverse)
+
+## package for "generateMachines"
+pacman::p_load(tree)
+pacman::p_load(nnet)
+pacman::p_load(e1071)
+pacman::p_load(randomForest)
+pacman::p_load(FNN)
+pacman::p_load(xgboost)
+pacman::p_load(adabag)
+pacman::p_load(keras)
+pacman::p_load(pracma)
+pacman::p_load(latex2exp)
+pacman::p_load(plotly)
+rm(lookup_packages)
+```
+
+
+<span style="color: #1FAAE3;"><u>Basic machine generator</u></span>
+===
+
+This section provides functions to generate basic machines (classifiers) to be aggregated.
+
+<span style="color: #F0AE14;"><u>Function</u></span> : `setBasicParameter`
+----
+
+This function allows us to set the values of some key parameters of the basic machines.
+
+- **Argument**:
+
+    - `k` : the parameter $k$ of $k$NN (`knn`) classifiers and the default value is $k=10$.
+    - `ntree` : the number of trees in random forest (`rf`). By default, `ntree = 300`.
+    - `mtry` : the number of random features chosen in each split of random forest procedure. By default, `mtry = NULL` and the default value of `mtry` of *randomForest* function from [randomForest](https://cran.r-project.org/web/packages/randomForest/index.html) library is used.
+    - `ker_svm` : kernel option in SVM. It should be a subset of `{"linear", "polynomial", "radial", "sigmoid"}`. By default, `ker_svm = "radial"`.
+    - `deg_svm` : degree of polynomial kernel in SVM. By default, `deg_svm = 3`.
+    - `breg_boost` : Bregman divergence used in `boosting` of [maboost](https://cran.r-project.org/web/packages/maboost/index.html) package. By default, `breg_boost = "entrop"` and KL divergence is used, resulting Adaboost-like algorithm.
+    - `iter_boost` : number of boosting iterations to perform. Default `iter_boost = 100`.
+    - `eta_xgb` : the learning rate $\eta>0$ in gradient step of *extreme gradient boosting* method (`xgb`) of [xgboost](https://cran.r-project.org/web/packages/xgboost/index.html) library.
+    - `nrounds_xgb` : the parameter `nrounds` indicating the max number of boosting iterations. By default, `nrounds_xgb = 100`.
+    - `early_stop_xgb` : the early stopping round criterion of `xgboost` function. By, default, `early_stop_xgb = NULL` and the early stopping function is not triggered.
+    - `max_depth_xgb` : maximum depth of trees constructed in `xgboost`. 
+    - `param_xgb` : list of additional parameters of `xgboost` classifier. By default, `param_xgb = NULL`. For more information, read [online documentation](https://xgboost.readthedocs.io/en/latest/parameter.html).
+
+- **Value**: 
+    
+    This function returns a *list* of all the parameters given in its arguments, to be fed to the `basicMachineParam` argument of function `generateMachines` defined in the next section.
+
+---
+
+> 🧾** Remark.1**: 
+`k`, `ntree`, `iter_boost` and `nrounds_xgb` can be a single value or a vector. In other words, each type of models can be constructed several times according to the values of the hyperparameters (a single value or vector).
+
+---
+
+```{r}
+setBasicParameter <- function(k = 10,
+                              ntree = 300,
+                              mtry = NULL,
+                              ker_svm = "radial",
+                              deg_svm = 3,
+                              mfinal_boost = 50,
+                              boostrap = TRUE,
+                              eta_xgb = 1, 
+                              nrounds_xgb = 100, 
+                              early_stop_xgb = NULL,
+                              max_depth_xgb = 3,
+                              param_xgb = NULL){
+  return(list(
+    k = k,
+    ntree = ntree, 
+    mtry = mtry, 
+    ker_svm = ker_svm,
+    deg_svm = deg_svm,
+    mfinal_boost = mfinal_boost,
+    boostrap = boostrap,
+    eta_xgb = eta_xgb, 
+    nrounds_xgb = nrounds_xgb, 
+    early_stop_xgb = early_stop_xgb,
+    max_depth_xgb = max_depth_xgb,
+    param_xgb = param_xgb)
+  )
+}
+```
+
+
+<span style="color: #F0AE14;"><u>Function</u></span> : `generateMachines`
+---
+
+This function generates all the basic machines to be aggregated. 
+
+- **Argument**:
+
+    - `train_input` : a matrix or data frame of the training input data.
+    - `train_response` : a vector of training response variable corresponding to the `train_input`.
+    - `scale_input` : logical value specifying whether to scale the input data (to be between $0$ and $1$) or not. By default, `scale_input = FALSE`.
+    - `machines` : types of basic machines to be constructed. It is a subset of {`"knn"`, `"tree"`, `"rf"`, `"logit"`, `"svm"`, `"xgb"`, `"adaboost"`}. By default, `machines = NULL` and all types of the basic machines are built.
+    - `splits` : real number between $0$ and $1$ specifying the proportion of training data used to train the basic machines ($\mathcal{D}_k$). The remaining proportion of ($1-$ `splits`) is used for the aggregation ($\mathcal{D}_{\ell}$). By default, `splits = 0.5`.
+    - `basicMachineParam` : the option used to setup the values of parameters of each machines. One should feed the function `setBasicParameter()` defined above to this argument.
+    - `silent` : a logical value specifying whether or not progressing messages should be printed. Be default, `silent = FALSE` and the progress of the algorithm is printed.
+    
+    
+- **Value**: 
+
+    This function returns a list of the following objects.
+
+    - `predict2` : the predictions of the remaining part ($\mathcal{D}_{\ell}$) of the training data used for the aggregation.
+    - `models` : all the constructed basic machines (it contains only the values of prapeter $k$ for `knn`).
+    - `id2` : a logical vector of size equals to the number of lines of the training data indicating the location of the points used to build the basic machines (`FALSE`) and the remaining ones (`TRUE`).
+    - `train_data` : a list of:
+        - `train_input` : the trainnig input data.
+        - `train_response` : the training response variable.
+        - `classes` : the classes (unique) of response variable.
+    - `scale_max`, `scale_min` : if the argument `scale_input = TRUE`, the maximun and minimun values of all columns are contained in these vectors. 
+
+---
+
+> **&#9998; Note**: *You may need to modify the function accordingly if you want to build different types of basic machines*.
+
+---
+
+```{r}
+generateMachines <- function(train_input, 
+                             train_response,
+                             scale_input = FALSE,
+                             machines = NULL,
+                             splits = 0.5, 
+                             basicMachineParam = setBasicParameter(),
+                             silent = FALSE){
+  k <- basicMachineParam$k 
+  ntree <- basicMachineParam$ntree 
+  mtry <- basicMachineParam$mtry
+  ker_svm <- basicMachineParam$ker_svm
+  deg_svm <- basicMachineParam$deg_svm
+  mfinal_boost = basicMachineParam$mfinal_boost
+  boostrap = basicMachineParam$boostrap
+  eta_xgb <- basicMachineParam$eta_xgb 
+  nrounds_xgb <- basicMachineParam$nrounds_xgb
+  early_stop_xgb <- basicMachineParam$early_stop_xgb
+  max_depth_xgb <- basicMachineParam$max_depth_xgb
+  param_xgb <- basicMachineParam$param_xgb
+  class_xgb <- unique(train_response)
+  numberOfClasses <- length(class_xgb)
+  if(is.null(param_xgb)){
+    param_xgb <- list("objective" = "multi:softmax",
+                      "eval_metric" = "mlogloss",
+                      "num_class" = numberOfClasses+1)
+  }
+  
+  # Packages
+  pacman::p_load(nnet)
+  pacman::p_load(e1071)
+  pacman::p_load(tree)
+  pacman::p_load(randomForest)
+  pacman::p_load(FNN)
+  pacman::p_load(xgboost)
+  pacman::p_load(maboost)
+  
+  # Preparing data
+  input_names <- colnames(train_input)
+  input_size <- dim(train_input)
+  df_input <- train_input_scale <- train_input
+  if(scale_input){
+    maxs <- map_dbl(.x = df_input, .f = max)
+    mins <- map_dbl(.x = df_input, .f = min)
+    train_input_scale <- scale(train_input, 
+                               center = mins,
+                               scale = maxs - mins)
+  }
+  if(is.matrix(train_input_scale)){
+    df_input <- as_tibble(train_input_scale)
+    matrix_input <- train_input_scale
+  } else{
+    df_input <- train_input_scale
+    matrix_input <- as.matrix(train_input_scale)
+  }
+  
+  # Machines
+  svm_machine <- function(x, pa = NULL){
+    mod <- svm(x = df_train_x1, 
+               y = train_y1,
+               kernel = ker_svm,
+               degree = deg_svm,
+               type = "C-classification")
+    res <- predict(mod, 
+                   newdata = x)
+    return(list(pred = res,
+                model = mod))
+  }
+  tree_machine <- function(x, pa = NULL) {
+    mod <- tree(as.formula(paste("train_y1~", 
+                                 paste(input_names, 
+                                       sep = "", 
+                                       collapse = "+"), 
+                                 collapse = "", 
+                                 sep = "")), 
+                data = df_train_x1)
+    res <- predict(mod, x, type = 'class')
+    return(list(pred = res,
+                model = mod))
+  }
+  knn_machine <- function(x, k0) {
+    mod <- knn(train = matrix_train_x1, 
+                   test = x, 
+                   cl = train_y1, 
+                   k = k0)
+    return(list(pred = mod,
+                model = k0))
+  }
+  RF_machine <- function(x, ntree0) {
+    if(is.null(mtry)){
+      mod <- randomForest(x = df_train_x1, 
+                          y = train_y1, 
+                          ntree = ntree0)
+    }else{
+      mod <- randomForest(x = df_train_x1, 
+                          y = train_y1, 
+                          ntree = ntree0, 
+                          mtry = mtry)
+    }
+    res <- as.vector(predict(mod, x))
+    return(list(pred = res,
+                model = mod))
+  }
+  xgb_machine <- function(x, nrounds_xgb0){
+    mod <- xgboost(data = matrix_train_x1,
+                   label = train_y1,
+                   params = param_xgb,
+                   eta = eta_xgb,
+                   early_stopping_rounds = early_stop_xgb,
+                   max_depth = max_depth_xgb,
+                   verbose = 0,
+                   nrounds = nrounds_xgb0)
+    res <- class_xgb[predict(mod, x)]
+    return(list(pred = res,
+                model = mod))
+  }
+  ada_machine <- function(x, mfinal0){
+    data_tem <- cbind(df_train_x1, "target" = train_y1)
+    mod_ <- boosting(target ~ ., 
+                     data = data_tem,
+                     mfinal = mfinal0,
+                     boos = boostrap)
+    res <- predict.boosting(mod_, 
+                         newdata = as.data.frame(x))
+    return(list(pred = res$class,
+                model = mod_))
+  }
+  logit_machine <- function(x, pa = NULL){
+    mod <- multinom(as.formula(paste("train_y1~", 
+                                 paste(input_names, 
+                                       sep = "", 
+                                       collapse = "+"), 
+                                 collapse = "", 
+                                 sep = "")), 
+                data = df_train_x1,
+                trace = FALSE)
+    res <- predict(mod, 
+                   newdata = x)
+    return(list(pred = res,
+                model = mod))
+  }
+  # All machines
+  all_machines <- list(knn = knn_machine, 
+                       tree = tree_machine, 
+                       rf = RF_machine,
+                       logit = logit_machine,
+                       svm = svm_machine,
+                       adaboost = ada_machine,
+                       xgb = xgb_machine)
+  # All parameters
+  all_parameters <- list(knn = k, 
+                         tree = 1,
+                         rf = ntree,
+                         logit = NA,
+                         svm = deg_svm,
+                         adaboost = mfinal_boost,
+                         xgb = nrounds_xgb)
+  lookup_machines <- c("knn", "tree", "rf", "logit", "svm", "xgb", "adaboost")
+  if(is.null(machines)){
+    mach <- lookup_machines
+  }else{
+    mach <- map_chr(.x = machines,
+                    .f = ~ match.arg(.x, lookup_machines))
+  }
+  # Extracting data
+  M <- length(mach)
+  size_D1 <- floor(splits*input_size[1])
+  id_D1 <- logical(input_size[1])
+  id_D1[sample(input_size[1], size_D1)] <- TRUE
+
+  df_train_x1 <- df_input[id_D1,]
+  matrix_train_x1 <- matrix_input[id_D1,]
+  train_y1 <- train_response[id_D1]
+  df_train_x2 <- df_input[!id_D1,]
+  matrix_train_x2 <- matrix_input[!id_D1,]
+  
+  # Function to extract df and model from 'map' function
+  extr_df <- function(x, nam, id){
+    return(tibble("{nam}_{id}" := as.vector(pred_m[[x]]$pred)))
+  }
+  extr_mod <- function(x, id){
+    return(pred_m[[x]]$model)
+  }
+  
+  pred_D2 <- c()
+  all_mod <- c()
+  if(!silent){
+    cat("\n* Building basic machines ...\n")
+    cat("\t~ Progress:")
+  }
+  for(m in 1:M){
+    if(mach[m] %in% c("knn", "xgb")){
+      x0_test <-  matrix_train_x2
+    } else {
+      x0_test <- df_train_x2
+    }
+    if(is.null(all_parameters[[mach[m]]])){
+      para_ <- 1
+    }else{
+      para_ <- all_parameters[[mach[m]]]
+    }
+    pred_m <-  map(para_,
+                   .f = ~ all_machines[[mach[m]]](x0_test, .x))
+    tem0 <- imap_dfc(.x = 1:length(para_), 
+                     .f = ~ extr_df(x = .x, nam = mach[m], id = para_[.x]))
+    tem1 <- map(.x = 1:length(para_), 
+                 .f = extr_mod)
+    names(tem0) <- names(tem1) <- paste0(mach[m], 1:length(para_))
+    pred_D2 <- bind_cols(pred_D2, as_tibble(tem0))
+    all_mod[[mach[m]]] <- tem1
+    if(!silent){
+      cat(" ... ", round(m/M, 2)*100L,"%", sep = "")
+    }
+  }
+  if(scale_input){
+    return(list(predict2 = pred_D2,
+                models = all_mod,
+                id2 = !id_D1,
+                train_data = list(train_input = train_input_scale, 
+                                  train_response = train_response,
+                                  classes = class_xgb),
+                scale_max = maxs,
+                scale_min = mins))
+  } else{
+    return(list(predict2 = pred_D2,
+                models = all_mod,
+                id2 = !id_D1,
+                train_data = list(train_input = train_input_scale, 
+                                  train_response = train_response,
+                                  classes = class_xgb)))
+  }
+}
+```
+
+---
+
+> **Example.1**: In this example, the method is implemented on `iris` dataset. All types of basic machines are built on the first part of the training data ($\mathcal{D}_{k}$), and the *accuracy* evaluated on the second part of the training data ($\mathcal{D}_{\ell}$) used for aggregation) are reported.
+
+---
+
+```{r}
+df <- iris
+basic_machines <- generateMachines(train_input = df[,1:4],
+                                   train_response = df$Species,
+                                   scale_input = TRUE,
+                                   machines = NULL, #c("knn", "tree", "rf", "logit", "svm", "xgb")
+                                   basicMachineParam = setBasicParameter(ntree = 10:20 * 25,
+                                                                         k = c(2:10),
+                                                                         mfinal_boost = 10))
+basic_machines$predict2 %>%
+  sweep(1, df[basic_machines$id2, "Species"], FUN = "==") %>%
+  colMeans %>%
+  t %>%
+  as_tibble
+```
+
+
+<span style="color: #1FAAE3;"><u>Optimizer : grid search algorithm</u></span>
+===
+
+This part provides functions to approximate the smoothing parameter $h>0$ of the aggregation method.
+
+<span style="color: #F0AE14;">Function</span> : `setGridParameter_Mix`
+---
+
+This function allows to set the values of grid search algorithm parameters.
+
+- **Argument**:
+
+    - `min_alpha` : mininum value of $\alpha$ in the grid. By defualt, `min_alpha = 1e-5`.
+    - `max_alpha` : maxinum value of $\alpha$ in the grid. By defualt, `max_alpha = 5`.
+    - `min_beta` : mininum value of $\beta$ in the grid. By defualt, `min_beta = 0.1`.
+    - `max_beta` : maximum value of $\beta$ in the grid. By defualt, `max_alpha = 50`.
+    - `n_alpha`, `n_beta = 30` : the number of $\alpha$ and $\beta$ respectively in the grid. By defualt, `n_alpha = n_beta = 30`.
+    - `parameters` : the list of parameter $alpha$ and $\beta$ in case non-uniform grid is considered. It should be a list of two vectors containing the values of $\alpha$ and $\beta$ respectively. By default, `parameters = NULL` and the default uniform grid is used.
+     - `axes` : names of $x,y$ and $z$-axis respectively. By default, `axes = c("alpha", "beta", "Risk")`.
+    - `title` : the title of the plot. By default, `title = NULL` and the default title is `Cross-validation risk as a function of` $(\alpha, \beta)$.
+    - `print_result` : a logical value specifying whether to print the observed result or not.
+    - `figure` : a logical value specifying whether to plot the graphic of cross-validation error or not.
+
+- **Value**:
+
+    This function returns a *list* of all the parameters given in its arguments.
+
+```{r}
+setGridParameter_Mix <- function(min_alpha = 1e-5,
+                                 max_alpha = 5,
+                                 min_beta = 0.1,
+                                 max_beta = 50,
+                                 n_alpha = 30,
+                                 n_beta = 30,
+                                 parameters = NULL,
+                                 axes = c("alpha", "beta", "Risk"),
+                                 title = NULL,
+                                 print_result = TRUE,
+                                 figure = TRUE){
+  return(list(min_alpha = min_alpha,
+              max_alpha = max_alpha,
+              min_beta = min_beta,
+              max_beta = max_beta,
+              n_alpha = n_alpha,
+              n_beta = n_beta,
+              axes = axes,
+              title = title,
+              parameters = parameters,
+              print_result = print_result,
+              figure = figure))
+}
+```
+
+
+### <span style="color: #F0AE14;">Function</span> : `gridOptimizer`
+
+- **Argument**:
+    
+    - `obj_fun` : the objective function for which its minimizer is to be estimated. It should be a univarate function of real positive variables.
+    - `setParameter` : the control of grid search algorithm parameters which should be the function `setGridParameter()` defined above.
+    - `naive` : a logical value specifying if the `naive` kernel is used. By default, `naive = FALSE`.
+    - `silent` : a logical value specifying whether or not all the messages should be silent. By default, `silent = FALSE`.
+    - `ker` : the name of kernel function.
+
+- **Value**:
+
+    This function returns a list of the following objects (except for `naive` kernel for which `NA`s are returned):
+
+    - `opt_param` : the observed value of the minimizer.
+    - `opt_error` : the value of optimal risk.
+    - `all_risk` : the vector of all the errors evaluated at all the values of considered parameters.
+    - `run.time` : the running time of the algorithm. 
+    
+--- 
+
+> 🧾** Remark.2**: 
+For `"naive"` kernel function (0-1 weight), there is no parameter $h$ to be tuned. One just searches for the training data with the same predicted classes as the query point, then computes the total weight among them. The majority class among such data points is the predicted class.
+
+---
+
+
+```{r}
+gridOptimizer <- function(obj_func,
+                          setParameter = setGridParameter(),
+                          naive = FALSE,
+                          silent = FALSE,
+                          ker = NULL){
+  t0 <- Sys.time()
+  if(!naive){
+    if(is.null(setParameter$parameters)){
+    param <- seq(setParameter$min_val,
+                 setParameter$max_val,
+                 length.out = setParameter$n_val)
+    } else{
+      param <- setParameter$parameters
+    }
+    risk <- param %>%
+      map_dbl(.f = obj_func)
+    id_opt <- which.min(risk)
+    opt_ep <- param[id_opt]
+    opt_risk <- risk[id_opt]
+    if(setParameter$print_result & !silent){
+      cat("\n* Grid search for",ker,"kernel...\n\t~ observed parameter :", opt_ep)
+    }
+    if(setParameter$figure){
+      tibble(x = param, 
+             y = risk) %>%
+        ggplot(aes(x = x, y = y)) +
+        geom_line(color = "skyblue", size = 0.75) +
+        geom_point(aes(x = opt_ep, y = opt_risk), color = "red") +
+        geom_vline(xintercept = opt_ep, color = "red", linetype = "longdash") +
+        labs(title = "Error as function of parameter", 
+             x = "Parameter",
+             y = "Error") -> p
+      print(p)
+    }
+  } else{
+      opt_ep = NA
+      opt_risk = NA
+      risk = NA
+  }
+  
+  t1 <- Sys.time()
+  return(list(
+    opt_param = opt_ep,
+    opt_error = opt_risk,
+    all_risk = risk,
+    run.time = difftime(t1, 
+                        t0, 
+                        units = "secs")[[1]])
+  )
+}
+```
+
+
+<span style="color: #F0AE14;"><u>$\kappa$-cross validation lost function</u></span>
+---
+
+Constructing a combining classifier in this framework is equivalent to approximating the optimal value of smoothing parameter $h>0$ introduced in section 1.1, by minimizing some lost function. In this study, we propose $\kappa$-fold cross validation misclassification error defined by
+
+$$
+\varphi^{\kappa}(h)=\frac{1}{\kappa}\sum_{k=1}^{\kappa}\Big(\frac{1}{|F_k|}\sum_{(x_j,y_j)\in F_k}\mathbb{1}_{\{g_n({\bf C}(x_j))\neq y_j\}}\Big)
+$$
+
+where
+
+- for any $k=1,...,\kappa$, $F_k$ denotes the $k$th validation fold.
+- $g_n({\bf C}(x_j))$ is the prediction of $x_j$ of $F_k$, computed using the data points from the remaining part ${\cal D}_{\ell}-F_k$ by,
+
+$$g_n({\bf C}(x_j))=k^*=\text{arg}\max_{1\leq k\leq N}\sum_{(x_i,y_i)\in \mathcal{D}\setminus F_k}K_h(d_{\cal H}({\bf C}(x_j),{\bf C}(x_i)))\mathbb{1}_{\{y_i=k\}}.$$
+
+<span style="color: #F0AE14;"><u>Function</u></span>: `dist_matrix`
+---
+
+This function computes Hamming distances between data points of each training folds ($\mathcal{D}_{\ell}-F_k$) and the corresponding validation fold $F_k$ for any $k=1,\dots,\kappa$.
+
+- **Argument**:
+    
+    - `basicMachines` : the basic machine object, which is an output of `generateMachines` function.
+    - `n_cv` : the number $\kappa$ of cross-validation folds. By default, `n_cv = 5`.
+    - `kernel` : the kernel function used for the aggregation, which is an element of {"gaussian", "epanechnikov", "biweight", "triweight", "triangular", "naive"}. By default, `kernel = "gaussian"`.
+    - `id_shuffle` : an integer vector of length equals to the size of the remaining part of the training data (${\cal D}_{\ell}$). Its elements are from {$1,...,\kappa$}, indicating the fold membership of the data points. By default, `id_shuffle = NULL`, and the data points will be shuffled randomly.
+    
+- **Value**:
+    
+    This functions returns a list of the following objects:
+    
+    - `dist` : a data frame (`tibble`) containing Hamming distances.
+    - `id_shuffle` : the shuffled indices in cross-validation.
+    - `n_cv` : the number $\kappa$ of cross-validation folds.
+    
+```{r}
+dist_matrix <- function(basicMachines,
+                        n_cv = 5,
+                        id_shuffle = NULL){
+  n <- nrow(basicMachines$predict2)
+  n_each_fold <- floor(n/n_cv)
+  # shuffled indices
+  if(is.null(id_shuffle)){
+    shuffle <- 1:(n_cv-1) %>%
+    rep(n_each_fold) %>%
+    c(., rep(n_cv, n - n_each_fold * (n_cv - 1))) %>%
+    sample
+  }else{
+    shuffle <- id_shuffle
+  }
+  # the prediction matrix D_l
+  df_ <- as.matrix(basicMachines$predict2)
+  pair_dist <- function(M, N){
+    res_ <- 1:nrow(N) %>%
+      map_dfc(.f = (\(id) tibble('{{id}}' := rowSums(sweep(M, 2, N[id,], FUN = "!=")))))
+    return(res_)
+  }
+  L <- 1:n_cv %>%
+      map(.f = ~ pair_dist(df_[shuffle != .x,],
+                           df_[shuffle == .x,]))
+  return(list(dist = L, 
+              id_shuffle = shuffle,
+              n_cv = n_cv))
+}
+```
+
+---
+
+> **Example.2**: The method `dist_matrix` is implemented on the obtained basic machines built in *Example.1*.
+
+---
+
+```{r}
+dis <- dist_matrix(basicMachines = basic_machines,
+            n_cv = 3)
+dis$id_shuffle
+```
+
+---
+
+> **Example.3**: From the distance matrix, we can compute the error corresponding to Gaussian kernel function, then use the grid search optimizer to approximate the smoothing paramter in this case.
+
+---
+
+
+```{r}
+# Gaussian kernel
+gaussian_kern <- function(.ep = .05,
+                          .dist_matrix,
+                          .train_response2,
+                          .inv_sigma = sqrt(.5),
+                          .alpha = 2){
+  kern_fun <- function(x, id, D){
+    tem0 <- as.matrix(exp(-(x*D)^(.alpha/2)*.inv_sigma^.alpha))
+    y_hat <- map_dfc(.x = 1:ncol(tem0),
+                     .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                         INDEX = .train_response2[.dist_matrix$id_shuffle != id],
+                                                         FUN = sum)))) %>%
+      map_chr(.f = (\(x) names(which.max(x))))
+    return(mean(y_hat != .train_response2[.dist_matrix$id_shuffle == id]))
+  }
+  temp <- map2(.x = 1:.dist_matrix$n_cv, 
+               .y = .dist_matrix$dist, 
+               .f = ~ kern_fun(x = .ep, 
+                               id = .x, 
+                               D = .y))
+  return(Reduce("+", temp)/.dist_matrix$n_cv)
+}
+
+# Kappa cross-validation error
+cost_fun <- function(.ep = .1,
+                     .dist_matrix,
+                     .kernel_func = NULL,
+                     .train_response2,
+                     .inv_sigma = sqrt(.5)){
+  return(.kernel_func(.ep = .ep,
+                     .dist_matrix = .dist_matrix,
+                     .train_response2 = .train_response2,
+                     .inv_sigma = .inv_sigma))
+}
+
+# cross_validation
+err_cv <- function(x, 
+                     .dist_matrix = dis,
+                     .kernel_func = gaussian_kern,
+                     .train_response2 = df[basic_machines$id2, 5]) {
+  res <- cost_fun(.ep = x,
+              .dist_matrix = .dist_matrix,
+              .kernel_func = .kernel_func,
+              .train_response2 = .train_response2)
+  return(res)
+}
+
+# Optimization
+opt_param_grid <- gridOptimizer(obj_fun = err_cv,
+                                setParameter = setGridParameter(min_val = 0.01,
+                                                                max_val = 0.1,
+                                                                n_val = 100,
+                                                                figure = TRUE))
+
+```
+
+
+<span style="color: #F0AE14;"><u>Fitting parameter</u></span>
+---
+
+This function gathers the constructed machines and perform grid search algorithm to approximate the smoothing parameter for the aggregation.
+
+- **Argument**:
+    
+    - `train_design` : a matrix or data frame of the training *input data* or the *predicted classes* given by some classifiers.
+        - If the *input* data is given, the option `build_machine` must be `TRUE` and all the chosen machines will be constructed using a proportion of the training input (`splits`).
+        - If the *predicted classes* are given, the option `build_machine` must be `FALSE` which indicates that no basic machine is constructed, and the paramter is tuned using this matrix of predicted classes directly.
+    - `train_response` : a vector of corresponding classes of the `train_design`.
+    - `scale_input` : a logical value specifying whether or not to scale the input data before building the basic classifiers. By default, `scale_input = FALSE`.
+    - `build_machine`: a logical value specifying whether or not the basic machines should be constructed. It should be `TRUE` if the input data is given to the `train_design`, else it should be `FALSE`. By default, `build_machine = TRUE`.
+    - `machines` : a vector of basic machines to be constructed. It must be a subset of {`"knn"`, `"tree"`, `"rf"`, `"logit"`, `"svm"`, `"xgb"`, `"adaboost"`}. By default, `machines = NULL`, and all types of basic machines are built.
+    - `splits` : the proportion of training data used to build the basic machines. By default, `splits = .5`.
+    - `n_cv` : the number of cross-validation folds used to tune the smoothing parameter.
+    - `inv_sig, alp` : the inverse normalized constant $\sigma^{-1}>0$ and the exponent $\alp>0$ of exponential kernel: $K(x)=e^{-\|x/\sigma\|^{\alpha}}$ for any $x\in\mathbb{R}^d$. By default, `inv_sigma = `$\sqrt{1/2}$ and `alpha = 2` which corresponds to the Gaussian kernel.
+    - `kernels` : the kernel function or vector of kernel functions used for the aggregation.
+    - `setMachineParam` : an option used to set the values of the parameters of the basic machines. `setBasicParameter` function should be fed to this argument.
+    - `setGridParam` : an option used to set the values of the parameters of the grid search algorithm. The `setGridParameter` function should be fed to it.
+    - `silent` : a logical value to silent all the messages.
+    
+- **Value**:
+
+    This function returns a list of the following objects:
+
+    - `opt_parameters` : the observed optimal parameter.
+    - `add_parameters` : other aditional parameters such as scaling options, parameters of kernel functions and the optimization methods used.
+    - `basic_machines` : the list of basic machine object.
+
+```{r}
+fit_parameter <- function(train_design, 
+                          train_response,
+                          scale_input = FALSE,
+                          build_machine = TRUE,
+                          machines = NULL, 
+                          splits = 0.5, 
+                          n_cv = 5,
+                          inv_sigma = sqrt(.5),
+                          alp = 2,
+                          kernels = "gaussian",
+                          setMachineParam = setBasicParameter(),
+                          setGridParam = setGridParameter(),
+                          silent = FALSE){
+  kernels_lookup <- c("gaussian", "epanechnikov", "biweight", "triweight", "triangular", "naive")
+  kernel_real <- kernels %>%
+    map_chr(.f = ~ match.arg(.x, 
+                             kernels_lookup))
+  if(build_machine){
+     mach2 <- generateMachines(train_input = train_design,
+                               train_response = train_response,
+                               scale_input = scale_input,
+                               machines = machines,
+                               splits = splits,
+                               basicMachineParam = setMachineParam,
+                               silent = silent)
+  } else{
+    mach2 <- list(predict2 = train_design,
+                  models = colnames(train_design),
+                  id2 = rep(TRUE, nrow(train_design)),
+                  train_data = list(train_response = train_response,
+                                    classes = unique(train_response)))                 
+  }
+  # distance matrix to compute loss function
+  n_ker <- length(kernels)
+  id_shuf <- NULL
+  dist_all <- dist_matrix(basicMachines = mach2,
+                          n_cv = n_cv)
+
+  # Kernel functions
+  # ================
+  # Gaussian kernel
+  gaussian_kernel <- function(.ep = .05,
+                              .dist_matrix,
+                              .train_response2,
+                              .inv_sigma = sqrt(.5),
+                              .alpha = 2){
+    kern_fun <- function(x, id, D){
+      tem0 <- as.matrix(exp(-(x*D)^(.alpha/2)*.inv_sigma^.alpha))
+      y_hat <- map_dfc(.x = 1:ncol(tem0),
+                       .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .train_response2[.dist_matrix$id_shuffle != id],
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+      return(mean(y_hat != .train_response2[.dist_matrix$id_shuffle == id]))
+    }
+    temp <- map2(.x = 1:.dist_matrix$n_cv, 
+                 .y = .dist_matrix$dist, 
+                 .f = ~ kern_fun(x = .ep, 
+                                 id = .x, 
+                                 D = .y))
+    return(Reduce("+", temp)/.dist_matrix$n_cv)
+  }
+
+  # Epanechnikov
+  epanechnikov_kernel <- function(.ep = .05,
+                                  .dist_matrix,
+                                  .train_response2){
+    kern_fun <- function(x, id, D){
+      tem0 <- as.matrix(1- x*D)
+      tem0[tem0 < 0] = 0
+      y_hat <- map_dfc(.x = 1:ncol(tem0),
+                       .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .train_response2[.dist_matrix$id_shuffle != id],
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+      return(mean(y_hat != .train_response2[.dist_matrix$id_shuffle == id]))
+    }
+    temp <- map2(.x = 1:.dist_matrix$n_cv, 
+                 .y = .dist_matrix$dist, 
+                 .f = ~ kern_fun(x = .ep, 
+                                 id = .x, 
+                                 D = .y))
+    return(Reduce("+", temp)/.dist_matrix$n_cv)
+  }
+
+  # Biweight
+  biweight_kernel <- function(.ep = .05,
+                              .dist_matrix,
+                              .train_response2){
+  kern_fun <- function(x, id, D){
+    tem0 <- as.matrix(1- x*D)
+    tem0[tem0 < 0] = 0
+    y_hat <- map_dfc(.x = 1:ncol(tem0),
+                       .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .train_response2[.dist_matrix$id_shuffle != id],
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+      return(mean(y_hat != .train_response2[.dist_matrix$id_shuffle == id]))
+    }
+    temp <- map2(.x = 1:.dist_matrix$n_cv, 
+                 .y = .dist_matrix$dist, 
+                 .f = ~ kern_fun(x = .ep, 
+                                 id = .x, 
+                                 D = .y))
+    return(Reduce("+", temp)/.dist_matrix$n_cv)
+  }
+
+  # Triweight
+  triweight_kernel <- function(.ep = .05,
+                               .dist_matrix,
+                               .train_response2){
+  kern_fun <- function(x, id, D){
+    tem0 <- as.matrix(1- x*D)
+    tem0[tem0 < 0] = 0
+    y_hat <- map_dfc(.x = 1:ncol(tem0),
+                       .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .train_response2[.dist_matrix$id_shuffle != id],
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+      return(mean(y_hat != .train_response2[.dist_matrix$id_shuffle == id]))
+    }
+    temp <- map2(.x = 1:.dist_matrix$n_cv, 
+                 .y = .dist_matrix$dist, 
+                 .f = ~ kern_fun(x = .ep, 
+                                 id = .x, 
+                                 D = .y))
+    return(Reduce("+", temp)/.dist_matrix$n_cv)
+  }
+
+  # Triangular
+  triangular_kernel <- function(.ep = .05,
+                                .dist_matrix,
+                                .train_response2){
+  kern_fun <- function(x, id, D){
+    tem0 <- as.matrix(1- x*D)
+    tem0[tem0 < 0] <- 0
+    y_hat <- map_dfc(.x = 1:ncol(tem0),
+                       .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .train_response2[.dist_matrix$id_shuffle != id],
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+      return(mean(y_hat != .train_response2[.dist_matrix$id_shuffle == id]))
+    }
+    temp <- map2(.x = 1:.dist_matrix$n_cv, 
+                 .y = .dist_matrix$dist, 
+                 .f = ~ kern_fun(x = .ep, 
+                                 id = .x, 
+                                 D = .y))
+    return(Reduce("+", temp)/.dist_matrix$n_cv)
+  }
+
+  # error function
+  error_cv <- function(x, 
+                       .dist_matrix = NULL,
+                       .kernel_func = NULL,
+                       .train_response2 = NULL){
+    res <- .kernel_func(.ep = x,
+                        .dist_matrix = .dist_matrix,
+                        .train_response2 = .train_response2)
+    return(res/n_cv)
+  }
+
+  # list of kernel functions
+  list_funs <- list(gaussian = gaussian_kernel,
+                    epanechnikov = epanechnikov_kernel,
+                    biweight = biweight_kernel,
+                    triweight = triweight_kernel,
+                    triangular = triangular_kernel,
+                    naive = epanechnikov_kernel)
+
+  # error for all kernel functions
+  error_func <- kernel_real %>%
+    map(.f = ~ (\(x) error_cv(x, 
+                              .dist_matrix = dist_all,
+                              .kernel_func = list_funs[[.x]],
+                              .train_response2 = train_response[mach2$id2])))
+  names(error_func) <- kernel_real
+  
+  # Optimization
+  parameters <- map(.x = kernel_real,
+                    .f = ~ gridOptimizer(obj_fun = error_func[[.x]],
+                                         setParameter = setGridParam,
+                                         naive = .x == "naive",
+                                         silent = silent,
+                                         ker = .x))
+  names(parameters) <- kernel_real
+  return(list(opt_parameters = parameters,
+              add_parameters = list(scale_input = scale_input,
+                                    inv_sigma = inv_sigma,
+                                    alp = alp),
+              basic_machines = mach2))
+}
+```
+
+---
+
+> **Example.4**: We approximate the smoothing parameter of `Boston` data.
+
+---
+
+```{r}
+df <- iris
+train <- logical(nrow(df))
+train[sample(length(train), floor(0.75*nrow(df)))] <- TRUE
+
+param <- fit_parameter(train_design = df[train, 1:4],
+                       train_response = df$Species[train],
+                       machines = c("knn", "rf", "xgb"),
+                       splits = .5,
+                       n_cv = 3,
+                       kernels = c("gaussian","biweight", "naive", "triangular"),
+                       setMachineParam = setBasicParameter(k = 2:5,
+                                                           ntree = c(1,3,5)*100,
+                                                           nrounds_xgb = c(1,3,5)*100),
+                       setGridParam = setGridParameter(min_val = 0.001,
+                                                      max_val = 0.3,
+                                                      n_val = 100),
+                       silent = FALSE)
+param$opt_parameters %>%
+  map_dfc(.f = ~ .x$opt_param) %>%
+  print
+```
+
+<span style="color: #1FAAE3;"><u>Prediction</u></span>
+===
+
+The smoothing parameter obtained from the previous section can be used to make the final predicted classes. 
+
+<span style="color: #F0AE14;"><u>Kernel functions</u></span>
+---
+
+Several types of kernel functions used for the aggregation are defined in this section.
+
+- **Argument**:
+    
+    - `.h` : the value of the parameter used.
+    - `.y2` : the vector of response variable of the second part $\mathcal{D}_{\ell}$ of the training data, which is used for the aggregation.
+    - `.distance` : the distance matrix object obtained from `dist_matrix` function.
+    - `.kern` : the string specifying the kernel function. By default, `.kern = "gaussian"`.
+    - `.inv_sig, .alp` : the parameters of exponential kernel function.
+    
+- **Value**:
+
+    This function returns the predicted classes of the aggregation method evaluated with the given parameter $h$.
+
+
+```{r}
+kernel_pred <- function(.h,
+                        .y2, 
+                        .distance, 
+                        .kern = "gaussian",
+                        .inv_sig = sqrt(.5), 
+                        .alp = 2){
+  dis <- as.matrix(.distance)
+  # Kernel functions 
+  # ================
+  gaussian_kernel <- function(.ep,
+                              .inv_sigma = .inv_sig,
+                              .alpha = .alp){
+    tem0 <- exp(- (.ep*dis)^(.alpha/2)*.inv_sig^.alpha)
+    y_hat <- map_dfc(.x = 1:ncol(tem0),
+                     .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .y2,
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+    return(as.vector(y_hat))
+  }
+
+  # Epanechnikov
+  epanechnikov_kernel <- function(.ep){
+    tem0 <- 1- .ep*dis
+    tem0[tem0 < 0] = 0
+    y_hat <- map_dfc(.x = 1:ncol(tem0),
+                     .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .y2,
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+    return(as.vector(y_hat))
+  }
+  # Biweight
+  biweight_kernel <- function(.ep){
+    tem0 <- 1- .ep*dis
+    tem0[tem0 < 0] = 0
+    y_hat <- map_dfc(.x = 1:ncol(tem0),
+                     .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .y2,
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+    return(as.vector(y_hat))
+  }
+
+  # Triweight
+  triweight_kernel <- function(.ep){
+    tem0 <- 1- .ep*dis
+    tem0[tem0 < 0] = 0
+    y_hat <- map_dfc(.x = 1:ncol(tem0),
+                     .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .y2,
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+    return(as.vector(y_hat))
+  }
+
+  # Triangular
+  triangular_kernel <- function(.ep){
+    tem0 <- 1- .ep*dis
+    tem0[tem0 < 0] <- 0
+    y_hat <- map_dfc(.x = 1:ncol(tem0),
+                     .f = (\(x_) tibble("{x_}" := tapply(tem0[, x_], 
+                                                           INDEX = .y2,
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+    return(as.vector(y_hat))
+  }
+  # Naive
+  naive_kernel <- function(.ep = NULL){
+      y_hat <- map_dfc(.x = 1:ncol(dis),
+                       .f = (\(x_) tibble("{x_}" := tapply(dis[, x_] == 0, 
+                                                           INDEX = .y2,
+                                                           FUN = sum)))) %>%
+        map_chr(.f = (\(x) names(which.max(x))))
+    return(as.vector(y_hat))
+  }
+  # Prediction
+  kernel_list <- list(gaussian = gaussian_kernel,
+                      epanechnikov = epanechnikov_kernel,
+                      biweight = biweight_kernel,
+                      triweight = triweight_kernel,
+                      triangular = triangular_kernel,
+                      naive = naive_kernel)
+  res <- tibble(as.vector(kernel_list[[.kern]](.ep = .h)))
+  names(res) <- .kern
+  return(res)
+}
+```
+
+
+<span style="color: #F0AE14;"><u>Functions</u></span>: `predict_agg`
+---
+
+- **Argument**:
+    
+    - `fitted_models` : the object obtained from `fit_parameter` function.
+    - `new_data` : the new testing data to be predicted.
+    - `test_response` : the actual classes of testing data. It is optional. If it is given, the misclassification and accuracy evaluated on the testing data are also computed. By default, `test_response = NULL`.
+    - `naive` : logical value specifying whether `"naive"` kernel is used or not.
+    
+- **Value**:
+
+    This function returns a *list* of the following objects:
+    
+    - `fitted_aggregate` : the predictions by the aggregation methods.
+    - `fitted_machine` : the predictions given by all the basic machines.
+    - `mis_error`, `accuracy` : the misclassification error and accuracy computed only if the `test_reponse` argument is not `NULL`.
+
+
+```{r}
+# Prediction
+predict_agg <- function(fitted_models,
+                        new_data,
+                        test_response = NULL,
+                        naive = FALSE){
+  opt_param <- fitted_models$opt_parameters
+  add_param <- fitted_models$add_parameters
+  basic_mach <- fitted_models$basic_machines
+  kern0 <- names(opt_param)
+  new_data_ <- new_data
+  # if basic machines are built
+  if(is.list(basic_mach$models)){
+    mat_input <- as.matrix(basic_mach$train_data$train_input)
+    if(add_param$scale_input){
+      new_data_ <- scale(new_data, 
+                         center = basic_mach$scale_min, 
+                         scale = basic_mach$scale_max - basic_mach$scale_min)
+    }
+    if(is.matrix(new_data_)){
+      mat_test <- new_data_
+      df_test <- as_tibble(new_data_)
+    } else {
+      mat_test <- as.matrix(new_data_)
+      df_test <- new_data_
+    }
+    
+    # Prediction test by basic machines
+    built_models <- basic_mach$models
+    pred_test <- function(meth){
+      if(meth == "knn"){
+        pre <- 1:length(built_models[[meth]]) %>%
+          map_dfc(.f = (\(k) tibble('{{k}}' := FNN::knn(train = mat_input[!basic_mach$id2,], 
+                                                        test = mat_test, 
+                                                        cl = basic_mach$train_data$train_response[!basic_mach$id2],
+                                                        k = built_models[[meth]][[k]]))))
+      }
+      if(meth == "xgb"){
+        pre <- 1:length(built_models[[meth]]) %>%
+          map_dfc(.f = (\(k) tibble('{{k}}' := as.vector(basic_mach$train_data$classes[predict(built_models[[meth]][[k]], mat_test)]))))
+      }
+      if(meth == "adaboost"){
+        pre <- 1:length(built_models[[meth]]) %>%
+          map_dfc(.f = (\(k) tibble('{{k}}' := as.vector(predict.boosting(built_models[[meth]][[k]], as.data.frame(df_test))$class))))
+      }
+      if(!(meth %in% c("xgb", "knn", "adaboost"))){
+        pre <- 1:length(built_models[[meth]]) %>%
+          map_dfc(.f = (\(k) tibble('{{k}}' := as.vector(predict(built_models[[meth]][[k]], df_test, type = 'class')))))
+      }
+      colnames(pre) <- names(built_models[[meth]])
+      return(pre)
+    }
+    pred_test_all <- names(built_models) %>%
+      map_dfc(.f = pred_test)
+  } else{
+    pred_test_all <- new_data_
+  }
+  pred_test0 <- pred_test_all
+  # Prediction train2
+  pred_train_all <- basic_mach$predict2
+  colnames(pred_test_all) <- colnames(pred_train_all)
+  d_train <- dim(pred_train_all)
+  d_test <- dim(pred_test_all)
+  pred_test_mat <- as.matrix(pred_test_all)
+  pred_train_mat <- as.matrix(pred_train_all)
+  # Distance matrix
+  dists <- 1:d_test[1] %>%
+      map_dfc(.f = (\(id) tibble('{{id}}' := rowSums(sweep(pred_train_mat, 2, pred_test_mat[id,], FUN = "!=")))))
+  prediction <- 1:length(kern0) %>% 
+    map_dfc(.f = ~ kernel_pred(.h = opt_param[[kern0[.x]]]$opt_param,
+                               .y2 = basic_mach$train_data$train_response[basic_mach$id2],
+                               .distance = dists,
+                               .kern = kern0[.x], 
+                               .inv_sig = add_param$inv_sigma, 
+                               .alp = add_param$alp))
+  if(is.null(test_response)){
+    return(list(fitted_aggregate = prediction,
+           fitted_machine = pred_test_all))
+  } else{
+    error <- cbind(pred_test_all, prediction) %>%
+      dplyr::mutate(y_test = test_response) %>%
+      dplyr::summarise_all(.funs = ~ (. != y_test)) %>%
+      dplyr::select(-y_test) %>%
+      dplyr::summarise_all(.funs = ~ mean(.))
+    return(list(fitted_aggregate = prediction,
+                fitted_machine = pred_test0,
+                mis_error = error,
+                accuracy = 1 - error))
+  }
+}
+```
+
+---
+
+> **Example.5** Aggregation on `iris` dataset.
+
+---
+
+```{r}
+pred <- predict_agg(param,
+            new_data = df[!train, 1:4],
+            test_response = df$Species[!train])
+pred$mis_error
+```
+
+
+<span style="color: #1FAAE3;"><u>Function</u></span> : `kernelAggClass`
+===
+
+This function puts together all the functions above and provides the desire result of the kernel-based combined classifiers.
+
+- **Argument**:
+    
+    - `train_design` : a matrix or data frame of the training *input data* or the *predicted classes* given by some classifiers.
+        - If the *input* data is given, the option `build_machine` must be `TRUE` and all the chosen machines will be constructed using a proportion of the training input (`splits`).
+        - If the *predicted classes* are given, the option `build_machine` must be `FALSE` which indicates that no basic machine is constructed, and the paramter is tuned using this matrix of predicted classes directly.
+    - `train_response` : a vector of corresponding classes of the `train_design`.
+    - `test_response` : the actual classes of testing data. It is optional. If it is given, the misclassification and accuracy evaluated on the testing data are also computed. By default, `test_response = NULL`.
+    - `scale_input` : a logical value specifying whether or not to scale the input data before building the basic classifiers. By default, `scale_input = FALSE`.
+    - `build_machine`: a logical value specifying whether or not the basic machines should be constructed. It should be `TRUE` if the input data is given to the `train_design`, else it should be `FALSE`. By default, `build_machine = TRUE`.
+    - `machines` : a vector of basic machines to be constructed. It must be a subset of {`"knn"`, `"tree"`, `"rf"`, `"logit"`, `"svm"`, `"xgb"`, `"adaboost"`}. By default, `machines = NULL`, and all types of basic machines are built.
+    - `splits` : the proportion of training data used to build the basic machines. By default, `splits = .5`.
+    - `n_cv` : the number of cross-validation folds used to tune the smoothing parameter.
+    - `inv_sig, alp` : the inverse normalized constant $\sigma^{-1}>0$ and the exponent $\alpha>0$ of exponential kernel: $K(x)=e^{-\|x/\sigma\|^{\alpha}}$ for any $x\in\mathbb{R}^d$. By default, `inv_sigma = `$\sqrt{1/2}$ and `alpha = 2` which corresponds to the Gaussian kernel.
+    - `kernels` : the kernel function or vector of kernel functions used for the aggregation.
+    - `setMachineParam` : an option used to set the values of the parameters of the basic machines. `setBasicParameter` function should be fed to this argument.
+    - `setGridParam` : an option used to set the values of the parameters of the grid search algorithm. The `setGridParameter` function should be fed to it.
+    - `silent` : a logical value to silent all the messages.
+    
+- **Value**:
+
+    This function return a *list* of the following objects:
+    
+    - `fitted_aggregate` : the predictions of the testing data given by the aggregation methods correpsonding to all the kernel functions.
+    - `fitted_machine` : the predictions of the testing data given by the basic machines.
+    - `pred_train2` : the predictions of the second part of the training data $\mathcal{D}_{\ell}$ by all the basic machines.
+    - `opt_parameter` : the observed optimal smoothing parameters.
+    - `mse` : the mean square error evaluated on the testing data if the testing response variable is given.
+    - `kernels` : the kernel functions used.
+    
+
+```{r}
+kernelAggClass <- function(train_design, 
+                           train_response,
+                           test_design,
+                           test_response = NULL,
+                           scale_input = FALSE,
+                           build_machine = TRUE,
+                           machines = NULL, 
+                           splits = 0.5, 
+                           n_cv = 5,
+                           inv_sigma = sqrt(.5),
+                           alp = 2,
+                           kernels = "gaussian",
+                           setMachineParam = setBasicParameter(),
+                           setGridParam = setGridParameter(),
+                           silent = FALSE){
+  # build machines + tune parameter
+  fit_mod <- fit_parameter(train_design = train_design, 
+                           train_response = train_response,
+                           scale_input = scale_input,
+                           build_machine = build_machine,
+                           machines = machines, 
+                           splits = splits, 
+                           n_cv = n_cv,
+                           inv_sigma = inv_sigma,
+                           alp = alp,
+                           kernels = kernels,
+                           setMachineParam = setMachineParam,
+                           setGridParam = setGridParam,
+                           silent = silent)
+  # prediction
+  pred <- predict_agg(fitted_models = fit_mod,
+                      new_data = test_design,
+                      test_response = test_response)
+  return(list(fitted_aggregate = pred$fitted_aggregate,
+              fitted_machine = pred$fitted_machine,
+              pred_train2 = fit_mod$basic_machines$predict2,
+              opt_parameter = fit_mod$opt_parameters,
+              mis_class = pred$mis_error,
+              accuracy = pred$accuracy,
+              kernels = kernels,
+              ind_D2 = fit_mod$basic_machines$id2))
+}
+```
+
+---
+
+>**Example.6** A complete aggregation is implemented on `iris` dataset. Four types of basic machines, and four different kernel functions are used. 
+
+---
+
+```{r}
+df1 <- iris
+train <- logical(nrow(df1))
+train[sample(length(train), floor(0.8*nrow(df1)))] <- TRUE
+
+agg <- kernelAggClass(train_design = df1[train, 1:4],
+                      train_response = df1$Species[train],
+                      test_design = df1[!train, 1:4],
+                      test_response = df1$Species[!train],
+                      machines = c("knn", "rf", "xgb", "svm"),
+                      splits = .5,
+                      n_cv = 5,
+                      kernels = c("gaussian","naive", "epan", "triang"),
+                      setMachineParam = setBasicParameter(k = 2:5,
+                                                          ntree = 1:3*100,
+                                                          nrounds_xgb = 1:3*100),
+                      setGridParam = setGridParameter(n_val = 100),
+                      silent = FALSE)
+  agg$accuracy
+```
+
+
+---
+
+> <span style="color: #1FAAE3;">&#128214; Read also [KernelAggReg](https://hassothea.github.io/files/KernelAggReg/KernelAggReg.html) and [MixCobra](https://hassothea.github.io/files/KernelAggReg/MixCobraReg.html)</span> method.
+
+---
+
+<span style="color: #1FAAE3;">References</span>{-}
+===
+
+---
+
+- [Mojirsheibani (1999)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1999.10474154?journalCode=uasa20) for classification
+- [Mojirsheibani (2000)](https://www.sciencedirect.com/science/article/pii/S0167715200000249) for classification
+- [Mojirsheibani and Kong (2016)](https://www.sciencedirect.com/science/article/pii/S0167715216301304) for classification
+- [Biau et al. (2016)](https://www.sciencedirect.com/science/article/pii/S0047259X15000950) for regression
+- [Has (2021)](https://hal.archives-ouvertes.fr/hal-02884333v5) for regression for regression
+- [Fischer and Mougeot (2019)](https://www.sciencedirect.com/science/article/pii/S0378375818302349) for both
+- ...
+- [dplyr videos](https://www.youtube.com/hashtag/dplyr) `r fontawesome::fa("video")`
+- [ggplot2 video tutorial](https://www.youtube.com/hashtag/ggplot2) `r fontawesome::fa("video")`
+- [R for data science](https://r4ds.had.co.nz/)
+
+---
