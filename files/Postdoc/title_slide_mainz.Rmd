@@ -1,0 +1,30 @@
+class: top, center, title-slide
+
+<img src="img/mainz/X.png" align="right" height="110" width="100"> 
+<img src="img/mainz/cnrs.png" align="middle" height="95"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="img/mainz/UniversiteParisCite_logo.jpg" align="left" height="90">
+
+
+<hr class="L1">
+
+## `r params$title`
+
+<hr class="L2"> 
+<h0br>
+
+<!-- #### `r params$subtitle` -->
+
+<!-- <img src="img/RUPP_logo.png" align="middle" height="100"> -->
+
+.pull-left-60[
+<!-- ### SCALES conference, June 26-30<h0br> -->
+.stress[Sothea Has<sup>1</sup>, Riwal Plougonven<sup>2</sup>, Aurélie Fischer<sup>1</sup>, ...]<hbr>
+.center[
+.ref[<sup>1</sup> CNRS, Laboratoire de Probabilités, Statistique et Modélisation]<h0br>
+
+.ref[<sup>2</sup> Laboratoire de Meteorologie Dynamique, Ecole Polytechnique]
+]
+]
+.pull-right-40[
+<img src="img/mainz/scale.png" align="left" width="350" height="75">
+]
