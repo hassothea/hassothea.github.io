@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Reconstruction GWMF using ML</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sothea Has" />
+    <script src="libs/header-attrs-2.22/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+name: layout-general
+layout: true
+class: left, top
+
+
+&lt;style&gt;
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: rgba(2, 70, 79, 0.874);
+}
+
+.remark-slide-number .numeric {
+  position: absolute;
+  bottom: 4%;
+  height: 4px;
+  display: block;
+  right: 2.5%;
+  font-weight: bold;
+}
+
+.remark-slide-number .numeric-out{
+  color: rgba(2, 70, 79, 0.874);
+}
+
+&lt;/style&gt;
+
+
+
+
+---
+count: false
+
+
+class: top, center, title-slide
+
+&lt;img src="img/mainz/X.png" align="right" height="110" width="100"&gt; 
+&lt;img src="img/mainz/cnrs.png" align="middle" height="95"&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;img src="img/mainz/UniversiteParisCite_logo.jpg" align="left" height="90"&gt;
+
+
+&lt;hr class="L1"&gt;
+
+## Estimating Balloon-observed Gravity Wave Momentum Fluxes&lt;br&gt; using Machine Learning and Input from Reanalysis
+
+&lt;hr class="L2"&gt; 
+&lt;h0br&gt;
+
+&lt;!-- #### SCALES conference --&gt;
+
+&lt;!-- &lt;img src="img/RUPP_logo.png" align="middle" height="100"&gt; --&gt;
+
+.pull-left-60[
+&lt;!-- ### SCALES conference, June 26-30&lt;h0br&gt; --&gt;
+.stress[Sothea Has&lt;sup&gt;1&lt;/sup&gt;, Riwal Plougonven&lt;sup&gt;2&lt;/sup&gt;, Aurélie Fischer&lt;sup&gt;1&lt;/sup&gt;, ...]&lt;hbr&gt;
+.center[
+.ref[&lt;sup&gt;1&lt;/sup&gt; CNRS, Laboratoire de Probabilités, Statistique et Modélisation]&lt;h0br&gt;
+
+.ref[&lt;sup&gt;2&lt;/sup&gt; Laboratoire de Meteorologie Dynamique, Ecole Polytechnique]
+]
+]
+.pull-right-40[
+&lt;img src="img/mainz/scale.png" align="left" width="350" height="75"&gt;
+]
+
+---
+count:false
+### What is gravity wave momentum flux (GWMFs)?
+
+
+.center[
+&lt;img src="./img/mainz/gravitational_wave.png" align="center" width="750px" height="400px"/&gt;
+]
+
+---
+count:false
+
+### What is gravity wave momentum flux (GWMFs)?
+
+
+.center[
+&lt;img src="./img/mainz/gravitational_wave2.png" align="center" width="750px" height="400px"/&gt;
+]
+
+---
+count:false
+
+### What is gravity wave momentum flux (GWMFs)?
+
+
+.center[
+&lt;img src="./img/mainz/gravitational_wave3.png" align="center" width="750px" height="400px"/&gt;
+]
+
+---
+count:false
+
+### What is gravity wave momentum flux (GWMFs)?&lt;hbr&gt;
+
+- .stress[Gravity waves]: oscillations in atmosphere due to the restoring force of gravity.
+
+- .stress[Momentum flux]: waves `\(\leftrightarrow\)` mean flow.
+
+- Sources: topographic features, convective processes, flow over mountains, ...
+
+&lt;br&gt;
+
+.center[
+&lt;img src="./img/mainz/gw.jpg" align="center" height="300px"/&gt;
+]
+
+---
+count:false
+
+### What is gravity wave momentum flux (GWMFs)?&lt;hbr&gt;
+
+- .stress[Gravity waves]: oscillations in atmosphere due to the restoring force of gravity.
+
+- .stress[Momentum flux]: waves `\(\leftrightarrow\)` mean flow.
+
+- Sources: topographic features, convective processes, flow over mountains, ...
+
+
+### Why does it matter?&lt;hbr&gt;
+
+.pull-left[
+- It influences atmospheric circulation.
+
+- Knowledge of its impact is crucial:
+    - weather forecasting 
+    - climate modeling
+    - studies of atmospheric dynamics ...
+]
+
+.pull-right[
+&lt;img src="./img/mainz/gw.jpg" align="center" height="250px" width="340px"/&gt;
+]
+
+.stress[Fritts and Alexander (2003)] and .stress[Alexander et al. (2010)].
+
+---
+template: inter-slide
+class: left, middle
+
+## <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(16, 111, 171);;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg> .bold-blue[Outline]
+
+
+.hhead[I. Strateole 2 campaign]
+
+&lt;br&gt;
+
+.hhead[II. Reanalysis (ERA5) and Machine Learning methods (ML)]
+
+&lt;br&gt;
+
+.hhead[III. Numerical results]
+
+&lt;br&gt;
+
+.hhead[IV. Conclusion and perspectives]
+
+
+---
+template: inter-slide
+class: left, middle
+count: false
+
+## <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(16, 111, 171);;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg> .bold-blue[Outline]
+
+
+.section[I. Strateole 2 campaign]
+
+&lt;br&gt;
+
+.hhead[II. Reanalysis (ERA5) and Machine Learning methods (ML)]
+
+&lt;br&gt;
+
+.hhead[III. Numerical results]
+
+&lt;br&gt;
+
+.hhead[IV. Conclusion and perspectives]
+
+---
+### I. Strateole 2 campaign &lt;img src="./img/mainz/logo_strateole2_4x4cm_300dpi.png" align="right" width="100px"/&gt;&lt;hbr&gt; .subtitle[Hasse et al. (2018)] &lt;hbr&gt;
+
+- First campaign (Nov 2019 to Feb 2020): 
+
+  - 8 superpressure balloons drifting along the tropics
+  - altitude `\(\sim 18\)`km - `\(20\)`km.
+  
+- Data collected: 30s observations of in-situ **wind, pressure** and **temperature**.
+
+- GWMFs can be derived using wavelet analysis [.stress[Hertzog et al. (2012)]].
+  
+.center[
+&lt;img src="./img/mainz/vd_2020_01_1_25_bal1.gif" align="center" width="370px"/&gt;
+&lt;img src="./img/mainz/vd_2020_01_1_25_bal3.gif" align="center" width="370px"/&gt;
+]
+
+&lt;!-- - Objective: reconstruct this GWMF using machine learning. --&gt;
+
+
+---
+count: false
+
+### I. Strateole 2 campaign &lt;img src="./img/mainz/logo_strateole2_4x4cm_300dpi.png" align="right" width="100px"/&gt;&lt;hbr&gt; .subtitle[Hasse et al. (2018)] &lt;hbr&gt;
+
+- First campaign (Nov 2019 to Feb 2020): 
+  - 8 superpressure balloons drifting along the tropics
+  - altitude `\(\sim 18\)`km - `\(20\)`km.
+
+- Data collected: 30s observations of in-situ **wind, pressure** and **temperature**.
+
+- GWMFs can be derived using wavelet analysis [.stress[Hertzog et al. (2012)]].
+
+.center[
+&lt;img src="./img/mainz/balloon_trajectory.png" align="center" height="220px" width="770px"/&gt;
+.caption[The balloons' trajectories during the first campaign.]
+]
+
+
+---
+### I. Strateole 2 campaign &lt;img src="./img/mainz/logo_strateole2_4x4cm_300dpi.png" align="right" width="100px"/&gt;&lt;hbr&gt; .subtitle[Related works]&lt;hbr&gt;
+
+.right[.stress[Corcos et al. (2021)] &amp;nbsp; 👉 &amp;nbsp; &lt;img src="./img/mainz/gwmf_corcos.png" align="center" width="450px"/&gt;]
+
+.left[&lt;img src="./img/mainz/cloud.png" align="center" width="400px"/&gt; &amp;nbsp; 👈 &amp;nbsp; .stress[Bramberger et al. (2022)]]
+
+.right[.stress[Wilson et al. (2023)] &amp;nbsp; 👉 &amp;nbsp; &lt;img src="./img/mainz/turbulence.png" align="center" width="400px"/&gt;]
+
+.left[&lt;img src="./img/mainz/parametrization.png" align="center" width="420px"/&gt; &amp;nbsp; 👈 &amp;nbsp;  .stress[Lott et al. (2023)]]
+
+---
+count: false
+
+### I. Strateole 2 campaign &lt;img src="./img/mainz/logo_strateole2_4x4cm_300dpi.png" align="right" width="100px"/&gt;&lt;hbr&gt; .subtitle[Related works]&lt;hbr&gt;
+
+.right[.stress[Corcos et al. (2021)] &amp;nbsp; 👉 &amp;nbsp; &lt;img src="./img/mainz/gwmf_corcos.png" align="center" width="450px"/&gt;]
+
+.left[&lt;img src="./img/mainz/cloud.png" align="center" width="400px"/&gt; &amp;nbsp; 👈 &amp;nbsp; .stress[Bramberger et al. (2022)]]
+
+.right[.stress[Wilson et al. (2023)] &amp;nbsp; 👉 &amp;nbsp; &lt;img src="./img/mainz/turbulence.png" align="center" width="400px"/&gt;]
+
+.left[&lt;img src="./img/mainz/parametrization1.png" align="center" width="420px"/&gt; &amp;nbsp; 👈 &amp;nbsp;  .stress[Lott et al. (2023)]]
+
+---
+template: inter-slide
+class: left, middle
+count: false
+
+## <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(16, 111, 171);;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg> .bold-blue[Outline]
+
+
+.hhead[I. Strateole 2 campaign]
+
+&lt;br&gt;
+
+.section[II. Reanalysis (ERA5) and Machine Learning methods (ML)]
+
+&lt;br&gt;
+
+.hhead[III. Numerical results]
+
+&lt;br&gt;
+
+.hhead[IV. Conclusion and perspectives]
+
+---
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[5th Generation of the European Reanalysis (ERA5)]&lt;hbr&gt;
+
+- Reanalysis: historical observations `\(+\)` numerical models `\(\rightarrow\)` datasets. &lt;!-- of the Earth's weather and climate variables over a specified period. --&gt;
+
+- ERA5: state-of-the-art global atmospheric dataset ( 1 to 137 vertical levels ).
+
+- Extracted variables: .stress[precipitation], .stress[pressure], .stress[wind] and .stress[temperature] profile ( `\(67\)` vertical levels ) at `\(5\times 5\)` horizontal grid points of `\(1^\circ\times1^\circ\)` ( `\(\sim 100\)`km ) resolution.
+
+.center[
+&lt;img src="./img/mainz/bal_grid.png" align="center" width="800px"/&gt;&lt;br&gt;
+.caption[Including ERA5 grid points.]
+]
+
+---
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine Learning Methods (ML)]&lt;hbr&gt;
+
+- ML methods: tree-based ensemble machine learning, &lt;h0br&gt;
+
+  - random forest (RF)
+  - extremely randomized trees (Extra-trees)
+  - adaptive boosting (Adaboost).
+  - &lt;del&gt;.stress[DNN], .stress[CNN], .stress[LSTM], ...&lt;/del&gt; `\(\leftarrow\)` lack of observations (16k)!
+
+--
+
+.pull-left-60[
+- Inputs:
+  - Temperature: **temp** (*K*)
+  - Zonal and meridional wind: **u** and **v** (*m/s*)
+  - Log surface pressure: **lnsp**
+  - Solar zenith angle: **sza** (*°*)
+  - Precipitation: **tp**, **tp_mean** &amp; **tp_sd** (*m*).
+&lt;br&gt;&lt;br&gt;
+]
+.pull-right-40[
+&lt;img src="./img/mainz/ERA52.png" align="center" width="220px"/&gt;
+]
+
+&lt;!-- where `\(t,u\)` and `\(v\)` are the grid centers at 4 levels `\(\sim 19, 9, 2\)`km and at the surface ( `\(0\)`km ). --&gt;
+
+--
+
+&lt;br&gt;
+
+- Targets: .stress[absolute], .stress[eastward] &amp; .stress[westward] GWMFs:&lt;h0br&gt;
+
+  - High frequency waves (**HF**): period 15mn `\(\rightarrow\)` 1h.
+  - Wide frequency waves (**WF**): period 15mn `\(\rightarrow\)` 1day.
+
+---
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Decision trees]&lt;hbr&gt;
+
+- .stress[Decision trees]: fundamental to the primary ML methods. &lt;h0br&gt;
+
+  - *Recursively partitioning* the input space at some *values* of *input features*.
+  - Each split is performed so that each cell is as *pure* as possible.
+  - *Impurity*: total within sum of square (TWSS): 
+  `$$\sum_{\text{input}_i\in R_\ell}(\text{target}_i-\mu_\ell)^2+\sum_{\text{input}_i\in R_r}(\text{target}_i-\mu_r)^2.$$`
+  - Prediction `\(=\)` averaging the targets in the same region.
+
+---
+count:false
+
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Decision trees]&lt;hbr&gt;
+
+- .stress[Decision trees]: fundamental to the primary ML methods. &lt;h0br&gt;
+
+  - *Recursively partitioning* the input space at some *values* of *input features*.
+  - Each split is performed so that each cell is as *pure* as possible.
+  - *Impurity*: total within sum of square (TWSS): 
+  `$$\sum_{\text{input}_i\in R_\ell}(\text{target}_i-\mu_\ell)^2+\sum_{\text{input}_i\in R_r}(\text{target}_i-\mu_r)^2.$$`
+  - Prediction `\(=\)` averaging the targets in the same region.
+
+.center[
+&lt;img src="./img/mainz/tr0.png" align="center" width="450px"/&gt;&lt;br&gt;
+.caption[Input data with two variable:] `\(X_1\)` .caption[and] `\(X_2\)`.
+]
+
+---
+count:false
+
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Decision trees]&lt;hbr&gt;
+
+- .stress[Decision trees]: fundamental to the primary ML methods. &lt;h0br&gt;
+
+  - *Recursively partitioning* the input space at some *values* of *input features*.
+  - Each split is performed so that each cell is as *pure* as possible.
+  - *Impurity*: total within sum of square (TWSS): 
+  `$$\sum_{\text{input}_i\in R_\ell}(\text{target}_i-\mu_\ell)^2+\sum_{\text{input}_i\in R_r}(\text{target}_i-\mu_r)^2.$$`
+  - Prediction `\(=\)` averaging the targets in the same region.
+
+.center[
+&lt;img src="./img/mainz/tr1.png" align="center" width="450px"/&gt;&lt;br&gt;
+.caption[First split is performed at] `\(X_1=t_1\)`. &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
+]
+
+---
+count:false
+
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Decision trees]&lt;hbr&gt;
+
+- .stress[Decision trees]: fundamental to the primary ML methods. &lt;h0br&gt;
+
+  - *Recursively partitioning* the input space at some *values* of *input features*.
+  - Each split is performed so that each cell is as *pure* as possible.
+  - *Impurity*: total within sum of square (TWSS): 
+  `$$\sum_{\text{input}_i\in R_\ell}(\text{target}_i-\mu_\ell)^2+\sum_{\text{input}_i\in R_r}(\text{target}_i-\mu_r)^2.$$`
+  - Prediction `\(=\)` averaging the targets in the same region.
+
+.center[
+&lt;img src="./img/mainz/tr2.png" align="center" width="450px"/&gt;&lt;br&gt;
+.caption[Split the left child at] `\(X_2=t_2\)`. &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp;
+]
+
+---
+count:false
+
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Decision trees]&lt;hbr&gt;
+
+- .stress[Decision trees]: fundamental to the primary ML methods. &lt;h0br&gt;
+
+  - *Recursively partitioning* the input space at some *values* of *input features*.
+  - Each split is performed so that each cell is as *pure* as possible.
+  - *Impurity*: total within sum of square (TWSS): 
+  `$$\sum_{\text{input}_i\in R_\ell}(\text{target}_i-\mu_\ell)^2+\sum_{\text{input}_i\in R_r}(\text{target}_i-\mu_r)^2.$$`
+  - Prediction `\(=\)` averaging the targets in the same region.
+
+.center[
+&lt;img src="./img/mainz/tr3.png" align="center" width="450px"/&gt;&lt;br&gt;
+.caption[Split the right child at] `\(X_1=t_3\)`. &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
+]
+
+---
+count:false
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Decision trees]&lt;hbr&gt;
+
+- .stress[Decision trees]: fundamental to the primary ML methods. &lt;h0br&gt;
+
+  - *Recursively partitioning* the input space at some *values* of *input features*.
+  - Each split is performed so that each cell is as *pure* as possible.
+  - *Impurity*: total within sum of square (TWSS): 
+  `$$\sum_{\text{input}_i\in R_\ell}(\text{target}_i-\mu_\ell)^2+\sum_{\text{input}_i\in R_r}(\text{target}_i-\mu_r)^2.$$`
+  - Prediction `\(=\)` averaging the targets in the same region.
+
+.center[
+&lt;img src="./img/mainz/tr4.png" align="center" width="450px"/&gt;&lt;br&gt;
+.caption[Final split at] `\(X_2=t_4\)`. &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 
+]
+
+---
+count:false
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Decision trees]&lt;hbr&gt;
+
+- .stress[Decision trees]: fundamental to the primary ML methods. &lt;h0br&gt;
+
+  - *Recursively partitioning* the input space at some *values* of *input features*.
+  - Each split is performed so that each cell is as *pure* as possible.
+  - *Impurity*: total within sum of square (TWSS): 
+  `$$\sum_{\text{input}_i\in R_\ell}(\text{target}_i-\mu_\ell)^2+\sum_{\text{input}_i\in R_r}(\text{target}_i-\mu_r)^2.$$`
+  - Prediction `\(=\)` averaging the targets in the same region.
+
+.center[
+&lt;img src="./img/mainz/tr5.png" align="center" width="450px"/&gt;&lt;br&gt;
+.caption[Prediction by the tree.] &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 
+]
+
+---
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Random forest]&lt;hbr&gt;
+
+- .stress[Random forest] averaging decorrelated decision trees.&lt;h0br&gt;
+
+  - Several **bootstrap samples** `\(\rightarrow\)` several trees.
+  - Each tree uses only a **small random subset** of input features.
+  - Prediction `\(=\)` averaging trees' predictions.
+&lt;br&gt;
+.center[
+&lt;img src="./img/mainz/random-forest-diagram0.png" align="center" width="480px"/&gt;&lt;br&gt;
+.caption[]
+]
+
+---
+count:fase
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Random forest]&lt;hbr&gt;
+
+- .stress[Random forest] averaging decorrelated decision trees.&lt;h0br&gt;
+
+  - Several **bootstrap samples** `\(\rightarrow\)` several trees.
+  - Each tree uses only a **small random subset** of input features.
+  - Prediction `\(=\)` averaging trees' predictions.
+&lt;br&gt;
+.center[
+&lt;img src="./img/mainz/random-forest-diagram1.png" align="center" width="480px"/&gt;&lt;br&gt;
+.caption[]
+]
+
+---
+count:fase
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Random forest]&lt;hbr&gt;
+
+- .stress[Random forest] averaging decorrelated decision trees.&lt;h0br&gt;
+
+    - Several **bootstrap samples** `\(\rightarrow\)` several trees.
+  - Each tree uses only a **small random subset** of input features.
+  - Prediction `\(=\)` averaging trees' predictions.
+&lt;br&gt;
+.center[
+&lt;img src="./img/mainz/random-forest-diagram2.png" align="center" width="480px"/&gt;&lt;br&gt;
+.caption[]
+]
+
+---
+count:fase
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Random forest]&lt;hbr&gt;
+
+- .stress[Random forest] averaging decorrelated decision trees.&lt;h0br&gt;
+
+    - Several **bootstrap samples** `\(\rightarrow\)` several trees.
+  - Each tree uses only a **small random subset** of input features.
+  - Prediction `\(=\)` averaging trees' predictions.
+&lt;br&gt;
+.center[
+&lt;img src="./img/mainz/random-forest-diagram3.png" align="center" width="480px"/&gt;&lt;br&gt;
+.caption[A Random forest with 3 decision trees.]
+]
+
+---
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Extremely  randomized trees (Extra-trees)]&lt;hbr&gt;
+
+- .stress[Extra-trees] are similar to random forest except for a few points.&lt;h0br&gt;
+
+  - **All** trees are built on *full training data*.
+  - Each split is performed at **random values** on **random features**.
+  - Prediction `\(=\)` averaging the trees' predictions.
+&lt;br&gt;
+.center[
+&lt;img src="./img/mainz/extra-tree-diagram.png" align="center" width="480px"/&gt;&lt;br&gt;
+.caption[An extra-trees method with 3 decision trees.]
+]
+
+---
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Adaptive boosting (Adaboost)]&lt;hbr&gt;
+
+- .stress[Adaboost] combines weak learners to build a strong one.&lt;h0br&gt;
+
+  - Iteratively aggregates weak learners (trees with a few splits called *stumps*).
+  - Initialization: **same** sample weights.
+  - At each iteration:
+      - a stump is built on the **weighted** data points
+      - compute residual `\(\rightarrow\)` **update sample weights**: mispredicted points `\(\leftrightarrow\)` large weights
+      - compute **weight** for the stump then add it to the sequence
+  - Prediction `\(=\)` the weighted sum of all the stumps' predictions.
+  
+.center[
+&lt;img src="./img/mainz/boosting0.png" align="center" width="350px"/&gt;&lt;br&gt;
+.caption[]
+]
+
+---
+count:false
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Adaptive boosting (Adaboost)]&lt;hbr&gt;
+
+- .stress[Adaboost] combines weak learners to build a strong one.&lt;h0br&gt;
+
+  - Iteratively aggregates weak learners (trees with a few splits called *stumps*).
+  - Initialization: **same** sample weights.
+  - At each iteration:
+      - a stump is built on the **weighted** data points
+      - compute residual `\(\rightarrow\)` **update sample weights**: mispredicted points `\(\leftrightarrow\)` large weights
+      - compute **weight** for the stump then add it to the sequence
+  - Prediction `\(=\)` the weighted sum of all the stumps' predictions.
+  
+.center[
+&lt;img src="./img/mainz/boosting1.png" align="center" width="350px"/&gt;&lt;br&gt;
+.caption[]
+]
+
+---
+count:false
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Adaptive boosting (Adaboost)]&lt;hbr&gt;
+
+- .stress[Adaboost] combines weak learners to build a strong one.&lt;h0br&gt;
+
+  - Iteratively aggregates weak learners (trees with a few splits called *stumps*).
+  - Initialization: **same** sample weights.
+  - At each iteration:
+      - a stump is built on the **weighted** data points
+      - compute residual `\(\rightarrow\)` **update sample weights**: mispredicted points `\(\leftrightarrow\)` large weights
+      - compute **weight** for the stump then add it to the sequence
+  - Prediction `\(=\)` the weighted sum of all the stumps' predictions.
+  
+.center[
+&lt;img src="./img/mainz/boosting2.png" align="center" width="350px"/&gt;&lt;br&gt;
+.caption[]
+]
+
+---
+count:false
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Adaptive boosting (Adaboost)]&lt;hbr&gt;
+
+- .stress[Adaboost] combines weak learners to build a strong one.&lt;h0br&gt;
+
+  - Iteratively aggregates weak learners (trees with a few splits called *stumps*).
+  - Initialization: **same** sample weights.
+  - At each iteration:
+      - a stump is built on the **weighted** data points
+      - compute residual `\(\rightarrow\)` **update sample weights**: mispredicted points `\(\leftrightarrow\)` large weights
+      - compute **weight** for the stump then add it to the sequence
+  - Prediction `\(=\)` the weighted sum of all the stumps' predictions.
+  
+.center[
+&lt;img src="./img/mainz/boosting3.png" align="center" width="350px"/&gt;&lt;br&gt;
+.caption[]
+]
+
+---
+count:false
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Adaptive boosting (Adaboost)]&lt;hbr&gt;
+
+- .stress[Adaboost] combines weak learners to build a strong one.&lt;h0br&gt;
+
+  - Iteratively aggregates weak learners (trees with a few splits called *stumps*).
+  - Initialization: **same** sample weights.
+  - At each iteration:
+      - a stump is built on the **weighted** data points
+      - compute residual `\(\rightarrow\)` **update sample weights**: mispredicted points `\(\leftrightarrow\)` large weights
+      - compute **weight** for the stump then add it to the sequence
+  - Prediction `\(=\)` the weighted sum of all the stumps' predictions.
+  
+.center[
+&lt;img src="./img/mainz/boosting4.png" align="center" width="350px"/&gt;&lt;br&gt;
+.caption[An Adaboost with 2 stumps.]
+]
+
+---
+exclude:true
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: Gini importance (Gini)]&lt;hbr&gt;
+
+- Trees can record the reduction of impurity at each split for all features. 
+- Importance of a feature `\(=\)` its total reduction / overall reduction.
+- .stress[Gini importance] of an ensemble method `\(=\)` (weighted) average of trees' *importances*.
+
+.center[
+&lt;img src="./img/mainz/feature_importance.png" align="center" width="600px"/&gt;&lt;br&gt;
+.caption[Gini importance of ensemble learning methods.]
+]
+
+---
+exclude:true
+### II. Reanalysis (ERA5) &amp; Machine Learning (ML)&lt;hbr&gt; .subtitle[Machine learning method: validation]&lt;hbr&gt;
+
+- Performance measurement:&lt;h0br&gt;
+
+  - Pearson's correlation coefficient:
+  `$$\text{cor}(y_{\text{true}},y_{\text{pred}})=\frac{\sum_{i=1}^n(y_{\text{true}_i}-\overline{y}_{\text{true}})(y_{\text{pred}_i}-\overline{y}_{\text{pred}})}{\sqrt{\sum_{i=1}^n(y_{\text{true}_i}-\overline{y}_{\text{true}})^2 \sum_{i=1}^n(y_{\text{pred}_i}-\overline{y}_{\text{pred}})^2}}$$`
+
+  - Relative Mean Absolute Error (RMAE):
+  `$$\text{RAME}(y_{\text{true}},y_{\text{pred}})=\frac{\sum_{i=1}^n|y_{\text{true}}-y_{\text{pred}}|}{\overline{y}_{\text{true}}}$$`
+  
+- Data splitting: each model is trained on `\(7\)` balloons and tested on the remaining one.&lt;h0br&gt;
+
+.center[
+&lt;img src="./img/mainz/kfolds.png" align="center" width="500px"/&gt;&lt;br&gt;
+.caption[Train-test data splitting.]
+]
+
+- Hyperparameters are tuned using `\(K\)`-fold cross validation.
+
+---
+template: inter-slide
+class: left, middle
+count: false
+
+## <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(16, 111, 171);;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg> .bold-blue[Outline]
+
+
+.hhead[I. Strateole 2 campaign]
+
+&lt;br&gt;
+
+.hhead[II. Reanalysis (ERA5) and Machine Learning methods (ML)]
+
+&lt;br&gt;
+
+.section[III. Numerical results]
+
+&lt;br&gt;
+
+.hhead[IV. Conclusion and perspectives]
+
+---
+### III. Numerical results &lt;hbr&gt; .subtitle[On absolute &amp; westward GWMF of balloon 2 (HF)] &lt;h0br&gt;
+
+.center[
+&lt;img src="./img/mainz/fig_u1h_bal2_3h_24h_abs_1.png" align="center" width="750px"/&gt;&lt;br&gt;
+&lt;img src="./img/mainz/fig_u1h_bal2_3h_24h_west.png" align="center" width="790px"/&gt;&lt;br&gt;
+.caption[Predicted and actual GWMF of HF absolute (up) &amp; westward (bottom) GWMF of balloon 2 in 24h resolution.]
+]
+
+---
+exclude:true
+### III. Numerical results &lt;hbr&gt; .subtitle[On absolute GWMF of balloon 7] &lt;h0br&gt;
+
+.center[
+&lt;img src="./img/mainz/fig_u1h_bal7_3h_24h_abs_1.png" align="center" width="790px"/&gt;&lt;br&gt;
+&lt;img src="./img/mainz/fig_u1d_bal7_3h_24h_abs_1.png" align="center" width="790px"/&gt;&lt;br&gt;
+.caption[Predicted and actual absolute GWMF of HF (top) and WF (bottom) waves in 24h resolution.]
+]
+
+---
+exclude:true
+### III. Numerical results &lt;hbr&gt; .subtitle[On east GWMF of balloon 8] &lt;h0br&gt;
+
+.center[
+&lt;img src="./img/mainz/fig_u1h_bal8_3h_24h_east_1.png" align="center" width="790px"/&gt;&lt;br&gt;
+&lt;img src="./img/mainz/fig_u1d_bal8_3h_24h_east_1.png" align="center" width="790px"/&gt;&lt;br&gt;
+.caption[Predicted and actual eastward GWMF of HF (top) and WF (bottom) waves in 24h resolution.]
+]
+
+---
+### III. Numerical results &lt;hbr&gt; .subtitle[Correlations over 50 independent runs of HF waves] &lt;h0br&gt;
+.center[
+&lt;img src="./img/mainz/fig_corr_all_u1h_3h_24h.PNG" align="center" width="600px"/&gt;&lt;br&gt;
+.caption[Boxplots of correlations.]
+]
+
+???
+
+&lt;!--.pull-right-30[
+- The differences in variation among ML methods are not substantial on the same balloon.
+
+- Balloon 2, 6 and 8 are well predicted by the models (corr `\(&gt; 0.7\)`).
+
+- Westward cases are more challenging than the other two cases.
+] --&gt;
+---
+exclude:true
+### III. Numerical results &lt;hbr&gt; .subtitle[Correlations over 50 independent runs of WF waves] &lt;h0br&gt;
+.center[
+&lt;img src="./img/mainz/fig_corr_all_u1d_3h_24h.PNG" align="center" width="600px"/&gt;&lt;br&gt;
+.caption[Boxplots over 50 independent runs of the three ML models on all balloons.]
+]
+
+
+.pull-right-30[
+- Balloon 2 and 8 are still well predicted by the models (corr `\(&gt; 0.7\)`), but not the 6.
+
+- Performances on WF are often lower than HF since it also includes those of HF waves and longer-period waves.
+]
+
+---
+exclude:true
+### III. Numerical results &lt;hbr&gt; .subtitle[Gini importance: High frequency range (HF) with period 15mn - 1h] &lt;h0br&gt;
+
+.pull-left-70[
+&lt;img src="./img/mainz/fig_feature_importance_all_u1h_3h_24h.PNG" align="center" width="600px"/&gt;&lt;br&gt;
+.caption[Gini importance of ML methods (by column) on all targets (by row) for HF.]
+]
+
+.pull-right-30[
+- In general, precipitation and zonal wind are the most important features.
+
+- Wind at balloon level `\(u19\)` stood out in eastward case for all models.
+
+- Surface wind is also very informative in many cases.
+]
+
+---
+### III. Numerical results &lt;hbr&gt; .subtitle[Gini importance: Wide frequency range (WF) with period 15mn - 1 day] &lt;h0br&gt;
+
+.center[
+&lt;img src="./img/mainz/fig_feature_importance_all_u1d_3h_24h.PNG" align="center" width="600px"/&gt;&lt;br&gt;
+.caption[Gini importance of ML methods (by column) on all targets (by row) for WF.]
+]
+
+???
+
+&lt;!--.pull-right-30[
+- Zonal wind stood out for absolute GWMF in WF case except for random forest method.
+
+- Clear importance of wind at balloon level presents in eastward case.
+
+- Precipitations are most informative in westward case.
+] --&gt;
+---
+### III. Numerical results &lt;hbr&gt; .subtitle[GWMF vs important inputs (balloon 2 &amp; 3)] &lt;h0br&gt;
+
+&lt;br&gt;
+.center[
+&lt;img src="./img/mainz/qdm_with_inputs2.png" align="center" width="370px"/&gt;
+&lt;img src="./img/mainz/qdm_with_inputs3.png" align="center" width="370px"/&gt;&lt;br&gt;
+.caption[Target vs informative inputs of balloon 2 (left) and balloon 3 (right).]
+]
+
+---
+exclude:true
+### III. Numerical results &lt;hbr&gt; .subtitle[Westward GWMF vs important inputs (balloon 8)] &lt;h0br&gt;
+
+.pull-left-60[
+&lt;img src="./img/mainz/qdm_with_inputs8.png" align="center" width="480px"/&gt;&lt;br&gt;
+.caption[target vs informative inputs.]
+]
+
+.pull-right-40[
+.middle[
+- Balloon `\(8\)` (corr `\(&gt; 0.7\)`), precipitation and winds seem more informative than the previous case.
+]
+]
+
+---
+template: inter-slide
+class: left, middle
+count: false
+
+## <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:rgb(16, 111, 171);;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg> .bold-blue[Outline]
+
+
+.hhead[I. Strateole 2 campaign]
+
+&lt;br&gt;
+
+.hhead[II. Reanalysis (ERA5) and Machine Learning methods (ML)]
+
+&lt;br&gt;
+
+.hhead[III. Numerical results]
+
+&lt;br&gt;
+
+.section[IV. Conclusion and perspectives]
+
+---
+### IV. Conclusion &amp; Perspectives &lt;hbr&gt; .subtitle[Conclusion] &lt;hbr&gt;
+
+- Obtained encouraging results (corr &gt; `\(0.7\)`).
+
+- No leading method, sensitive to the choices testing data.
+
+- Informative inputs: precipitation &amp; zonal wind at balloon's level and below.
+
+- Westward GWMFs are more challenging than others. &lt;h0br&gt;
+
+### .subtitle[Perspectives] &lt;hbr&gt;
+
+- Off from the tropic `\(\leftrightarrow\)` well descibed by ERA5 `\(\leftrightarrow\)` easier to predict.
+
+- **HF** `\(\subset\)` **WF** &amp; they can propagate horizontally and stay present for several days. They are not well described by ERA5.
+
+
+- This result can provide an upper bound of stochastic components of GMWF that cannot be represented by EAR5.
+
+---
+count: false
+
+
+template: inter-slide
+class: left, top
+count: false
+
+.left[# References  &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;]&lt;h0br&gt;
+
+&amp;#128218; [.bib[Haase, J. S.,Alexander, M. J.,Hertzog, A.,Kalnajs, L.,Deshler, T.,Davis, S. M.,Plougonven, R.,Cocquerez, P., and Venel, S. (2018), Around the world in 84 days, Eos, 99.]](https://doi.org/10.1029/2018EO091907)
+
+&amp;#128218; [.bib[Alexander, M.J., Geller, M., McLandress, C., Polavarapu, S., Preusse, P., Sassi, F., Sato, K., Eckermann, S., Ern, M., Hertzog, A., Kawatani, Y., Pulido, M., Shaw, T.A., Sigmond, M., Vincent, R. and Watanabe, S. (2010), Recent developments in gravity-wave effects in climate models and the global distribution of gravity-wave momentum flux from observations and models. Q.J.R. Meteorol. Soc., 136: 1103-1124.]](https://doi.org/10.1002/qj.637)
+
+&amp;#128218; [.bib[Bramberger, M., Alexander, M. J., Davis, S., Podglajen, A., Hertzog, A., Kalnajs, L., et al. (2022). First super-pressure balloon-borne fine-vertical-scale profiles in the upper TTL: Impacts of atmospheric waves on cirrus clouds and the QBO. Geophysical Research Letters, 49, e2021GL097596.]](https://doi.org/10.1029/2021GL097596)
+
+&amp;#128218; [.bib[Corcos, M., Hertzog, A., Plougonven, R., &amp; Podglajen, A. (2021). Observation of gravity waves at the tropical tropopause using superpressure balloons. Journal of Geophysical Research: Atmospheres, 126, e2021JD035165.]](https://doi.org/10.1029/2021JD035165)
+
+&amp;#128218; [.bib[Ern, M., &amp; Preusse, P. (2012). Gravity wave momentum flux spectra observed from satellite in the summertime subtropics: Implications for global modeling. Geophysical Research Letters, 39(15).]](https://doi.org/10.1029/2012gl052659)
+
+&amp;#128218; [.bib[Lott, F., Rani, R., Podglajen, A., Codron, F., Guez, L., Hertzog, A., &amp; Plougonven, R. (2023). Direct comparison between a non-orographic gravity wave drag scheme and constant level balloons. Journal of Geophysical Research: Atmospheres, 128, e2022JD037585.]](https://doi.org/10.1029/2022JD037585)
+
+---
+template: inter-slide
+class: left, top
+count: false
+
+.left[# References  &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;]&lt;h0br&gt;
+
+&amp;#128218; [.bib[R. Wilson, C. Pitois, A. Podglajen, A. Hertzog, M. Corcos, and R. Plougonven. "Detection of turbulence occurrences from temperature, pressure, and position measurements under superpressure balloons". Jan 2023.]](https://amt.copernicus.org/articles/16/311/2023/)
+
+&amp;#128218; [.bib[L. Breiman. "Random Forests." Machine Learning, 2001. DOI: 10.1023/A:1010933404324]](https://link.springer.com/article/10.1023/a:1010933404324)
+
+&amp;#128218; [.bib[J.H. Friedman. "Greedy Function Approximation: A Gradient Boosting Machine." The Annals of Statistics, 2001. DOI: 10.1214/aos/1013203451]](https://projecteuclid.org/journals/annals-of-statistics/volume-29/issue-5/Greedy-function-approximation-A-gradient-boosting-machine/10.1214/aos/1013203451.full)
+
+&lt;br&gt;
+
+.center[.large[Thank you 🤓]]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"nature": null,
+"slideNumberFormat": "<div class=\"numeric\">\n  <div class=\"numeric-out\">\n    %current% / %total%\n  </div>\n</div>\n",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
