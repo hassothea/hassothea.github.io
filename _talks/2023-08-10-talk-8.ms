@@ -1,0 +1,11 @@
+---
+title: "Fundamental and Hands-on Introduction to Machine Learning"
+collection: talks
+type: "Talk"
+permalink: /talks/2023-08-10-talk-8
+venue: "Seminar"
+date: 2023-08-10
+location: "Institute of Technology of Cambodia, Phnom Penh, Cambodia"
+---
+
+This talk aims at providing key concepts of Machine Learning through real examples. Linear models in regression and classification are introduced along with some tasks. Some gradient-based optimization and penalization techniques are also discussed from Linear Regression to Deep Neural Networks. The slide can be found here: [Introduction to Machine Learning](https://hassothea.github.io/files/teaching/Intro_to_ML.html#1).
