@@ -20,4 +20,4 @@ Avenue de France, 75013 Paris
 Resume
 -----
 
-My resume can be found [here](/files/CV_SotheaHAS_Symbols.pdf).
+My resume can be found [here](/files/CV_SotheaHAS_2023.pdf).
