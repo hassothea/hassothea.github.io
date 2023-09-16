@@ -10,7 +10,7 @@ redirect_from:
 
 I am currently doing my postdoctoral research in IMPT project on improving parameterizations of gravity wave momentum fluxes in climate models, using statistical and machine learning methods, under supervision of [Aurélie Fischer](http://www.lpsm.paris/dw/doku.php?id=users:fischer:index) (LPSM - Université Paris Cité) and [Riwal Plougonven](http://gershwin.ens.fr/plougon) (LMD/IPSL - École polytechnique).
 
-I am from Cambodia. I did my Ph.D. in Applied Mathematics at [UPMC - Sorbonne Université](http://www.upmc.fr/en/) under supervision of [Mathilde Mougeot](https://sites.google.com/site/mougeotmathilde/) and [Aurélie Fischer](http://www.lpsm.paris/dw/doku.php?id=users:fischer:index). I also worked as a teaching assistant at [UFR mathematics of Université de Paris (Paris 7)](https://www.math.univ-paris-diderot.fr/) during my thesis.
+I am from Cambodia. I did my Ph.D. in Applied Mathematics at [UPMC - Sorbonne Université](http://www.upmc.fr/en/). I also worked as a teaching assistant at [UFR mathematics of Université de Paris (Paris 7)](https://www.math.univ-paris-diderot.fr/) during my thesis.
 
 Here are my [Ph.D. Thesis](/files/Thèse_Manuscrit_SotheaHAS.pdf) and [Slides](/files/slide_thesis/slide_thesis.html).
    
