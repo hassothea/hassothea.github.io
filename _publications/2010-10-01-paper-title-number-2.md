@@ -7,4 +7,4 @@ date: 2021-04-17
 venue: 'HAL'
 ---
 
-[&#9755; Download paper](https://hal.science/hal-04219729){:target="_blank"} and [<i class="fab fa-r-project"></i>-codes with explanation](/files/CodesPhD/KernelAggReg.html){:target="_blank"}.
+[&#9755; Download paper](https://jdssv.org/index.php/jdssv/article/view/70){:target="_blank"} and [<i class="fab fa-r-project"></i>-codes with explanation](/files/CodesPhD/KernelAggReg.html){:target="_blank"}.
