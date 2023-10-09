@@ -7,4 +7,6 @@ date: 2023-10-02
 venue: 'Journal of Data Science Statistics and Visualisation (JDSSV)'
 ---
 
-[&#9755; Download paper](https://jdssv.org/index.php/jdssv/article/view/70){:target="_blank"}. Read `gradientcobra` python package document [here](/files/CodesPhD/gradientcobra_doc.html){:target="_blank"} and <i class="fab fa-r-project"></i>-codes with explanation can be found [here](/files/CodesPhD/KernelAggReg.html){:target="_blank"}.
+[&#9755; Download paper](https://jdssv.org/index.php/jdssv/article/view/70){:target="_blank"}. 
+&#9755; Read about [`gradientcobra`](https://pypi.org/project/gradientcobra/?fbclid=IwAR0_h2LPv8zaAIP-pPs5rXc_xX7Yi-hKFHFY0tLf5_Xg21n0zshw-0Bn348) python library [here](/files/CodesPhD/gradientcobra_doc.html){:target="_blank"}. 
+&#9755; Read <i class="fab fa-r-project"></i>-codes with explanation [here](/files/CodesPhD/KernelAggReg.html){:target="_blank"}.
