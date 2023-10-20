@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#installing-and-importing-packages" id="toc-installing-and-importing-packages" class="nav-link active" data-scroll-target="#installing-and-importing-packages">Installing and importing packages</a></li>
-  <li><a href="#gradient-cobra-method" id="toc-gradient-cobra-method" class="nav-link" data-scroll-target="#gradient-cobra-method">Gradient COBRA method</a></li>
+  <li><a href="#gradient-cobra" id="toc-gradient-cobra" class="nav-link" data-scroll-target="#gradient-cobra">Gradient COBRA</a></li>
   <li><a href="#mixcobraregressor" id="toc-mixcobraregressor" class="nav-link" data-scroll-target="#mixcobraregressor">MixCOBRARegressor</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -121,8 +121,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><code>pip install gradientcobra</code></p>
 </blockquote>
+<p>The package contains the following methods:</p>
 </section>
-<section id="gradient-cobra-method" class="level1">
+<section id="gradient-cobra" class="level1">
 <h1><a href="https://hassothea.github.io/files/CodesPhD/GradientCOBRA.html">Gradient COBRA</a></h1>
 <p><strong>Gradient COBAR</strong> is a kernel-based consensual aggregation method for regressoin (<a href="https://jdssv.org/index.php/jdssv/article/view/70">S. Has (2023)</a>). After installing <a href="https://pypi.org/project/gradientcobra/"><code>gradientcobra</code></a> package (version <span class="math inline">\(\geq\)</span> <code>v1.0.6</code>), <code>GradientCOBRA</code> method can be imported by:</p>
 <blockquote class="blockquote">
@@ -565,31 +566,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ``pip install gradientcobra``</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Gradient COBRA method](https://hassothea.github.io/files/CodesPhD/GradientCOBRA.html)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>The package contains the following methods:</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>**Gradient COBAR** is a kernel-based consensual aggregation method for regressoin (<span class="co">[</span><span class="ot">S. Has (2023)</span><span class="co">](https://jdssv.org/index.php/jdssv/article/view/70)</span>). After installing <span class="co">[</span><span class="ot">`gradientcobra`</span><span class="co">](https://pypi.org/project/gradientcobra/)</span> package (version $\geq$ <span class="in">`v1.0.6`</span>), <span class="in">`GradientCOBRA`</span> method can be imported by:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Gradient COBRA](https://hassothea.github.io/files/CodesPhD/GradientCOBRA.html)</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ``from gradientcobra.gradientcobra import GradientCOBRA``</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>**Gradient COBAR** is a kernel-based consensual aggregation method for regressoin (<span class="co">[</span><span class="ot">S. Has (2023)</span><span class="co">](https://jdssv.org/index.php/jdssv/article/view/70)</span>). After installing <span class="co">[</span><span class="ot">`gradientcobra`</span><span class="co">](https://pypi.org/project/gradientcobra/)</span> package (version $\geq$ <span class="in">`v1.0.6`</span>), <span class="in">`GradientCOBRA`</span> method can be imported by:</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>For more information about this method, read <span class="co">[</span><span class="ot">GradientCOBRA documentation</span><span class="co">](https://hassothea.github.io/files/CodesPhD/GradientCOBRA.html)</span>.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ``from gradientcobra.gradientcobra import GradientCOBRA``</span></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu"># [MixCOBRARegressor](https://hassothea.github.io/files/CodesPhD/MixCOBRARegressor.html)</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>For more information about this method, read <span class="co">[</span><span class="ot">GradientCOBRA documentation</span><span class="co">](https://hassothea.github.io/files/CodesPhD/GradientCOBRA.html)</span>.</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>**MixCOBRA** is an aggregation method for both regression and classification that takes into account both input and output of the basic estimators (<span class="co">[</span><span class="ot">A. Fischer and M. Mougeot (2019)</span><span class="co">](https://www.sciencedirect.com/science/article/pii/S0378375818302349)</span>). From <span class="in">`version 1.0.5`</span>, this method is also available for regression and can be implemented in python by:</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu"># [MixCOBRARegressor](https://hassothea.github.io/files/CodesPhD/MixCOBRARegressor.html)</span></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ``from gradientcobra.mixcobra import MixCOBRARegressor``</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>**MixCOBRA** is an aggregation method for both regression and classification that takes into account both input and output of the basic estimators (<span class="co">[</span><span class="ot">A. Fischer and M. Mougeot (2019)</span><span class="co">](https://www.sciencedirect.com/science/article/pii/S0378375818302349)</span>). From <span class="in">`version 1.0.5`</span>, this method is also available for regression and can be implemented in python by:</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>A challenge of this method is that it has to be optimized over a $2$D-grid of parameters $(\alpha, \beta)$ for input and output part. In <span class="in">`gradientcobra`</span> library, the implementation of this method is optimized so that it works very efficiently. Moreover, you can also use gradient descent algorithm to estimate the parameters $(\alpha, \beta)$, or only one bandwidth parameter $h$ can be used for both input and output part. For more information on how to use this method, read <span class="co">[</span><span class="ot">MixCOBRARegressor documentation</span><span class="co">](https://hassothea.github.io/files/CodesPhD/MixCOBRARegressor.html)</span>.</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ``from gradientcobra.mixcobra import MixCOBRARegressor``</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu"># References</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>A challenge of this method is that it has to be optimized over a $2$D-grid of parameters $(\alpha, \beta)$ for input and output part. In <span class="in">`gradientcobra`</span> library, the implementation of this method is optimized so that it works very efficiently. Moreover, you can also use gradient descent algorithm to estimate the parameters $(\alpha, \beta)$, or only one bandwidth parameter $h$ can be used for both input and output part. For more information on how to use this method, read <span class="co">[</span><span class="ot">MixCOBRARegressor documentation</span><span class="co">](https://hassothea.github.io/files/CodesPhD/MixCOBRARegressor.html)</span>.</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">S. Has (2023). A Gradient COBRA: A kernel-based consensual aggregation for regression. Journal of Data Science, Statistics, and Visualisation, 3(2).</span><span class="co">](https://jdssv.org/index.php/jdssv/article/view/70)</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">A. Fischer, M. Mougeot (2019). Aggregation using input-output trade-off. Journal of Statistical Planning and Inference, 200.</span><span class="co">](https://www.sciencedirect.com/science/article/pii/S0378375818302349)</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">G. Biau, A. Fischer, B. Guedj and J. D. Malley (2016), COBRA: A combined regression strategy, Journal of Multivariate Analysis.</span><span class="co">](https://doi.org/10.1016/j.jmva.2015.04.007)</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">M. Mojirsheibani (1999), Combining Classifiers via Discretization, Journal of the American Statistical Association.</span><span class="co">](https://www.jstor.org/stable/2670180)</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu"># References</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">S. Has (2023). A Gradient COBRA: A kernel-based consensual aggregation for regression. Journal of Data Science, Statistics, and Visualisation, 3(2).</span><span class="co">](https://jdssv.org/index.php/jdssv/article/view/70)</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">A. Fischer, M. Mougeot (2019). Aggregation using input-output trade-off. Journal of Statistical Planning and Inference, 200.</span><span class="co">](https://www.sciencedirect.com/science/article/pii/S0378375818302349)</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">G. Biau, A. Fischer, B. Guedj and J. D. Malley (2016), COBRA: A combined regression strategy, Journal of Multivariate Analysis.</span><span class="co">](https://doi.org/10.1016/j.jmva.2015.04.007)</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">M. Mojirsheibani (1999), Combining Classifiers via Discretization, Journal of the American Statistical Association.</span><span class="co">](https://www.jstor.org/stable/2670180)</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
