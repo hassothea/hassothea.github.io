@@ -1,5 +1,5 @@
 ---
-title: "[`gradientcobra v1.0.6`](https://pypi.org/project/gradientcobra/) package"
+title: "[`gradientcobra v1.0.8`](https://pypi.org/project/gradientcobra/) package"
 author: "[`Sothea HAS`](https://hassothea.github.io/)"
 format: 
     html:
@@ -28,7 +28,7 @@ For more information about this method, read [GradientCOBRA documentation](https
 
 # [MixCOBRARegressor](https://hassothea.github.io/files/CodesPhD/MixCOBRARegressor.html)
 
-**MixCOBRA** is an aggregation method for both regression and classification that takes into account both input and output of the basic estimators ([A. Fischer and M. Mougeot (2019)](https://www.sciencedirect.com/science/article/pii/S0378375818302349)). From `version 1.0.5`, this method is also available for regression and can be implemented in python by:
+**MixCOBRA** is an aggregation method for both regression and classification that takes into account both input and output of the basic estimators ([A. Fischer and M. Mougeot (2019)](https://www.sciencedirect.com/science/article/pii/S0378375818302349)). From `version 1.0.6`, this method is also available for regression and can be implemented in python by:
 
 > ``from gradientcobra.mixcobra import MixCOBRARegressor``
 
