@@ -37,6 +37,5 @@ Courses (Khmer)
 ===========
 
 - [Introduction to Machine Learning](https://hassothea.github.io/MLcourses/index.html)
-- 
 - [FPB - Machine Learning Course](https://hassothea.github.io/FPB_ML_course/index.html)
 
