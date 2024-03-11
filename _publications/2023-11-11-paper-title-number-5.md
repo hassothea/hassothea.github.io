@@ -1,13 +1,13 @@
 ---
 title: "GradientCOBRA python library"
 collection: library
-permalink: /publication/2023-10-01-paper-title-number-5
+permalink: /publication/2023-11-11-paper-title-number-5
 excerpt: 
-date: 2023-10-01
+date: 2023-11-11
 venue: 'Pypi'
 ---
 
-<img src="https://raw.githubusercontent.com/hassothea/gradientcobra/main/gradientcobra_logo.svg" alt="gradientcobra logo" width="20"/> [GradientCOBRA python library for various ML aggregation methods](https://pypi.org/project/gradientcobra/){:target="_blank"}.
+<img src="https://raw.githubusercontent.com/hassothea/gradientcobra/main/gradientcobra_logo.svg" alt="gradientcobra logo" width="25"/> [GradientCOBRA python library for various ML aggregation methods](https://pypi.org/project/gradientcobra/){:target="_blank"}.
 
 The library contains the following aggregation methods:
 
