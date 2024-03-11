@@ -7,7 +7,7 @@ date: 2023-10-01
 venue: 'Pypi'
 ---
 
-<img src="[drawing.jpg](https://raw.githubusercontent.com/hassothea/gradientcobra/main/gradientcobra_logo.svg)" alt="gradientcobra logo" width="10"/> [GradientCOBRA python library for various ML aggregation methods](https://pypi.org/project/gradientcobra/){:target="_blank"}.
+<img src="https://raw.githubusercontent.com/hassothea/gradientcobra/main/gradientcobra_logo.svg" alt="gradientcobra logo" width="10"/> [GradientCOBRA python library for various ML aggregation methods](https://pypi.org/project/gradientcobra/){:target="_blank"}.
 
 The library contains the following aggregation methods:
 
