@@ -7,8 +7,6 @@ date: 2023-10-02
 venue: 'Journal of Data Science Statistics and Visualisation (JDSSV)'
 ---
 
-[&#9755; Download paper](https://jdssv.org/index.php/jdssv/article/view/70){:target="_blank"}.  
-
-- The Python library of the method is available at PyPi as [`gradientcobra`](https://pypi.org/project/gradientcobra/). 
+[&#9755; Download paper](https://jdssv.org/index.php/jdssv/article/view/70){:target="_blank"} and [`gradientcobra`](https://pypi.org/project/gradientcobra/) Python library is available in PyPi.
 
 - If you work with <i class="fab fa-r-project"></i>, you may find [his documentation(/files/CodesPhD/KernelAggReg.html){:target="_blank"} helpful.
