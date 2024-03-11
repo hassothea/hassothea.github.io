@@ -7,4 +7,16 @@ date: 2023-10-01
 venue: 'Pypi'
 ---
 
-![](https://raw.githubusercontent.com/hassothea/gradientcobra/main/gradientcobra_logo.svg){width:20px} [GradientCOBRA python library for various ML aggregation methods.](https://pypi.org/project/gradientcobra/){:target="_blank"}.
+<img src="[drawing.jpg](https://raw.githubusercontent.com/hassothea/gradientcobra/main/gradientcobra_logo.svg)" alt="gradientcobra logo" width="10"/> [GradientCOBRA python library for various ML aggregation methods](https://pypi.org/project/gradientcobra/){:target="_blank"}.
+
+The library contains the following aggregation methods:
+
+- [Gradient COBRA](https://hassothea.github.io/files/CodesPhD/gradientcobra.html) method by [S. Has (2023)](https://jdssv.org/index.php/jdssv/article/view/70).
+
+- [MixCOBRA](https://hassothea.github.io/files/CodesPhD/mixcobra.html) method by [A. Fischer and M. Mougeot (2019)](https://www.sciencedirect.com/science/article/pii/S0378375818302349).
+
+- [SuperLearner](https://hassothea.github.io/files/CodesPhD/superlearner.html) method by [. J. Van der Laan et al. (2007)](https://www.degruyter.com/document/doi/10.2202/1544-6115.1309/html?lang=en).
+
+- [KernelSmoother](https://hassothea.github.io/files/CodesPhD/kernelsmoother.html) method by [T. Hastie et al. (2008)](https://link.springer.com/chapter/10.1007/978-0-387-84858-7_6).
+
+For more information about the library, visit [gradientcobra library](https://pypi.org/project/gradientcobra/).
