@@ -175,7 +175,7 @@ require(['plotly'], function(Plotly) {
 <ul>
 <li><p>Several regressors are trained on cross-validation data to produce predictions on validation dataset. The validation predictions are stacked to form predicted features of the same size as the original training data.</p></li>
 <li><p>This prediction data is used to train a set of meta learners. The best one among these meta learners is selected as the final learner using cross-validation method in step (5).</p></li>
-<li><p>The final model or super learner is the selected meta learner built using the predicted features in the 6th step (obtained from basic pregressors that are built on the whole dataset).</p></li>
+<li><p>The final model or super learner is the selected meta learner built using the predicted features in the 6th step (the final basic regressors are built on the whole dataset).</p></li>
 </ul>
 <hr>
 </section>
