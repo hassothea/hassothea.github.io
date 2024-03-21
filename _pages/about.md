@@ -17,7 +17,11 @@ Here are my [Ph.D. Thesis](/files/Thèse_Manuscrit_SotheaHAS.pdf) and [Slides](/
 Research interests
 ======
 
-My Ph.D. research focuses on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I developed a methodology ([KFC-procedure](https://www.tandfonline.com/doi/abs/10.1080/00949655.2021.1891539)) for constructing predictions using both supervised and unsupervised machine learning methods including consensual aggregation methods and clustering. I provide theoretical contributions and applications of the methods on several simulated and real (energy) data.
+My Ph.D. research focuses on consensual aggregation techniques for combining a given number (small or large) of predictors in supervised machine learning problems. Moreover, I also explored the combination of supervised and unsupervised machine learning methods for prediction. 
+
+My postdoctoral research focuses on using ML methods to reconstruct balloon-observed [gravity wave momentum fluxes](https://www.weather.gov/source/zhu/ZHU_Training_Page/Miscellaneous/gravity_wave/gravity_wave.html) from the large-scale flow variables of [ERA5 dataset](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5).
+
+<!-- Moreover, I developed a methodology ([KFC-procedure](https://www.tandfonline.com/doi/abs/10.1080/00949655.2021.1891539)) for constructing predictions using both supervised and unsupervised machine learning methods including consensual aggregation methods and clustering. I provide theoretical contributions and applications of the methods on several simulated and real (energy) data. -->
 
 I am interested in the following topics:
 - Combination of unsupervised and supervised machine learning methods, ensemble learning, clustering and aggregation methods.
