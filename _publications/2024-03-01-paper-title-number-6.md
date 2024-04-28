@@ -7,4 +7,4 @@ date: 2024-03-01
 venue: 'JGR: Atmosphere'
 ---
 
-The preprint can be downloaded [here](https://hassothea.github.io/files/Postdoc/ML_to_reconstruct_GWMF_ERA5.pdf). The paper is accepted for publication at [JGR: Atmosphere](https://agupubs.onlinelibrary.wiley.com/journal/21698996). 
+The paper is published at [JGR: Atmosphere](https://agupubs.onlinelibrary.wiley.com/journal/21698996) and can be downloaded from [ https://doi.org/10.1029/2023JD040281]( https://doi.org/10.1029/2023JD040281). 
