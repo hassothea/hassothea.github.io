@@ -1,0 +1,21 @@
+template: inter-slide
+class: left, middle
+count: false
+
+.center[# References]<hbr>
+
+&#128218; [Linder, T. (2002). Learning-Theoretic Methods in Vector Quantization. In: Györfi, L. (eds) Principles of Nonparametric Learning. International Centre for Mechanical Sciences, vol 434. Springer, Vienna.](https://link.springer.com/chapter/10.1007/978-3-7091-2568-7_4)
+
+&#128218; [Banerjee, S. Merugu, I.S. Dhillon, and J. Ghosh.  Clustering with Bregman divergences. Journal of Machine Learning Research, 6:1705–1749, 2005](chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/https://jmlr.org/papers/volume6/banerjee05b/banerjee05b.pdf)
+
+&#128218; [A. Fischer.  Quantization and clustering with Bregman divergences. Journal of Multivariate Analysis, 101(10):2207–2221, 2010.](chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/https://www.lpsm.paris/_media/users/fischer/quantization_and_clustering_with_bregman_divergences.pdf)
+
+&#128218; [S. Has, A. Fischer, and M. Mougeot. Kfc: A clusterwise supervised learning procedure based on the aggregation of distances. Journal of Statistical Computation and Simulation, 0(0):1–21, 2021. doi: 10.1080/00949655.2021.  1891539.](https://www.tandfonline.com/doi/abs/10.1080/00949655.2021.1891539)
+
+`r fontawesome::fa("github")` [https://github.com/hassothea/KFC-Procedure](https://github.com/hassothea/KFC-Procedure)
+
+<h0br>
+
+.pull-right[
+# Thank you 🤓
+]
