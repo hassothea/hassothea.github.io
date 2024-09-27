@@ -8,11 +8,11 @@ date: 2024-10-07
 location: "Phnom Penh, Cambodia"
 ---
 
-## Master 2 of Data Science
+## Master 2 of Data Science (2024)
 
 - Course & TP of [Advanced Machine Learning](https://sites.google.com/view/graduate-school-of-itc/programs/master-programs/data-science) with `Python`.
 
-## Bachelor's degree
+## Bachelor's degree (2024)
 
 - 3rd Year: TD of **Statistics**
 
