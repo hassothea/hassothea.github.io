@@ -1,5 +1,5 @@
 ---
-title: "Institute of Technology of Cambodia"
+title: "[Institute of Technology of Cambodia](http://www.itc.edu.kh/fr/)"
 collection: teaching
 type: "Bachelor and Master's degree courses"
 permalink: /teaching/2024-spring-teaching-2
