@@ -11,7 +11,7 @@ location: "Paris, France"
 ## Master's degree (2018 - 2023)
 
 
-- [M2MO](https://masterfinance.math.univ-paris-diderot.fr/) : TD of Statistical Modeling.
+- [M2MO](https://masterfinance.math.univ-paris-diderot.fr/) : TD of **Statistical Modeling**.
 
 - [M1ISIFAR](https://master.math.u-paris.fr/annee/m1-isifar/) : TP `R`-programming of **Data Analysis**.
 
