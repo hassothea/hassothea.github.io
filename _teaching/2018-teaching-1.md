@@ -1,9 +1,9 @@
 ---
-title: "[UFR de Mathématiques - Université Paris Cité](https://www.math.u-paris.fr/)"
+title: "UFR de Mathématiques - Université Paris Cité"
 collection: teaching
 type: "License and Master's degree courses"
 permalink: /teaching/2018-teaching-1
-venue: "Université Paris Cité, UFR de Mathématiques"
+venue: "Université Paris Cité, [UFR de Mathématiques](https://www.math.u-paris.fr/)"
 date: 2018-09-01
 location: "Paris, France"
 ---
