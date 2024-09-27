@@ -10,7 +10,7 @@ location: "Phnom Penh, Cambodia"
 
 ## Master 2 of Data Science
 
-- [Advanced Machine Learning](https://sites.google.com/view/graduate-school-of-itc/programs/master-programs/data-science)
+- Course & TP of [Advanced Machine Learning](https://sites.google.com/view/graduate-school-of-itc/programs/master-programs/data-science) with `Python`.
 
 ## Bachelor's degree
 
