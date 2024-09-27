@@ -2,7 +2,7 @@
 title: "UFR de Mathématiques - Université Paris Cité"
 collection: teaching
 type: "License and Master's degree courses"
-permalink: /teaching/2018-teaching-1
+permalink: /teaching/2018-teaching-france
 venue: "Université Paris Cité, UFR de Mathématiques"
 date: 2018-09-01
 location: "Paris, France"
