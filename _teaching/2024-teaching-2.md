@@ -3,7 +3,7 @@ title: "Institute of Technology of Cambodia"
 collection: teaching
 type: "Bachelor and Master's degree courses"
 permalink: /teaching/2024-spring-teaching-2
-venue: "Institute of Technology of Cambodia, Applied Mathematics and Statistics"
+venue: "[Institute of Technology of Cambodia](http://www.itc.edu.kh/fr/), [Applied Mathematics and Statistics](https://itc.edu.kh/home-ams/)"
 date: 2024-10-07
 location: "Phnom Penh, Cambodia"
 ---
