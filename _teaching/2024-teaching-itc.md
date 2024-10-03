@@ -12,7 +12,7 @@ location: "Phnom Penh, Cambodia"
 
 - Course & TP of [Advanced Machine Learning](https://sites.google.com/view/graduate-school-of-itc/programs/master-programs/data-science) with `Python`.
 
-> Webpage for the course: <a href="[http://...](https://hassothea.github.io/Advanced-Machine-Learning-ITC/)" target="_blank">[external link](https://hassothea.github.io/Advanced-Machine-Learning-ITC/)</a>.
+> Webpage for the course: <a href="https://hassothea.github.io/Advanced-Machine-Learning-ITC/" target="_blank">https://hassothea.github.io/Advanced-Machine-Learning-ITC/</a>.
 
 ## Bachelor's degree (2024)
 
