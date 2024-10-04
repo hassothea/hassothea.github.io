@@ -18,5 +18,5 @@ location: "Phnom Penh, Cambodia"
 
 - 3rd Year: TD of **Statistics**
 
-- 5th Year: TP of **Exploratory Data Analysis**.
-> Webpage for TPs of EDA: <a href="https://hassothea.github.io/EDA_ITC/" target="_blank">https://hassothea.github.io/EDA_ITC/</a>.
+- 5th Year: TP of **Exploratory Data Analysis & Unsupervised Learning**.
+> Webpage for TPs of EDA & UL: <a href="https://hassothea.github.io/EDA_ITC/" target="_blank">https://hassothea.github.io/EDA_ITC/</a>.
