@@ -10,13 +10,13 @@ redirect_from:
 Contact
 -----
 
-[**Institute of Technology of Cambodia (Phnom Penh)**](https://itc.edu.kh/about-institute-of-technology-of-cambodia/)
+[**Institute of Technology of Cambodia (Phnom Penh)**](https://itc.edu.kh/about-institute-of-technology-of-cambodia/) <br />
 [**Department of Applied Mathematics and Statistics (AMS)**](https://itc.edu.kh/home-ams/)
 
 Room 103 F, PO Box 86, 
 Russian Federation Blvd, Phnom Penh, Cambodia.
 
-Email: [last_name].[first_name]@itc.edu.kh
+Email: [`last_name`].[`first_name`]`@itc.edu.kh`
 
 Resume
 -----
