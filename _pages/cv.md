@@ -10,7 +10,7 @@ redirect_from:
 Contact
 -----
 
-[**Institute of Technology of Cambodia (Phnom Penh)**](https://itc.edu.kh/about-institute-of-technology-of-cambodia/) <be>
+[**Institute of Technology of Cambodia (Phnom Penh)**](https://itc.edu.kh/about-institute-of-technology-of-cambodia/)
 [**Department of Applied Mathematics and Statistics (AMS)**](https://itc.edu.kh/home-ams/)
 
 Room 103 F, PO Box 86, 
