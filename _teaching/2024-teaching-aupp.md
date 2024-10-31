@@ -1,9 +1,9 @@
 ---
-title: "American Univeristy of Phnom Penh"
+title: "American University of Phnom Penh"
 collection: teaching
-type: "Bachelor degree courses"
+type: "Bachelor's degree courses"
 permalink: /teaching/2024-teaching-aupp
-venue: "American Univeristy of Phnom Penh, School of Digital Technologies"
+venue: "American University of Phnom Penh, School of Digital Technologies"
 date: 2024-10-21
 location: "Phnom Penh, Cambodia"
 ---
