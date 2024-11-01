@@ -1,5 +1,5 @@
 ---
-title: "American University of Phnom Penh"
+title: "American University of Phnom Penh (AUPP)"
 collection: teaching
 type: "Bachelor's degree courses"
 permalink: /teaching/2024-teaching-aupp
