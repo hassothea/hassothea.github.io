@@ -8,11 +8,11 @@ redirect_from:
   - /about.html
 ---
 
-I am currently working as a lecturer at [Institute of Technology of Cambodia (ITC)](http://www.itc.edu.kh/fr/). 
+I am currently working as a Lecturer Researcher at [Institute of Technology of Cambodia (ITC)](http://www.itc.edu.kh/fr/). 
 
 I did my postdoctoral research in IMPT project on improving parameterizations of gravity wave momentum fluxes in climate models, using statistical and machine learning methods, under supervision of [Aurélie Fischer](http://www.lpsm.paris/dw/doku.php?id=users:fischer:index) (LPSM - Université Paris Cité) and [Riwal Plougonven](http://gershwin.ens.fr/plougon) (LMD/IPSL - École Polytechnique). I was also in the [Datawave project](https://datawaveproject.github.io/).
 
-I did my Ph.D. in Applied Mathematics at [UPMC - Sorbonne Université](http://www.upmc.fr/en/). During my thesis, I also worked as a teaching assistant at [UFR mathematics of Université Paris Cité (Paris 7)](https://www.math.univ-paris-diderot.fr/).
+I did my Ph.D. in Applied Mathematics at [UPMC - Sorbonne Université](http://www.upmc.fr/en/). During my thesis, I also worked as a teaching assistant at [UFR Mathematics of Université Paris Cité (Paris 7)](https://www.math.univ-paris-diderot.fr/).
 
 Here is my [Ph.D. Thesis](/files/Thèse_Manuscrit_SotheaHAS.pdf) and [Slides](/files/slide_thesis/slide_thesis.html).
    
