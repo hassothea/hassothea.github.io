@@ -17,7 +17,7 @@ location: "Phnom Penh, Cambodia"
   > Webpage: <a href="https://hassothea.github.io/CSB_AUPP/" target="_blank">https://hassothea.github.io/CSB_AUPP/</a>.
 
 - `ITM - 370`: **Data Analytics** (Spring - 2024).
-  > Webpage: https://hassothea.github.io/Data_Analytics_AUPP/.
+  > Webpage: /Data_Analytics_AUPP/.
 
 <!--
 > Webpage: <a href="https://hassothea.github.io/Data_Analytics_AUPP/" target="_blank">https://hassothea.github.io/Data_Analytics_AUPP/</a>.
