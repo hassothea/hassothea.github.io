@@ -17,5 +17,4 @@ location: "Phnom Penh, Cambodia"
 -->
 
 - `INF - 604`: **Data Analysis** (2025).
-  
-> Webpage: <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">https://hassothea.github.io/Data_Analysis_AUPP/</a>.
+  > Webpage: <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">https://hassothea.github.io/Data_Analysis_AUPP/</a>.
