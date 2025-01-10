@@ -10,5 +10,6 @@ location: "Phnom Penh, Cambodia"
 
 ## Bachelor's degree (2024)
 
-- 2nd-3rd year: **Data Analytics**.
+- `ITM - 370`: **Data Analytics**.
+  
 > Webpage: <a href="https://hassothea.github.io/Data_Analytics_AUPP/" target="_blank">https://hassothea.github.io/Data_Analytics_AUPP/</a>.
