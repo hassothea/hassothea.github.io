@@ -12,13 +12,13 @@ location: "Paris, France"
 
 - [M2MO](https://masterfinance.math.univ-paris-diderot.fr/) : TD of **Statistical Modeling**.
 
-- [M1ISIFAR](https://master.math.u-paris.fr/annee/m1-isifar/) : TP `R`-programming of **Data Analysis**.
+- [M1ISIFAR](https://master.math.u-paris.fr/annee/m1-isifar/) : TP **R**-programming of **Data Analysis**.
 
-- [M2ISIFAR](https://master.math.u-paris.fr/annee/m2-isifar/) : TP `R`-programming of **Data Mining**.
+- [M2ISIFAR](https://master.math.u-paris.fr/annee/m2-isifar/) : TP **R**-programming of **Data Mining**.
 
-- [M1MIDS](https://master.math.u-paris.fr/annee/m1-mi/) : TP `R`-programming of **Exploratory Data Analysis**.
+- [M1MIDS](https://master.math.u-paris.fr/annee/m1-mi/) : TP **R**-programming of **Exploratory Data Analysis**.
 
-- [M1 Math-Info](https://master.math.u-paris.fr/modules/m1mi-big-data/) : TP of **Big data technology** with `Spark` and `Python`.
+- [M1 Math-Info](https://master.math.u-paris.fr/modules/m1mi-big-data/) : TP of **Big data technology** with **Spark** and **Python**.
 
 ## License (2022)
 
