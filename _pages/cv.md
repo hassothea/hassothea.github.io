@@ -16,7 +16,7 @@ Contact
 Room 103 F, PO Box 86, <br />
 Russian Federation Blvd, Phnom Penh, Cambodia.
 
-Email: [`last_name`].[`first_name`]`@itc.edu.kh`
+Email: [last_name].[first_name]@itc.edu.kh.
 
 Resume
 -----
