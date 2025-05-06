@@ -22,7 +22,7 @@ location: "Paris, France"
 
 ## License (2022)
 
-- [L3 Info](https://odf.u-paris.fr/fr/offre-de-formation/licence-XA/sciences-technologies-sante-STS/informatique-K2VO937D/licence-informatique-parcours-informatique-generale-JRKM8J1B.html) : TP of **Algorithm and programming** in `Python`.
+- [L3 Info](https://odf.u-paris.fr/fr/offre-de-formation/licence-XA/sciences-technologies-sante-STS/informatique-K2VO937D/licence-informatique-parcours-informatique-generale-JRKM8J1B.html) : TP of **Algorithm and programming** in **Python**.
 
 <!-- 
 Courses (Khmer)
