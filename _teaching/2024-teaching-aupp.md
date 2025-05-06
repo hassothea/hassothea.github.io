@@ -10,13 +10,13 @@ location: "Phnom Penh, Cambodia"
 
 ## Bachelor's degree
 
-- `INF - 604`: **Data Analysis** (2025).
+- **INF - 604**: **Data Analysis** (2025).
   > Webpage: <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">https://hassothea.github.io/Data_Analysis_AUPP/</a>.
 
-- `COSC - 221`: **CSB: Python Programming** (2025).
+- **COSC - 221**: **CSB: Python Programming** (2025).
   > Webpage: <a href="https://hassothea.github.io/CSB_AUPP/" target="_blank">https://hassothea.github.io/CSB_AUPP/</a>.
 
-- `ITM - 370`: **Data Analytics** (Spring - 2024).
+- **ITM - 370**: **Data Analytics** (Spring - 2024).
   > Webpage: /Data_Analytics_AUPP/.
 
 <!--
