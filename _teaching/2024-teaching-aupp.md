@@ -10,14 +10,12 @@ location: "Phnom Penh, Cambodia"
 
 ## Master's degree
 
-- **CSCI - 866**: **Data Mining and Knowledge Discovery**:
+- **CSCI - 866**: **Data Mining and Knowledge Discovery** (Summer - 2025):
   > **Webpage:**  <a href="https://hassothea.github.io/Data_Mining_AUPP/" target="_blank">https://hassothea.github.io/Data_Mining_AUPP/</a>.
-
--------------
 
 ## Bachelor's degree
 
-- **INF - 604**: **Data Analysis** (2025).
+- **INF - 604**: **Data Analysis** (Spring - 2025).
   > **Webpage:** <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">https://hassothea.github.io/Data_Analysis_AUPP/</a>.
   
 
@@ -27,8 +25,6 @@ location: "Phnom Penh, Cambodia"
 
 - **ITM - 370**: **Data Analytics** (Spring - 2024).
   > **Webpage:** <a href="https://hassothea.github.io/Data_Analytics_AUPP/" target="_blank">https://hassothea.github.io/Data_Analytics_AUPP/</a>.
-
--------------
 
 <!--
 > Webpage: <a href="https://hassothea.github.io/Data_Analytics_AUPP/" target="_blank">https://hassothea.github.io/Data_Analytics_AUPP/</a>.
