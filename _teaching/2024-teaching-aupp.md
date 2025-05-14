@@ -13,13 +13,14 @@ location: "Phnom Penh, Cambodia"
 - **CSCI - 866**: **Data Mining and Knowledge Discovery** (Summer - 2025):
   > **Webpage:**  <a href="https://hassothea.github.io/Data_Mining_AUPP/" target="_blank">https://hassothea.github.io/Data_Mining_AUPP/</a>.
 
+
 ## Bachelor's degree
 
 - **INF - 604**: **Data Analysis** (Spring - 2025).
   > **Webpage:** <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">https://hassothea.github.io/Data_Analysis_AUPP/</a>.
   
 
-- **COSC - 221**: **CSB: Python Programming** (2025).
+- **COSC - 221**: **CSB: Python Programming** (Spring - 2025).
   > **Platform:** **Canvas**.
   
 
