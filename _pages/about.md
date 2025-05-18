@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a Senior Lecturer Researcher at [Mechatronics and Information Technology (MIT)](https://ric.itc.edu.kh/research_unit/mechatronics-and-information-technology-mit) of [Institute of Technology of Cambodia (ITC)](http://www.itc.edu.kh/fr/). 
+I am currently a **Lecturer** at the Department of Applied Mathematics and Statistics (AMS) and a **Lecturer Researcher** at [Mechatronics and Information Technology (MIT)](https://ric.itc.edu.kh/research_unit/mechatronics-and-information-technology-mit) of [Institute of Technology of Cambodia (ITC)](http://www.itc.edu.kh/fr/). 
 
 I did my postdoctoral research in IMPT project on improving parameterizations of gravity wave momentum fluxes in climate models, using statistical and machine learning methods, under supervision of [Aurélie Fischer](http://www.lpsm.paris/dw/doku.php?id=users:fischer:index) (LPSM - Université Paris Cité) and [Riwal Plougonven](http://gershwin.ens.fr/plougon) (LMD/IPSL - École Polytechnique). My postdoctoral project was a part of the [DataWave: Collaborative Gravity Wave Research](https://datawaveproject.github.io/).
 
