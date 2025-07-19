@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Home Page"
+title                    : "Home"
 title_separator          : "-"
 name                     : &name "Sothea Has"
 description              : &description "I did my Ph.D. in Applied Mathematics at Sorbonne Université (Paris 6)."
