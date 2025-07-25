@@ -1,7 +1,7 @@
 ---
 title: "American University of Phnom Penh (AUPP)"
 collection: teaching
-type: "Bachelor's degree courses"
+type: "Bachelor's and Master's degree courses"
 permalink: /teaching/2024-teaching-aupp
 venue: "American University of Phnom Penh, School of Digital Technologies"
 date: 2024-10-21
