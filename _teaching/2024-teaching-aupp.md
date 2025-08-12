@@ -1,5 +1,5 @@
 ---
-title: "<img src='/files/figs/AUPP_logo.png' alt='AUPP' style='height: 2em; vertical-align: middle;'> American University of Phnom Penh (AUPP)"
+title: "<img src='/files/figs/AUPP_logo.png' alt='AUPP' style='height: 2.5em; vertical-align: middle;'> American University of Phnom Penh (AUPP)"
 collection: teaching
 type: "Bachelor's and Master's degree courses"
 permalink: /teaching/2024-teaching-aupp
