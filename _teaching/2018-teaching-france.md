@@ -8,7 +8,7 @@ date: 2018-09-01
 location: "Paris, France"
 ---
 
-## Master's degree (2018 - 2023)
+## 🎓 Master's degree (2018 - 2023)
 
 - [M2MO](https://masterfinance.math.univ-paris-diderot.fr/) : TD of **Statistical Modeling**.
 
@@ -20,7 +20,7 @@ location: "Paris, France"
 
 - [M1 Math-Info](https://master.math.u-paris.fr/modules/m1mi-big-data/) : TP of **Big data technology** with **Spark** and **Python**.
 
-## License (2022)
+## 🎓 License (2022)
 
 - [L3 Info](https://odf.u-paris.fr/fr/offre-de-formation/licence-XA/sciences-technologies-sante-STS/informatique-K2VO937D/licence-informatique-parcours-informatique-generale-JRKM8J1B.html) : TP of **Algorithm and programming** in **Python**.
 
@@ -33,6 +33,7 @@ Courses (Khmer)
 - [FPB - Machine Learning Course](https://hassothea.github.io/FPB_ML_course/index.html)
 
 -->
+
 
 
 
