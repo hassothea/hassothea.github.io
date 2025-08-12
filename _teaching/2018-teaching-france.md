@@ -1,5 +1,5 @@
 ---
-title: "UFR de Mathématiques - Université Paris Cité"
+title: "<img src="/files/figs/univ_paris_city.png" alt="University Paris Cité" style="height: 1em; vertical-align: middle;"> UFR de Mathématiques - Université Paris Cité"
 collection: teaching
 type: "License and Master's degree courses"
 permalink: /teaching/2018-teaching-france
@@ -33,5 +33,6 @@ Courses (Khmer)
 - [FPB - Machine Learning Course](https://hassothea.github.io/FPB_ML_course/index.html)
 
 -->
+
 
 
