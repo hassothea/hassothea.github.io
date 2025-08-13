@@ -1,12 +1,12 @@
 .container {
     width:100%;
-    border:1px solid #d3d3d3;
+    border:1px solid radial-gradient(circle, #ffffff, #c9eaff);
 }
 .container div {
     width:100%;
 }
 .container .header {
-    background-color:#d3d3d3;
+    background-color: radial-gradient(circle, #ffffff, #c9eaff);  /* #d3d3d3; */
     padding: 2px;
     cursor: pointer;
     font-weight: bold;
