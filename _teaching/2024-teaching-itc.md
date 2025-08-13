@@ -1,5 +1,5 @@
 ---
-title: "<img src='/files/figs/itc.png' alt='ITC' style='height: 2.5em; vertical-align: middle;'> Institute of Technology of Cambodia (ITC)"
+title: "<img src='/files/figs/itc.png' alt='ITC' style='height: 2em; vertical-align: middle;'> Institute of Technology of Cambodia (ITC)"
 collection: teaching
 type: "Bachelor's and Master's degree courses"
 permalink: /teaching/2024-teaching-itc
