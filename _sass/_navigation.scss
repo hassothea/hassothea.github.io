@@ -94,6 +94,7 @@
       &.current {
         color: #fff;
         background: $primary-color;
+        font-weight: bold;
       }
 
       &.disabled {
@@ -268,6 +269,7 @@
       &:hover {
         color: $masthead-link-color-hover;
         background: mix(#fff, $primary-color, 75%);
+        font-weight: bold;
       }
     }
 
@@ -385,6 +387,7 @@
     background: $primary-color;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
+    font-weight: bold;
   }
 }
 
