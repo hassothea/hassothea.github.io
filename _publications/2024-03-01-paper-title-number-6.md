@@ -3,7 +3,7 @@ title: "Reconstructing balloon-observed gravity wave momentum fluxes using machi
 collection: article
 permalink: /publication/2024-03-01-paper-title-number-6
 excerpt: 
-date: 2024-03-01
+date: 2024-04-27
 venue: 'JGR: Atmosphere'
 ---
 
