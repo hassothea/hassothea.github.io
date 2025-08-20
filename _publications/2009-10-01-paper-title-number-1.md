@@ -1,5 +1,5 @@
 ---
-title: "KFC: A clusterwise supervised learning procedure based on aggregation of distances"
+title: "📄 KFC: A clusterwise supervised learning procedure based on aggregation of distances"
 collection: publications
 permalink: /publication/2010-10-01-paper-title-number-1
 date: 2021-04-10
