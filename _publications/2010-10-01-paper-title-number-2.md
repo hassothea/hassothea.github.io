@@ -1,5 +1,5 @@
 ---
-title: "Gradient COBRA: A kernel-based consensual aggregation for regression"
+title: "📄 Gradient COBRA: A kernel-based consensual aggregation for regression"
 collection: article
 permalink: /publication/2010-10-01-paper-title-number-2
 excerpt: 
