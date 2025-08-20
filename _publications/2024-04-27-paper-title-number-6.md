@@ -1,5 +1,5 @@
 ---
-title: "Reconstructing balloon-observed gravity wave momentum fluxes using machine learning and input from ERA5"
+title: "📄 Reconstructing balloon-observed gravity wave momentum fluxes using machine learning and input from ERA5"
 collection: article
 permalink: /publication/2024-03-01-paper-title-number-6
 excerpt: 
