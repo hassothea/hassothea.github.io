@@ -1,5 +1,5 @@
 ---
-title: "GradientCOBRA python library"
+title: "<img src="https://raw.githubusercontent.com/hassothea/gradientcobra/main/gradientcobra_logo.svg" alt="gradientcobra logo" width="30"/> GradientCOBRA python library"
 collection: library
 permalink: /publication/2023-11-11-paper-title-number-5
 excerpt: 
