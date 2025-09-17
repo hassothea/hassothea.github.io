@@ -21,7 +21,7 @@ location: "Paris, France"
 
 ## 🎓 Bachelor's degree
 
-| <span style="color: #255794;">Course</span> | <span style="color: #255794;">Season</span> | <span style="color: #255794;">Webpage / Platform</span> |
+| <span style="color: #255794;">Course</span> | <span style="color: #255794;">Season</span> | <span style="color: #255794;">Program</span> |
 |:--------------------------------------------|:------------------------------------------|:------------------------------------------------------|
 | TP of Algorithm and programming in **Python** | 2022 | [L3 Info](https://odf.u-paris.fr/fr/offre-de-formation/licence-XA/sciences-technologies-sante-STS/informatique-K2VO937D/licence-informatique-parcours-informatique-generale-JRKM8J1B.html) |
 
@@ -53,6 +53,7 @@ Courses (Khmer)
 - [FPB - Machine Learning Course](https://hassothea.github.io/FPB_ML_course/index.html)
 
 -->
+
 
 
 
