@@ -11,14 +11,14 @@ location: "Phnom Penh, Cambodia"
 ## 🎓 Master's degree
 
 
-| <span style="color: #255794;">Course</span> | <span style="color: #255794;">Season</span> | <span style="color: #255794;">Webpage / Platform</span> |
+| <span style="color: #1b2b33;">Course</span> | <span style="color: #1b2b33;">Season</span> | <span style="color: #1b2b33;">Webpage / Platform</span> |
 |:-----------|:-----------|:--------------------|
 | CSCI - 866: Data Mining and Knowledge Discovery | Summar-2025 | <a href="https://hassothea.github.io/Data_Mining_AUPP/" target="_blank">https://hassothea.github.io/Data_Mining_AUPP/</a> |
 
 ## 🎓 Bachelor's degree
 
 
-| <span style="color: #255794;">Course</span> | <span style="color: #255794;">Season</span> | <span style="color: #255794;">Webpage / Platform</span> |
+| <span style="color: #1b2b33;">Course</span> | <span style="color: #1b2b33;">Season</span> | <span style="color: #1b2b33;">Webpage / Platform</span> |
 |:-----------|:-----------|:--------------------|
 | **INF-604: Data Analysis**[^1] | **Spring-2025** | <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">**https://hassothea.github.io/Data_Analysis_AUPP/**</a> |
 | COSC-221: Python Programming | Spring-2025 | Canvas |
