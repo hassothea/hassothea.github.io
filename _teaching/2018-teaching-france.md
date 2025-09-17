@@ -10,7 +10,7 @@ location: "Paris, France"
 
 ## 🎓 Master's degree (2018 - 2023)
 
-| <span style="color: #217CFF;">Course</span> | <span style="color: black;">Year</span> | <span style="color: black;">Program</span> |
+| <span style="color: #217CFF;">Course</span> | <span style="color: #217CFF;">Year</span> | <span style="color: #217CFF;">Program</span> |
 |:--------------------------------------------|:----------------------------------------|:-------------------------------------------|
 | TD of Statistical Modeling | 2018-2023 | [M2MO](https://masterfinance.math.univ-paris-diderot.fr/) |
 | TP **R**-programming of Data Analysis | 2018-2023 | [M1ISIFAR](https://master.math.u-paris.fr/annee/m1-isifar/) |
@@ -21,7 +21,7 @@ location: "Paris, France"
 
 ## 🎓 Bachelor's degree
 
-| <span style="color: #217CFF;">Course</span> | <span style="color: black;">Season</span> | <span style="color: black;">Webpage / Platform</span> |
+| <span style="color: #217CFF;">Course</span> | <span style="color: #217CFF;">Season</span> | <span style="color: #217CFF;">Webpage / Platform</span> |
 |:--------------------------------------------|:------------------------------------------|:------------------------------------------------------|
 | TP of Algorithm and programming in **Python** | 2022 | [L3 Info](https://odf.u-paris.fr/fr/offre-de-formation/licence-XA/sciences-technologies-sante-STS/informatique-K2VO937D/licence-informatique-parcours-informatique-generale-JRKM8J1B.html) |
 
@@ -53,6 +53,7 @@ Courses (Khmer)
 - [FPB - Machine Learning Course](https://hassothea.github.io/FPB_ML_course/index.html)
 
 -->
+
 
 
 
