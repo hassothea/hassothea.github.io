@@ -12,18 +12,20 @@ location: "Phnom Penh, Cambodia"
 
 | Course | Season | Link / Platform |
 |:-----------|:-----------|:--------------------|
-| **CSCI - 866: Data Mining and Knowledge Discovery** | Summar-2025 | <a href="https://hassothea.github.io/Data_Mining_AUPP/" target="_blank">https://hassothea.github.io/Data_Mining_AUPP/</a> |
+| CSCI - 866: Data Mining and Knowledge Discovery | Summar-2025 | <a href="https://hassothea.github.io/Data_Mining_AUPP/" target="_blank">https://hassothea.github.io/Data_Mining_AUPP/</a> |
 
 ## 🎓 Bachelor's degree
 
 | Course | Season | Link / Platform |
 |:-----------|:-----------|:--------------------|
-| **INF-604: Data Analysis** | Spring-2025 | <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">**https://hassothea.github.io/Data_Analysis_AUPP/**</a> |
+| **INF-604: Data Analysis** | **Spring-2025**[^1] | <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">**https://hassothea.github.io/Data_Analysis_AUPP/**</a> |
 | COSC-221: Python Programming | Spring-2025 | Canvas |
 | **COSC-111: Computer Science Survey**| **Fall-2025** | **Canvas** |
-| ITM - 370: Data Analytics | Spring-2024 | <a href="https://hassothea.github.io/Data_Analytics_AUPP/" target="_blank">**https://hassothea.github.io/Data_Analytics_AUPP/**</a> |
+| ITM - 370: Data Analytics | Spring-2024 | <a href="https://hassothea.github.io/Data_Analytics_AUPP/" target="_blank">https://hassothea.github.io/Data_Analytics_AUPP/</a> |
 | **ITM 390 004: Machine Learning** | **Fall-2024** | <a href="https://hassothea.github.io/Data_Analytics_AUPP/" target="_blank">**https://hassothea.github.io/Machine_Learning_AUPP/**</a> |
 
+
+[^1]: **Boldfaced courses are currently in progress.**
 
 <!--
 
