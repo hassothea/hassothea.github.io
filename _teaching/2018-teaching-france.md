@@ -8,6 +8,7 @@ date: 2018-09-01
 location: "Paris, France"
 ---
 
+## 🎓 Master's degree (2018 - 2023)
 
 | <span style="color: #217CFF;">Course</span> | <span style="color: black;">Year</span> | <span style="color: black;">Program</span> |
 |:--------------------------------------------|:----------------------------------------|:-------------------------------------------|
@@ -17,8 +18,8 @@ location: "Paris, France"
 | TP **R**-programming of Exploratory Data Analysis | 2018-2023 | [M1MIDS](https://master.math.u-paris.fr/annee/m1-mi/) |
 | TP of Big data technology with **Spark** and **Python** | 2018-2023 | [M1 Math-Info](https://master.math.u-paris.fr/modules/m1mi-big-data/) |
 
-## 🎓 Bachelor's degree
 
+## 🎓 Bachelor's degree
 
 | <span style="color: #217CFF;">Course</span> | <span style="color: black;">Season</span> | <span style="color: black;">Webpage / Platform</span> |
 |:--------------------------------------------|:------------------------------------------|:------------------------------------------------------|
@@ -52,6 +53,7 @@ Courses (Khmer)
 - [FPB - Machine Learning Course](https://hassothea.github.io/FPB_ML_course/index.html)
 
 -->
+
 
 
 
