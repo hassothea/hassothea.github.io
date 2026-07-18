@@ -325,3 +325,19 @@
 .fa.fa-pull-right {
   margin-left: .3em;
 }
+
+/* 1. Import the Moul font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Moul&display=swap');
+
+/* 2. Target the span containing your Khmer name */
+.khmer-name {
+  /* Set Moul as primary, fallback to local Khmer OS, then a standard sans-serif */
+  font-family: 'Moul', 'Khmer OS', 'Khmer OS Battambang', sans-serif;
+  
+  /* Optional: Adjust the size. Khmer fonts sometimes render larger or smaller than Latin fonts */
+  font-size: 0.85em; 
+  
+  /* Optional: Add a slight top margin if it looks too close to your English name */
+  display: inline-block;
+  margin-top: 5px; 
+}
