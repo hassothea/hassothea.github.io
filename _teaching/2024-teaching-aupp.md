@@ -20,11 +20,12 @@ location: "Phnom Penh, Cambodia"
 
 | <span style="color: #1b2b33;">Course</span> | <span style="color: #1b2b33;">Season</span> | <span style="color: #1b2b33;">Webpage / Platform</span> |
 |:-----------|:-----------|:--------------------|
-| **INF-604: Data Analysis**[^1] | **Spring-2025** | <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">**https://hassothea.github.io/Data_Analysis_AUPP/**</a> |
+| **INF-604: Data Analysis**[^1] | **2024 - Present** | <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">**https://hassothea.github.io/Data_Analysis_AUPP/**</a> |
+| **INS-605: Data Analysis II** | **Fall 2026** | <a href="https://hassothea.github.io/Data_Analysis_AUPP/" target="_blank">**https://hassothea.github.io/AUPP_Data_Analysis_II/**</a> |
 | COSC-221: Python Programming | Spring-2025 | Canvas |
-| **COSC-111: Computer Science Survey**| **Fall-2025** | **Canvas** |
+| COSC-111: Computer Science Survey | Fall-2025 | Canvas |
 | ITM - 370: Data Analytics | Spring-2024 | <a href="https://hassothea.github.io/Data_Analytics_AUPP/" target="_blank">https://hassothea.github.io/Data_Analytics_AUPP/</a> |
-| **ITM 390 004: Machine Learning** | **Fall-2024** | <a href="https://hassothea.github.io/Machine_Learning_AUPP/" target="_blank">**https://hassothea.github.io/Machine_Learning_AUPP/**</a> |
+| ITM 390 004: Machine Learning | Fall-2024 | <a href="https://hassothea.github.io/Machine_Learning_AUPP/" target="_blank">**https://hassothea.github.io/Machine_Learning_AUPP/**</a> |
 
 
 [^1]: **Boldfaced courses are currently in progress.**
