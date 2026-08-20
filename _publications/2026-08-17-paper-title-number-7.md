@@ -1,5 +1,5 @@
 ---
-title: "📄 Optimal Condition for Initialization Variance in Deep Neural Networks: An SGD Dynamics Perspective"
+title: "📄 Optimal Initialization Scale for Neural Networks with Locally Quadratic Loss Landscapes: An SGD Dynamics Perspective"
 collection: article
 permalink: /publication/2026-08-17-paper-title-number-7
 date: 2026-08-17
