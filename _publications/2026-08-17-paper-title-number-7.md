@@ -6,7 +6,7 @@ date: 2026-08-17
 venue: 'TNNLS'
 ---
 
-[&#9755; Download paper](/files/Optimal_Initialization_Scale_annonymize_final.pdf){:target="_blank"} .
+[&#9755; Download paper](/files/Optimal_Initialization_Scale_for_Neural_Networks_with_Locally_Quadratic_Loss_Landscapes__An_SGD_Dynamics_Perspective.pdf){:target="_blank"} .
 
 ## Abstract summary:
 
