@@ -1,12 +1,12 @@
 ---
 title: "📄 Optimal Condition for Initialization Variance in Deep Neural Networks: An SGD Dynamics Perspective"
-collection: preprint
-permalink: /publication/2025-08-01-paper-title-number-7
-date: 2025-08-01
-venue: 'Arxiv'
+collection: article
+permalink: /publication/2026-08-17-paper-title-number-7
+date: 2026-08-17
+venue: 'TNNLS'
 ---
 
-[&#9755; Download paper](https://arxiv.org/abs/2508.12834){:target="_blank"} .
+[&#9755; Download paper](/files/Optimal_Initialization_Scale_annonymize_final.pdf){:target="_blank"} .
 
 ## Abstract summary:
 
