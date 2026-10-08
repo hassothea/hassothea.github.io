@@ -23,7 +23,7 @@ location: "Phnom Penh, Cambodia"
 
 | <span style="color: #1b2b33;">Course</span> | <span style="color: #1b2b33;">Academic Year</span> | <span style="color: #1b2b33;">Webpage / Platform</span> |
 |:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------|
-| Exploratory Data Analysis & Unsupervised Learning | 5th | <a href="https://hassothea.github.io/EDA_ITC/" target="_blank">https://hassothea.github.io/EDA_ITC/</a> |
+| Exploratory Data Analysis & Unsupervised Learning | 5th | <a href="https://hassothea.github.io/I5_EDA_ITC/" target="_blank">https://hassothea.github.io/I5_EDA_ITC/</a> |
 | Statistics | 3rd | Moodle |
 | Probability | 2nd | Moodle |
 | Mathematics III | 1st (IP) | Moodle |
