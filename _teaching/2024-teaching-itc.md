@@ -14,7 +14,7 @@ location: "Phnom Penh, Cambodia"
 
 | <span style="color: #1b2b33;">Course</span> | <span style="color: #1b2b33;">Academic Year</span> | <span style="color: #1b2b33;">Webpage / Platform</span> |
 |:--------------------------------------------|:--------------------------------------------|:--------------------------------------------------------|
-| Exploratory Data Analysis & Unsupervised Learning | Master 1 | <a href="https://hassothea.github.io/M1_EDA_ITC/" target="_blank">https://hassothea.github.io/M1_EDA_ITC/</a> |
+| Exploratory Data Analysis & Unsupervised Learning | Master 1 | <a href="https://hassothea.github.io/M1_DAS_EDA_ITC/" target="_blank">https://hassothea.github.io/M1_DAS_EDA_ITC/</a> |
 | Advanced Machine Learning | Master 2 | <a href="https://hassothea.github.io/Advanced-Machine-Learning-ITC/" target="_blank">https://hassothea.github.io/Advanced-Machine-Learning-ITC/</a> |
 
 
